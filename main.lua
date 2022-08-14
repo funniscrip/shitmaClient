@@ -5,6 +5,7 @@
 ---If you would like to use some of the code in this script go ahead but credit this, vapev4 and future/engoware!
 
 repeat wait() until game:IsLoaded()
+repeat wait() until game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:FindFirstChild("Humanoid") and game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
 
 if game.CoreGui:FindFirstChild("Sigma_1") then
 
