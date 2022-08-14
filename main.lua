@@ -1,3 +1,4 @@
+--[BETA] This has been in the making for about 2 weeks and NOT ALL CHEATS ARE FINISHED. There are also a few bugs with loading and other cheats (WILL BE PATCHED SOON).
 ---Thank you to Vapev4 and Future for helping me learn lua scripting!
 ---This client includes very simular and sometimes taken scripts from both clients. 
 ---Once I learn everything about scripting I will revamp this gui into only my script and no CTRL + C CTRL + V lol
@@ -2709,8 +2710,8 @@ Speed.MouseButton1Down:connect(function()
                     continue 
                 end
                 if SpeedCheatOn == true then
-                    getgenv().speedvalforspeed = {["Value"] = 85} --80
-                    wait(0.2) --0.4
+                    getgenv().speedvalforspeed = {["Value"] = 110} --80
+                    wait(0.1) --0.4
                     else
                     continue 
                 end
@@ -2721,8 +2722,8 @@ Speed.MouseButton1Down:connect(function()
                     continue 
                 end
                 if SpeedCheatOn == true then
-                    getgenv().speedvalforspeed = {["Value"] = 85} --80
-                    wait(0.2) --0.4
+                    getgenv().speedvalforspeed = {["Value"] = 110} --80
+                    wait(0.1) --0.4
                     else
                     continue 
                 end
@@ -2733,8 +2734,8 @@ Speed.MouseButton1Down:connect(function()
                     continue 
                 end
                 if SpeedCheatOn == true then
-                    getgenv().speedvalforspeed = {["Value"] = 85} --90
-                    wait(0.2) --0.4
+                    getgenv().speedvalforspeed = {["Value"] = 110} --90
+                    wait(0.1) --0.4
                     else
                     continue 
                 end
@@ -7145,8 +7146,8 @@ coroutine.wrap(function()
                                         continue 
                                     end
                                     if SpeedCheatOn == true then
-                                        getgenv().speedvalforspeed = {["Value"] = 85} --80
-                                        wait(0.2) --0.4
+                                        getgenv().speedvalforspeed = {["Value"] = 110} --80
+                                        wait(0.1) --0.4
                                         else
                                         continue 
                                     end
@@ -7157,8 +7158,8 @@ coroutine.wrap(function()
                                         continue 
                                     end
                                     if SpeedCheatOn == true then
-                                        getgenv().speedvalforspeed = {["Value"] = 85} --80
-                                        wait(0.2) --0.4
+                                        getgenv().speedvalforspeed = {["Value"] = 110} --80
+                                        wait(0.1) --0.4
                                         else
                                         continue 
                                     end
@@ -7169,8 +7170,8 @@ coroutine.wrap(function()
                                         continue 
                                     end
                                     if SpeedCheatOn == true then
-                                        getgenv().speedvalforspeed = {["Value"] = 85} --90
-                                        wait(0.2) --0.4
+                                        getgenv().speedvalforspeed = {["Value"] = 110} --90
+                                        wait(0.1) --0.4
                                         else
                                         continue 
                                     end
