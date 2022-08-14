@@ -14,12 +14,7 @@ local queueteleport = (syn and syn.queue_on_teleport) or queue_on_teleport or (f
 
 local ontp = game:GetService("Players").LocalPlayer.OnTeleport:Connect(function(State)
     if State == Enum.TeleportState.Started then
-		local stringtp = [[
-        repeat wait() until game:IsLoaded()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/ratedlua/shitmaClient/main/main.lua", true))() 
-
-        ]]
-		queueteleport(stringtp)
+		queueteleport('loadstring(game:HttpGet("https://raw.githubusercontent.com/ratedlua/shitmaClient/main/main.lua", true))()')
     end
 end)
 
