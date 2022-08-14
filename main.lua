@@ -2704,37 +2704,37 @@ Speed.MouseButton1Down:connect(function()
         spawn(function()
             while SpeedCheatOn == true do
                 if SpeedCheatOn == true then
-                    getgenv().speedvalforspeed = {["Value"] = 55}
+                    getgenv().speedvalforspeed = {["Value"] = 50} --55
                     wait(1)
                     else
                     continue 
                 end
                 if SpeedCheatOn == true then
-                    getgenv().speedvalforspeed = {["Value"] = 110} --80
+                    getgenv().speedvalforspeed = {["Value"] = 100} --110
                     wait(0.1) --0.4
                     else
                     continue 
                 end
                 if SpeedCheatOn == true then
-                    getgenv().speedvalforspeed = {["Value"] = 55}
+                    getgenv().speedvalforspeed = {["Value"] = 50} --55
                     wait(1)
                     else
                     continue 
                 end
                 if SpeedCheatOn == true then
-                    getgenv().speedvalforspeed = {["Value"] = 110} --80
+                    getgenv().speedvalforspeed = {["Value"] = 100} --110
                     wait(0.1) --0.4
                     else
                     continue 
                 end
                 if SpeedCheatOn == true then
-                    getgenv().speedvalforspeed = {["Value"] = 55}
+                    getgenv().speedvalforspeed = {["Value"] = 50} --55
                     wait(1)
                     else
                     continue 
                 end
                 if SpeedCheatOn == true then
-                    getgenv().speedvalforspeed = {["Value"] = 110} --90
+                    getgenv().speedvalforspeed = {["Value"] = 100} --110
                     wait(0.1) --0.4
                     else
                     continue 
@@ -7140,37 +7140,37 @@ coroutine.wrap(function()
                             spawn(function()
                                 while SpeedCheatOn == true do
                                     if SpeedCheatOn == true then
-                                        getgenv().speedvalforspeed = {["Value"] = 55}
+                                        getgenv().speedvalforspeed = {["Value"] = 50} --55
                                         wait(1)
                                         else
                                         continue 
                                     end
                                     if SpeedCheatOn == true then
-                                        getgenv().speedvalforspeed = {["Value"] = 110} --80
+                                        getgenv().speedvalforspeed = {["Value"] = 100} --110
                                         wait(0.1) --0.4
                                         else
                                         continue 
                                     end
                                     if SpeedCheatOn == true then
-                                        getgenv().speedvalforspeed = {["Value"] = 55}
+                                        getgenv().speedvalforspeed = {["Value"] = 50} --55
                                         wait(1)
                                         else
                                         continue 
                                     end
                                     if SpeedCheatOn == true then
-                                        getgenv().speedvalforspeed = {["Value"] = 110} --80
+                                        getgenv().speedvalforspeed = {["Value"] = 100} --110
                                         wait(0.1) --0.4
                                         else
                                         continue 
                                     end
                                     if SpeedCheatOn == true then
-                                        getgenv().speedvalforspeed = {["Value"] = 55}
+                                        getgenv().speedvalforspeed = {["Value"] = 50} --55
                                         wait(1)
                                         else
                                         continue 
                                     end
                                     if SpeedCheatOn == true then
-                                        getgenv().speedvalforspeed = {["Value"] = 110} --90
+                                        getgenv().speedvalforspeed = {["Value"] = 100} --110
                                         wait(0.1) --0.4
                                         else
                                         continue 
