@@ -1,9 +1,9 @@
---[BETA] This has been in the making for about 2 weeks and NOT ALL CHEATS ARE FINISHED. There are also a few bugs with loading and other cheats (WILL BE PATCHED SOON).
----Thank you to Vapev4 and Future for helping me learn lua scripting!
----This client includes very simular and sometimes taken scripts from both clients. 
----Once I learn everything about scripting I will revamp this gui into only my script and no CTRL + C CTRL + V lol
----If you want any credit please lmk!
----If you would like to use some of the code in this script go ahead but credit this, vapev4 and future/engoware!
+-- Alot of this script is skidded which makes me uncomfortable so I will be rescripting this later
+-- credits to vapev4, future client and engoware
+
+-- engoware: loadstring(game:HttpGet("https://raw.githubusercontent.com/joeengo/engoware/main/Main.lua"))()
+-- vapev4: loadstring(game:HttpGet("https://raw.githubusercontent.com/7GrandDadPGN/VapeV4ForRoblox/main/NewMainScript.lua", true))()
+-- future client: loadstring(game:HttpGet('https://raw.githubusercontent.com/joeengo/Future/main/loadstring.lua', true))()
 
 repeat wait() until game:IsLoaded()
 repeat wait() until game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:FindFirstChild("Humanoid") and game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
@@ -14,7 +14,7 @@ else
 
 local queueteleport = (syn and syn.queue_on_teleport) or queue_on_teleport or (fluxus and fluxus.queue_on_teleport)
 
-queueteleport('loadstring(game:HttpGet("https://raw.githubusercontent.com/ratedlua/shitmaClient/main/main.lua", true))()')
+--queueteleport('loadstring(game:HttpGet("https://raw.githubusercontent.com/ratedlua/shitmaClient/main/main.lua", true))()')
 
 
 ----------------------------------------------------------------------------------------------------ANTICHEATBYPASS. Not done
@@ -2567,14 +2567,11 @@ MultiAura.MouseButton1Down:connect(function()
 
         repeat
             task.wait(0.03)
-            if character and character:FindFirstChild("HumanoidRootPart") and character:FindFirstChild("Humanoid") then
-                print("superez")
-                local plrs = GetAllNearestHumanoidToPosition(18.8)
-                for i,plr in pairs(plrs) do
-                    local selfpos = game.Players.LocalPlayer.Character.HumanoidRootPart.Position
-                    local newpos = plr.Character.HumanoidRootPart.Position
-                    bedwars["ClientHandler"]:Get(bedwars["PaintRemote"]):SendToServer(selfpos, CFrame.lookAt(selfpos, newpos).lookVector)
-                end
+            local plrs = GetAllNearestHumanoidToPosition(18.8)
+            for i,plr in pairs(plrs) do
+                local selfpos = game.Players.LocalPlayer.Character.HumanoidRootPart.Position
+                local newpos = plr.Character.HumanoidRootPart.Position
+                bedwars["ClientHandler"]:Get(bedwars["PaintRemote"]):SendToServer(selfpos, CFrame.lookAt(selfpos, newpos).lookVector)
             end
         until MultiAuraCheatOn == false
 
@@ -8580,14 +8577,11 @@ coroutine.wrap(function()
 
                             repeat
                                 task.wait(0.03)
-                                if character and character:FindFirstChild("HumanoidRootPart") and character:FindFirstChild("Humanoid") then
-                                    print("superez")
-                                    local plrs = GetAllNearestHumanoidToPosition(18.8)
-                                    for i,plr in pairs(plrs) do
-                                        local selfpos = game.Players.LocalPlayer.Character.HumanoidRootPart.Position
-                                        local newpos = plr.Character.HumanoidRootPart.Position
-                                        bedwars["ClientHandler"]:Get(bedwars["PaintRemote"]):SendToServer(selfpos, CFrame.lookAt(selfpos, newpos).lookVector)
-                                    end
+                                local plrs = GetAllNearestHumanoidToPosition(18.8)
+                                for i,plr in pairs(plrs) do
+                                    local selfpos = game.Players.LocalPlayer.Character.HumanoidRootPart.Position
+                                    local newpos = plr.Character.HumanoidRootPart.Position
+                                    bedwars["ClientHandler"]:Get(bedwars["PaintRemote"]):SendToServer(selfpos, CFrame.lookAt(selfpos, newpos).lookVector)
                                 end
                             until MultiAuraCheatOn == false
                             
