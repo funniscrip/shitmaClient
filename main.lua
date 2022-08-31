@@ -456,6 +456,7 @@ local ReachCheatOn = false
 local AntiKnockBackCheatOn = false
 local AutoClickerCheatOn = false
 local NoClickDelayCheatOn = false
+local MultiAuraCheatOn = false
 local SpeedCheatOn = false
 local BhopCheatOn = false
 local FlyCheatOn = false
@@ -602,7 +603,7 @@ UICorner_3.Parent = EmptyHealthBar
 -----------------------------------------killaura player stats
 
 spawn(function()
-    ----print("EZZZZZZ1")
+    --print("EZZZZZZ1")
     function Round(n, decimals)
         decimals = decimals or 0
         return math.floor(n * 10^decimals) / 10^decimals
@@ -634,20 +635,20 @@ spawn(function()
 
 
                     local healthbar = HealthBar
-                    ----print("EZ1")
+                    --print("EZ1")
                     local healthbarsize = HealthBar.Size.X.Offset
-                    ----print("EZ2")
+                    --print("EZ2")
                     local playerChar = attacking.Character
-                    ----print("EZ3")
+                    --print("EZ3")
                     local playerHumanoid = attacking.Character:WaitForChild("Humanoid")
-                    ----print("EZ4")
+                    --print("EZ4")
 
                     local healthbarxsize = 0.00581 * playerHumanoid.Health
-                    ----print("EZ5")
+                    --print("EZ5")
                     HealthLeft.Text = tostring(Round(playerHumanoid.Health)) .. " health left"
-                    ----print("EZ6")
+                    --print("EZ6")
                     HealthBar.Size = UDim2.new(healthbarxsize, 0, 0.246, 0)
-                    ----print("EZ7")
+                    --print("EZ7")
                     else
                     MainGui.Visible = false
                 end 
@@ -1194,6 +1195,7 @@ local Reach = Instance.new("TextButton")
 local AntiKnockBack = Instance.new("TextButton")
 local AutoClicker = Instance.new("TextButton")
 local NoClickDelay = Instance.new("TextButton")
+local MultiAura = Instance.new("TextButton")
 local Movement = Instance.new("Frame")
 local MovementText = Instance.new("TextLabel")
 local Cover3 = Instance.new("Frame")
@@ -1330,7 +1332,7 @@ end)
 NoFallKeyBind = Enum.KeyCode.Escape.Value
 
 NoFall.MouseButton2Down:connect(function()
-    --print('clicked')
+    print('clicked')
     NoFall.Text = "Select a Keybind"
     local selecting = true
 
@@ -1339,7 +1341,7 @@ NoFall.MouseButton2Down:connect(function()
     UIS.InputBegan:Connect(function(input)
         if selecting == true then
             wait()
-            --print(input.KeyCode)
+            print(input.KeyCode)
             if input.KeyCode == Enum.KeyCode.Escape or input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.MouseButton2 then
                 NoFallKeyBind = Enum.KeyCode.Escape.Value
             else 
@@ -1412,7 +1414,7 @@ end)
 AutoSprintKeyBind = Enum.KeyCode.Escape.Value
 
 AutoSprint.MouseButton2Down:connect(function()
-    --print('clicked')
+    print('clicked')
     AutoSprint.Text = "Select a Keybind"
     local selecting = true
 
@@ -1421,7 +1423,7 @@ AutoSprint.MouseButton2Down:connect(function()
     UIS.InputBegan:Connect(function(input)
         if selecting == true then
             wait()
-            --print(input)
+            print(input)
             if input.KeyCode == Enum.KeyCode.Escape or input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.MouseButton2 then
                 AutoSprintKeyBind = Enum.KeyCode.Escape.Value
             else 
@@ -1534,7 +1536,7 @@ end)
 AutoSpamKeyBind = Enum.KeyCode.Escape.Value
 
 AutoSpam.MouseButton2Down:connect(function()
-    --print('clicked')
+    print('clicked')
     AutoSpam.Text = "Select a Keybind"
     local selecting = true
 
@@ -1543,7 +1545,7 @@ AutoSpam.MouseButton2Down:connect(function()
     UIS.InputBegan:Connect(function(input)
         if selecting == true then
             wait()
-            --print(input)
+            print(input)
             if input.KeyCode == Enum.KeyCode.Escape or input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.MouseButton2 then
                 AutoSpamKeyBind = Enum.KeyCode.Escape.Value
             else 
@@ -1655,7 +1657,7 @@ end)
 CapeKeyBind = Enum.KeyCode.Escape.Value
 
 Cape.MouseButton2Down:connect(function()
-    --print('clicked')
+    print('clicked')
     Cape.Text = "Select a Keybind"
     local selecting = true
 
@@ -1664,7 +1666,7 @@ Cape.MouseButton2Down:connect(function()
     UIS.InputBegan:Connect(function(input)
         if selecting == true then
             wait()
-            --print(input)
+            print(input)
             if input.KeyCode == Enum.KeyCode.Escape or input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.MouseButton2 then
                 CapeKeyBind = Enum.KeyCode.Escape.Value
             else 
@@ -2046,7 +2048,7 @@ coroutine.wrap(function()
                 playanimation("rbxassetid://4947108314")
 
                 --coroutine.wrap(function() -- Animation asynchronous thread
-                ----print('e1')
+                --print('e1')
                     cancelViewmodel = true
 
                     
@@ -2055,7 +2057,7 @@ coroutine.wrap(function()
                     waitTime = .15
 
                     if not tweenedTo then 
-                                      --print('e2')
+                                      print('e2')
                         tweenedTo = true
        
                         local Tween = game:GetService("TweenService"):Create(cam.Viewmodel.RightHand.RightWrist, TweenInfo.new(waitTime), {C0 = setc0 * animationFrame1})
@@ -2068,7 +2070,7 @@ coroutine.wrap(function()
      
                     for i,v in next, {{CFrame = animationFrame1, Time = 0.1},{CFrame = animationFrame2, Time = 0.1}} do 
                         if not KillAuraCheatOn or not attacking then break end
-                        ----print('e3')
+                        --print('e3')
                         local Tween = game:GetService("TweenService"):Create(cam.Viewmodel.RightHand.RightWrist, TweenInfo.new(v.Time), {C0 = setc0 * v.CFrame})
                         Tween:Play()
                         task.wait(v.Time)
@@ -2080,7 +2082,7 @@ coroutine.wrap(function()
             else
             --  GuiLibrary["TargetHUDAPI"].clear()
                 if tweenedTo then
-                    --print('e4')
+                    print('e4')
                     cancelViewmodel = true
                     tweenedTo = false
                     local v = {CFrame = CFrame.new(0.69, -0.7, 0.6) * CFrame.Angles(math.rad(295), math.rad(55), math.rad(290)), Time = 0.2}
@@ -2100,7 +2102,7 @@ end)()
 KillAuraKeyBind = Enum.KeyCode.Escape.Value
 
 KillAura.MouseButton2Down:connect(function()
-    --print('clicked')
+    print('clicked')
     KillAura.Text = "Select a Keybind"
     local selecting = true
 
@@ -2109,7 +2111,7 @@ KillAura.MouseButton2Down:connect(function()
     UIS.InputBegan:Connect(function(input)
         if selecting == true then
             wait()
-            --print(input)
+            print(input)
             if input.KeyCode == Enum.KeyCode.Escape or input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.MouseButton2 then
                 KillAuraKeyBind = Enum.KeyCode.Escape.Value
             else 
@@ -2124,7 +2126,7 @@ end)
 UIS.InputBegan:Connect(function(input)
     if  (input.KeyCode ~= Enum.KeyCode.Escape) and input.KeyCode.Value == KillAuraKeyBind then
         for i,v in pairs(getconnections(KillAura.MouseButton1Down)) do
-            --print('fire')
+            print('fire')
             v:Fire() 
         end  
     end
@@ -2236,7 +2238,7 @@ end)
 ReachKeyBind = Enum.KeyCode.Escape.Value
 
 Reach.MouseButton2Down:connect(function()
-    --print('clicked')
+    print('clicked')
     Reach.Text = "Select a Keybind"
     local selecting = true
 
@@ -2245,7 +2247,7 @@ Reach.MouseButton2Down:connect(function()
     UIS.InputBegan:Connect(function(input)
         if selecting == true then
             wait()
-            --print(input)
+            print(input)
             if input.KeyCode == Enum.KeyCode.Escape or input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.MouseButton2 then
                 ReachKeyBind = Enum.KeyCode.Escape.Value
             else 
@@ -2312,7 +2314,7 @@ end)
 AntiKnockBackKeyBind = Enum.KeyCode.Escape.Value
 
 AntiKnockBack.MouseButton2Down:connect(function()
-    --print('clicked')
+    print('clicked')
     AntiKnockBack.Text = "Select a Keybind"
     local selecting = true
 
@@ -2321,7 +2323,7 @@ AntiKnockBack.MouseButton2Down:connect(function()
     UIS.InputBegan:Connect(function(input)
         if selecting == true then
             wait()
-            --print(input)
+            print(input)
             if input.KeyCode == Enum.KeyCode.Escape or input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.MouseButton2 then
                 AntiKnockBackKeyBind = Enum.KeyCode.Escape.Value
             else 
@@ -2403,7 +2405,7 @@ end)
 AutoClickerKeyBind = Enum.KeyCode.Escape.Value
 
 AutoClicker.MouseButton2Down:connect(function()
-    --print('clicked')
+    print('clicked')
     AutoClicker.Text = "Select a Keybind"
     local selecting = true
 
@@ -2412,7 +2414,7 @@ AutoClicker.MouseButton2Down:connect(function()
     UIS.InputBegan:Connect(function(input)
         if selecting == true then
             wait()
-            --print(input)
+            print(input)
             if input.KeyCode == Enum.KeyCode.Escape or input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.MouseButton2 then
                 AutoClickerKeyBind = Enum.KeyCode.Escape.Value
             else 
@@ -2476,7 +2478,7 @@ end)
 NoClickDelayKeyBind = Enum.KeyCode.Escape.Value
 
 NoClickDelay.MouseButton2Down:connect(function()
-    --print('clicked')
+    print('clicked')
     NoClickDelay.Text = "Select a Keybind"
     local selecting = true
 
@@ -2485,7 +2487,70 @@ NoClickDelay.MouseButton2Down:connect(function()
     UIS.InputBegan:Connect(function(input)
         if selecting == true then
             wait()
-            --print(input)
+            print(input)
+            if input.KeyCode == Enum.KeyCode.Escape or input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.MouseButton2 then
+                NoClickDelayKeyBind = Enum.KeyCode.Escape.Value
+            else 
+                NoClickDelayKeyBind = input.KeyCode.Value
+            end
+            selecting = false
+            NoClickDelay.Text = "NoClickDelay"
+        end
+    end)
+end)
+
+UIS.InputBegan:Connect(function(input)
+    if  (input.KeyCode ~= Enum.KeyCode.Escape) and input.KeyCode.Value == NoClickDelayKeyBind then
+        for i,v in pairs(getconnections(NoClickDelay.MouseButton1Down)) do
+            v:Fire() 
+        end  
+    end
+end)
+
+MultiAura.Name = "MultiAura"
+MultiAura.Parent = Combat
+MultiAura.BackgroundColor3 = Color3.fromRGB(250, 250, 250)
+MultiAura.BorderColor3 = Color3.fromRGB(0, 0, 0)
+MultiAura.BorderSizePixel = 0
+MultiAura.Position = UDim2.new(0, 0, 0.745704532, 0)
+MultiAura.Size = UDim2.new(0, 204, 0, 31)
+MultiAura.Font = Enum.Font.Roboto
+MultiAura.Text = "MultiAura"
+MultiAura.TextColor3 = Color3.fromRGB(0, 0, 0)
+MultiAura.TextSize = 25.000
+MultiAura.MouseButton1Down:connect(function()
+    if not MultiAuraCheatOn == true then
+        MultiAuraCheatOn = true
+
+        MultiAura.BackgroundColor3 = Color3.fromRGB(41, 166, 255)
+        MultiAura.TextColor3 = Color3.fromRGB(255, 255, 255) 
+
+        --On:Play()
+
+        elseif MultiAuraCheatOn == true then
+        MultiAuraCheatOn = false
+
+        MultiAura.BackgroundColor3 = Color3.fromRGB(250, 250, 250)
+        MultiAura.TextColor3 = Color3.fromRGB(0, 0, 0)  
+
+        --Off:Play()
+
+    end
+end)
+
+NoClickDelayKeyBind = Enum.KeyCode.Escape.Value
+
+NoClickDelay.MouseButton2Down:connect(function()
+    print('clicked')
+    NoClickDelay.Text = "Select a Keybind"
+    local selecting = true
+
+    wait()
+
+    UIS.InputBegan:Connect(function(input)
+        if selecting == true then
+            wait()
+            print(input)
             if input.KeyCode == Enum.KeyCode.Escape or input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.MouseButton2 then
                 NoClickDelayKeyBind = Enum.KeyCode.Escape.Value
             else 
@@ -2623,7 +2688,7 @@ end)
 PhaseKeyBind = Enum.KeyCode.Escape.Value
 
 Phase.MouseButton2Down:connect(function()
-    --print('clicked')
+    print('clicked')
     Phase.Text = "Select a Keybind"
     local selecting = true
 
@@ -2632,7 +2697,7 @@ Phase.MouseButton2Down:connect(function()
     UIS.InputBegan:Connect(function(input)
         if selecting == true then
             wait()
-            --print(input)
+            print(input)
             if input.KeyCode == Enum.KeyCode.Escape or input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.MouseButton2 then
                 PhaseKeyBind = Enum.KeyCode.Escape.Value
             else 
@@ -2667,6 +2732,7 @@ spawn(function()
 end)
 --]]
 
+getgenv().speedvalforspeed = {["Value"] = 50} --THIS IS 55
 
 Speed.Name = "Speed"
 Speed.Parent = Movement
@@ -2689,7 +2755,7 @@ Speed.MouseButton1Down:connect(function()
         SpeedCheatOnSave = true
 
         --On:Play()
-
+--[[
         coroutine.wrap(function()
             while true do
                 if not humanoid.MoveDirection.X > 0 or humanoid.MoveDirection.X < 0 or humanoid.MoveDirection.Z > 0 or humanoid.MoveDirection.Z < 0 or humanoid.MoveDirection.Y > 0 or humanoid.MoveDirection.Y < 0 then
@@ -2700,42 +2766,42 @@ Speed.MouseButton1Down:connect(function()
             wait()
             end    
         end)()
-
+--]]
         spawn(function()
             while SpeedCheatOn == true do
                 if SpeedCheatOn == true then
-                    getgenv().speedvalforspeed = {["Value"] = 50} --55
-                    wait(1)
+                    getgenv().speedvalforspeed = {["Value"] = 45} --55
+                    wait(0.7)
                     else
                     continue 
                 end
                 if SpeedCheatOn == true then
-                    getgenv().speedvalforspeed = {["Value"] = 100} --110
-                    wait(0.1) --0.4
+                    getgenv().speedvalforspeed = {["Value"] = 90} --80
+                    wait(0.2) --0.4
                     else
                     continue 
                 end
                 if SpeedCheatOn == true then
-                    getgenv().speedvalforspeed = {["Value"] = 50} --55
-                    wait(1)
+                    getgenv().speedvalforspeed = {["Value"] = 45} --55
+                    wait(0.7)
                     else
                     continue 
                 end
                 if SpeedCheatOn == true then
-                    getgenv().speedvalforspeed = {["Value"] = 100} --110
-                    wait(0.1) --0.4
+                    getgenv().speedvalforspeed = {["Value"] = 90} --80
+                    wait(0.2) --0.4
                     else
                     continue 
                 end
                 if SpeedCheatOn == true then
-                    getgenv().speedvalforspeed = {["Value"] = 50} --55
-                    wait(1)
+                    getgenv().speedvalforspeed = {["Value"] = 45} --55
+                    wait(0.7)
                     else
                     continue 
                 end
                 if SpeedCheatOn == true then
-                    getgenv().speedvalforspeed = {["Value"] = 100} --110
-                    wait(0.1) --0.4
+                    getgenv().speedvalforspeed = {["Value"] = 90} --90
+                    wait(0.2) --0.4
                     else
                     continue 
                 end
@@ -2809,7 +2875,7 @@ coroutine.wrap(function()
         if FLYINPUTVALUE == false then
             if SpeedCheatOn == true then
                 if isAlive() and not stopSpeed then
-                --getgenv().speedval = {["Value"] = 55} --THIS IS 55
+                --getgenv().speedvalforspeed = {["Value"] = 50} --THIS IS 55
 
 --[[
                     lplr = game.Players.LocalPlayer
@@ -2854,13 +2920,13 @@ end)()
 --[[
 Speed.MouseButton1Down:connect(function()
 	if not SpeedCheatOn == true then
-        --print('play')
+        print('play')
         CheatSound--On:Play()
 
         SpeedCheatOn = true
 
     elseif SpeedCheatOn == true then
-        --print("play2")
+        print("play2")
         CheatSound--Off:Play()
 
         SpeedCheatOn = false
@@ -2871,7 +2937,7 @@ end)
 SpeedKeyBind = Enum.KeyCode.Escape.Value
 
 Speed.MouseButton2Down:connect(function()
-    --print('clicked')
+    print('clicked')
     Speed.Text = "Select a Keybind"
     local selecting = true
 
@@ -2880,7 +2946,7 @@ Speed.MouseButton2Down:connect(function()
     UIS.InputBegan:Connect(function(input)
         if selecting == true then
             wait()
-            --print(input)
+            print(input)
             if input.KeyCode == Enum.KeyCode.Escape or input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.MouseButton2 then
                 SpeedKeyBind = Enum.KeyCode.Escape.Value
             else 
@@ -2958,7 +3024,7 @@ end)
 BhopKeyBind = Enum.KeyCode.Escape.Value
 
 Bhop.MouseButton2Down:connect(function()
-    --print('clicked')
+    print('clicked')
     Bhop.Text = "Select a Keybind"
     local selecting = true
 
@@ -2967,7 +3033,7 @@ Bhop.MouseButton2Down:connect(function()
     UIS.InputBegan:Connect(function(input)
         if selecting == true then
             wait()
-            --print(input)
+            print(input)
             if input.KeyCode == Enum.KeyCode.Escape or input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.MouseButton2 then
                 BhopKeyBind = Enum.KeyCode.Escape.Value
             else 
@@ -3050,7 +3116,7 @@ end)
 HighJumpKeyBind = Enum.KeyCode.Escape.Value
 
 HighJump.MouseButton2Down:connect(function()
-    --print('clicked')
+    print('clicked')
     HighJump.Text = "Select a Keybind"
     local selecting = true
 
@@ -3059,7 +3125,7 @@ HighJump.MouseButton2Down:connect(function()
     UIS.InputBegan:Connect(function(input)
         if selecting == true then
             wait()
-            --print(input)
+            print(input)
             if input.KeyCode == Enum.KeyCode.Escape or input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.MouseButton2 then
                 HighJumpKeyBind = Enum.KeyCode.Escape.Value
             else 
@@ -3410,7 +3476,7 @@ end)
 Fly2KeyBind = Enum.KeyCode.Escape.Value
 
 Fly2.MouseButton2Down:connect(function()
-    --print('clicked')
+    print('clicked')
     Fly2.Text = "Select a Keybind"
     local selecting = true
 
@@ -3419,7 +3485,7 @@ Fly2.MouseButton2Down:connect(function()
     UIS.InputBegan:Connect(function(input)
         if selecting == true then
             wait()
-            --print(input)
+            print(input)
             if input.KeyCode == Enum.KeyCode.Escape or input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.MouseButton2 then
                 Fly2KeyBind = Enum.KeyCode.Escape.Value
             else 
@@ -3519,28 +3585,28 @@ Fly.MouseButton1Down:connect(function()
         spawn(function()
             while FlyCheatOn == true do
                 if FlyCheatOn == true and dinodisablerdone == true then
-                    getgenv().speedvalforfly = {["Value"] = 55}
-                    wait(0.8) --0.5
+                    getgenv().speedvalforfly = {["Value"] = 50} --55
+                    wait(0.6) --0.5
                 end
                 if FlyCheatOn == true and dinodisablerdone == true then
-                    getgenv().speedvalforfly = {["Value"] = 80} --85
-                    wait(0.4) --0.4
+                    getgenv().speedvalforfly = {["Value"] = 70} --85
+                    wait(0.3) --0.4
                 end
                 if FlyCheatOn == true and dinodisablerdone == true then
-                    getgenv().speedvalforfly = {["Value"] = 55}
-                    wait(0.8) --0.5
+                    getgenv().speedvalforfly = {["Value"] = 50} --55
+                    wait(0.6) --0.5
                 end
                 if FlyCheatOn == true and dinodisablerdone == true then
-                    getgenv().speedvalforfly = {["Value"] = 80} --85
-                    wait(0.4) --0.4
+                    getgenv().speedvalforfly = {["Value"] = 70} --85
+                    wait(0.3) --0.4
                 end
                 if FlyCheatOn == true and dinodisablerdone == true then
-                    getgenv().speedvalforfly = {["Value"] = 55}
-                    wait(0.8) --0.5
+                    getgenv().speedvalforfly = {["Value"] = 50} --55
+                    wait(0.6) --0.5
                 end
                 if FlyCheatOn == true and dinodisablerdone == true then
-                    getgenv().speedvalforfly = {["Value"] = 80} --85
-                    wait(0.4) --0.4
+                    getgenv().speedvalforfly = {["Value"] = 70} --85
+                    wait(0.3) --0.4
                 end
 --[[
                 if FlyCheatOn == true then
@@ -3785,7 +3851,7 @@ end)
 FlyKeyBind = Enum.KeyCode.Escape.Value
 
 Fly.MouseButton2Down:connect(function()
-    --print('clicked')
+    print('clicked')
     Fly.Text = "Select a Keybind"
     local selecting = true
 
@@ -3794,7 +3860,7 @@ Fly.MouseButton2Down:connect(function()
     UIS.InputBegan:Connect(function(input)
         if selecting == true then
             wait()
-            --print(input)
+            print(input)
             if input.KeyCode == Enum.KeyCode.Escape or input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.MouseButton2 then
                 FlyKeyBind = Enum.KeyCode.Escape.Value
             else 
@@ -3870,28 +3936,28 @@ UIS.InputBegan:Connect(function(input)
             spawn(function()
                 while FlyCheatOn == true do
                     if FlyCheatOn == true and dinodisablerdone == true then
-                        getgenv().speedvalforfly = {["Value"] = 55}
-                        wait(0.8) --0.5
+                        getgenv().speedvalforfly = {["Value"] = 50} --55
+                        wait(0.6) --0.5
                     end
                     if FlyCheatOn == true and dinodisablerdone == true then
-                        getgenv().speedvalforfly = {["Value"] = 80} --85
-                        wait(0.4) --0.4
+                        getgenv().speedvalforfly = {["Value"] = 90} --85
+                        wait(0.2) --0.4
                     end
                     if FlyCheatOn == true and dinodisablerdone == true then
-                        getgenv().speedvalforfly = {["Value"] = 55}
-                        wait(0.8) --0.5
+                        getgenv().speedvalforfly = {["Value"] = 50} --55
+                        wait(0.6) --0.5
                     end
                     if FlyCheatOn == true and dinodisablerdone == true then
-                        getgenv().speedvalforfly = {["Value"] = 80} --85
-                        wait(0.4) --0.4
+                        getgenv().speedvalforfly = {["Value"] = 90} --85
+                        wait(0.2) --0.4
                     end
                     if FlyCheatOn == true and dinodisablerdone == true then
-                        getgenv().speedvalforfly = {["Value"] = 55}
-                        wait(0.8) --0.5
+                        getgenv().speedvalforfly = {["Value"] = 50} --55
+                        wait(0.6) --0.5
                     end
                     if FlyCheatOn == true and dinodisablerdone == true then
-                        getgenv().speedvalforfly = {["Value"] = 80} --85
-                        wait(0.4) --0.4
+                        getgenv().speedvalforfly = {["Value"] = 90} --85
+                        wait(0.2) --0.4
                     end
     --[[
                     if FlyCheatOn == true then
@@ -4116,7 +4182,7 @@ end)
 LongJumpKeyBind = Enum.KeyCode.Escape.Value
 
 LongJump.MouseButton2Down:connect(function()
-    --print('clicked')
+    print('clicked')
     LongJump.Text = "Select a Keybind"
     local selecting = true
 
@@ -4125,7 +4191,7 @@ LongJump.MouseButton2Down:connect(function()
     UIS.InputBegan:Connect(function(input)
         if selecting == true then
             wait()
-            --print(input)
+            print(input)
             if input.KeyCode == Enum.KeyCode.Escape or input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.MouseButton2 then
                 LongJumpKeyBind = Enum.KeyCode.Escape.Value
             else 
@@ -4264,7 +4330,7 @@ ChestStealer.MouseButton1Down:connect(function()
         while ChestStealerCheatOn == true do
             local ChestStealerDistance = {["Value"] = 18}
             local ChestStealDelay = wait()
-                   -- --print('EEE1')
+                   -- print('EEE1')
                     if isAlive() and ChestStealerCheatOn == true then
 
                     --[[
@@ -4274,13 +4340,13 @@ ChestStealer.MouseButton1Down:connect(function()
                         ChestStealDelay = tick() + 0.2
                     --]]
 
-                        ----print('EEE2')
+                        --print('EEE2')
                         local rootpart = lplr.Character and lplr.Character:FindFirstChild("HumanoidRootPart")
                         for i,v in pairs(game:GetService("CollectionService"):GetTagged("chest")) do
                             if rootpart and (rootpart.Position - v.Position).magnitude <= ChestStealerDistance["Value"] and v:FindFirstChild("ChestFolderValue") then
                                 local chest = v.ChestFolderValue.Value
                                 local chestitems = chest and chest:GetChildren() or {}
-                                ----print('EEE3')
+                                --print('EEE3')
                                 if #chestitems > 0 then
                                     bedwars["ClientHandler"]:GetNamespace("Inventory"):Get("SetObservedChest"):SendToServer(chest)
                                     for i3,v3 in pairs(chestitems) do
@@ -4317,7 +4383,7 @@ end)
 ChestStealerKeyBind = Enum.KeyCode.Escape.Value
 
 ChestStealer.MouseButton2Down:connect(function()
-    --print('clicked')
+    print('clicked')
     ChestStealer.Text = "Select a Keybind"
     local selecting = true
 
@@ -4326,7 +4392,7 @@ ChestStealer.MouseButton2Down:connect(function()
     UIS.InputBegan:Connect(function(input)
         if selecting == true then
             wait()
-            --print(input)
+            print(input)
             if input.KeyCode == Enum.KeyCode.Escape or input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.MouseButton2 then
                 ChestStealerKeyBind = Enum.KeyCode.Escape.Value
             else 
@@ -4432,7 +4498,7 @@ end)
 BigSwordKeyBind = Enum.KeyCode.Escape.Value
 
 BigSword.MouseButton2Down:connect(function()
-    --print('clicked')
+    print('clicked')
     BigSword.Text = "Select a Keybind"
     local selecting = true
 
@@ -4441,7 +4507,7 @@ BigSword.MouseButton2Down:connect(function()
     UIS.InputBegan:Connect(function(input)
         if selecting == true then
             wait()
-            --print(input)
+            print(input)
             if input.KeyCode == Enum.KeyCode.Escape or input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.MouseButton2 then
                 BigSwordKeyBind = Enum.KeyCode.Escape.Value
             else 
@@ -4604,7 +4670,7 @@ Scaffold.MouseButton1Down:connect(function()
         if UnbindFromStepped then
             UnbindFromStepped("Scaffold")
         else
-            --print("BALLL:LOPLOLOSD")
+            print("BALLL:LOPLOLOSD")
         end
 
         
@@ -4633,7 +4699,7 @@ end)
 ScaffoldKeyBind = Enum.KeyCode.Escape.Value
 
 Scaffold.MouseButton2Down:connect(function()
-    --print('clicked')
+    print('clicked')
     Scaffold.Text = "Select a Keybind"
     local selecting = true
 
@@ -4642,7 +4708,7 @@ Scaffold.MouseButton2Down:connect(function()
     UIS.InputBegan:Connect(function(input)
         if selecting == true then
             wait()
-            --print(input.KeyCode)
+            print(input.KeyCode)
             if input.KeyCode == Enum.KeyCode.Escape or input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.MouseButton2 then
                 ScaffoldKeyBind = Enum.KeyCode.Escape.Value
             else 
@@ -4753,7 +4819,7 @@ end)
 ChillLofi1KeyBind = Enum.KeyCode.Escape.Value
 
 ChillLofi1.MouseButton2Down:connect(function()
-    --print('clicked')
+    print('clicked')
     ChillLofi1.Text = "Select a Keybind"
     local selecting = true
 
@@ -4762,7 +4828,7 @@ ChillLofi1.MouseButton2Down:connect(function()
     UIS.InputBegan:Connect(function(input)
         if selecting == true then
             wait()
-            --print(input)
+            print(input)
             if input.KeyCode == Enum.KeyCode.Escape or input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.MouseButton2 then
                 ChillLofi1KeyBind = Enum.KeyCode.Escape.Value
             else 
@@ -4816,7 +4882,7 @@ end)
 ChillLofi4KeyBind = Enum.KeyCode.Escape.Value
 
 ChillLofi4.MouseButton2Down:connect(function()
-    --print('clicked')
+    print('clicked')
     ChillLofi4.Text = "Select a Keybind"
     local selecting = true
 
@@ -4825,7 +4891,7 @@ ChillLofi4.MouseButton2Down:connect(function()
     UIS.InputBegan:Connect(function(input)
         if selecting == true then
             wait()
-            --print(input)
+            print(input)
             if input.KeyCode == Enum.KeyCode.Escape or input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.MouseButton2 then
                 ChillLofi4KeyBind = Enum.KeyCode.Escape.Value
             else 
@@ -4879,7 +4945,7 @@ end)
 ChillLofi5KeyBind = Enum.KeyCode.Escape.Value
 
 ChillLofi5.MouseButton2Down:connect(function()
-    --print('clicked')
+    print('clicked')
     ChillLofi5.Text = "Select a Keybind"
     local selecting = true
 
@@ -4888,7 +4954,7 @@ ChillLofi5.MouseButton2Down:connect(function()
     UIS.InputBegan:Connect(function(input)
         if selecting == true then
             wait()
-            --print(input)
+            print(input)
             if input.KeyCode == Enum.KeyCode.Escape or input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.MouseButton2 then
                 ChillLofi5KeyBind = Enum.KeyCode.Escape.Value
             else 
@@ -4942,7 +5008,7 @@ end)
 ChillLofi2KeyBind = Enum.KeyCode.Escape.Value
 
 ChillLofi2.MouseButton2Down:connect(function()
-    --print('clicked')
+    print('clicked')
     ChillLofi2.Text = "Select a Keybind"
     local selecting = true
 
@@ -4951,7 +5017,7 @@ ChillLofi2.MouseButton2Down:connect(function()
     UIS.InputBegan:Connect(function(input)
         if selecting == true then
             wait()
-            --print(input)
+            print(input)
             if input.KeyCode == Enum.KeyCode.Escape or input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.MouseButton2 then
                 ChillLofi2KeyBind = Enum.KeyCode.Escape.Value
             else 
@@ -5005,7 +5071,7 @@ end)
 ChillLofi3KeyBind = Enum.KeyCode.Escape.Value
 
 ChillLofi3.MouseButton2Down:connect(function()
-    --print('clicked')
+    print('clicked')
     ChillLofi3.Text = "Select a Keybind"
     local selecting = true
 
@@ -5014,7 +5080,7 @@ ChillLofi3.MouseButton2Down:connect(function()
     UIS.InputBegan:Connect(function(input)
         if selecting == true then
             wait()
-            --print(input)
+            print(input)
             if input.KeyCode == Enum.KeyCode.Escape or input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.MouseButton2 then
                 ChillLofi3KeyBind = Enum.KeyCode.Escape.Value
             else 
@@ -5104,7 +5170,7 @@ AntiVoid.MouseButton1Down:connect(function()
             end
         end
 
-        --print(lowest)
+        print(lowest)
 
         local NewPart = Instance.new("Part")
         NewPart.Name = "ANTIVOID"
@@ -5129,7 +5195,7 @@ AntiVoid.MouseButton1Down:connect(function()
             while true do
                 if (humanoid:GetState() == Enum.HumanoidStateType.Freefall) then
                     if touching == false then
-                        ----print("falling")
+                        --print("falling")
                         pos[#pos+1] = character.HumanoidRootPart.CFrame
                         NeedReset = true
                     end
@@ -5138,7 +5204,7 @@ AntiVoid.MouseButton1Down:connect(function()
                     if not (humanoid:GetState() == Enum.HumanoidStateType.Freefall) then
                         if touching == false then
                             if NeedReset == true then
-                                ----print('reset')
+                                --print('reset')
                                 pos = {}
                                 NeedReset = false
                             end
@@ -5180,7 +5246,7 @@ AntiVoid.MouseButton1Down:connect(function()
                     end)
 
                 --[[
-                    ----print("tping")
+                    --print("tping")
 
                     game.StarterGui:SetCore("SendNotification", {
                         Title = "AntiVoid";
@@ -5189,14 +5255,14 @@ AntiVoid.MouseButton1Down:connect(function()
                         Duration = 5;
                     })    
 
-                    --print(#pos)
+                    print(#pos)
                     for i=#pos, 1, -1 do
                         if pos[i] then
                             character.HumanoidRootPart.CFrame = CFrame.new(pos[i].X, pos[i].Y, pos[i].Z)
                             wait()
                         end
                     end 
-                    ----print('done tping')
+                    --print('done tping')
                     --]]
                     pos = {}
                     wait()
@@ -5206,11 +5272,11 @@ AntiVoid.MouseButton1Down:connect(function()
         end
 
         game.Players.LocalPlayer.CharacterAdded:Connect(function()
-            --print("HAIRLINE")
+            print("HAIRLINE")
             
             local humanoid = game.Players.LocalPlayer.Character:WaitForChild("Humanoid")
 
-            --print("humanoid")
+            print("humanoid")
             humanoid.Touched:Connect(antiVoidFunction)
         end)
 
@@ -5252,7 +5318,7 @@ end)
 AntiVoidKeyBind = Enum.KeyCode.Escape.Value
 
 AntiVoid.MouseButton2Down:connect(function()
-    --print('clicked')
+    print('clicked')
     AntiVoid.Text = "Select a Keybind"
     local selecting = true
 
@@ -5261,7 +5327,7 @@ AntiVoid.MouseButton2Down:connect(function()
     UIS.InputBegan:Connect(function(input)
         if selecting == true then
             wait()
-            --print(input)
+            print(input)
             if  (input.KeyCode ~= Enum.KeyCode.Escape) and input.KeyCode.Value == Enum.KeyCode.Escape or input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.MouseButton2 then
                 AntiVoidKeyBind = Enum.KeyCode.Escape.Value
             else 
@@ -5369,7 +5435,7 @@ end)
 FastFallKeyBind = Enum.KeyCode.Escape.Value
 
 FastFall.MouseButton2Down:connect(function()
-    --print('clicked')
+    print('clicked')
     FastFall.Text = "Select a Keybind"
     local selecting = true
 
@@ -5378,7 +5444,7 @@ FastFall.MouseButton2Down:connect(function()
     UIS.InputBegan:Connect(function(input)
         if selecting == true then
             wait()
-            --print(input)
+            print(input)
             if input.KeyCode == Enum.KeyCode.Escape or input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.MouseButton2 then
                 FastFallKeyBind = Enum.KeyCode.Escape.Value
             else 
@@ -5542,7 +5608,7 @@ end)
 AutoQueueKeyBind = Enum.KeyCode.Escape.Value
 
 AutoQueue.MouseButton2Down:connect(function()
-    --print('clicked')
+    print('clicked')
     AutoQueue.Text = "Select a Keybind"
     local selecting = true
 
@@ -5551,7 +5617,7 @@ AutoQueue.MouseButton2Down:connect(function()
     UIS.InputBegan:Connect(function(input)
         if selecting == true then
             wait()
-            --print(input)
+            print(input)
             if  (input.KeyCode ~= Enum.KeyCode.Escape) and input.KeyCode.Value == Enum.KeyCode.Escape or input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.MouseButton2 then
                 AutoQueueKeyBind = Enum.KeyCode.Escape.Value
             else 
@@ -5616,7 +5682,7 @@ end)
 AntiAFKKeyBind = Enum.KeyCode.Escape.Value
 
 AntiAFK.MouseButton2Down:connect(function()
-    --print('clicked')
+    print('clicked')
     AntiAFK.Text = "Select a Keybind"
     local selecting = true
 
@@ -5625,7 +5691,7 @@ AntiAFK.MouseButton2Down:connect(function()
     UIS.InputBegan:Connect(function(input)
         if selecting == true then
             wait()
-            --print(input)
+            print(input)
             if  (input.KeyCode ~= Enum.KeyCode.Escape) and input.KeyCode.Value == Enum.KeyCode.Escape or input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.MouseButton2 then
                 AntiAFKKeyBind = Enum.KeyCode.Escape.Value
             else 
@@ -5842,7 +5908,7 @@ end)
 ESPKeyBind = Enum.KeyCode.Escape.Value
 
 ESP.MouseButton2Down:connect(function()
-    --print('clicked')
+    print('clicked')
     ESP.Text = "Select a Keybind"
     local selecting = true
 
@@ -5851,7 +5917,7 @@ ESP.MouseButton2Down:connect(function()
     UIS.InputBegan:Connect(function(input)
         if selecting == true then
             wait()
-            --print(input)
+            print(input)
             if  (input.KeyCode ~= Enum.KeyCode.Escape) and input.KeyCode.Value == Enum.KeyCode.Escape or input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.MouseButton2 then
                 ESPKeyBind = Enum.KeyCode.Escape.Value
             else 
@@ -6098,7 +6164,7 @@ end)
 TracersKeyBind = Enum.KeyCode.Escape.Value
 
 Tracers.MouseButton2Down:connect(function()
-    --print('clicked')
+    print('clicked')
     Tracers.Text = "Select a Keybind"
     local selecting = true
 
@@ -6107,7 +6173,7 @@ Tracers.MouseButton2Down:connect(function()
     UIS.InputBegan:Connect(function(input)
         if selecting == true then
             wait()
-            --print(input)
+            print(input)
             if input.KeyCode == Enum.KeyCode.Escape or input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.MouseButton2 then
                 TracersKeyBind = Enum.KeyCode.Escape.Value
             else 
@@ -6165,7 +6231,7 @@ end)
 CameraNoClipKeyBind = Enum.KeyCode.Escape.Value
 
 CameraNoClip.MouseButton2Down:connect(function()
-    --print('clicked')
+    print('clicked')
     CameraNoClip.Text = "Select a Keybind"
     local selecting = true
 
@@ -6174,7 +6240,7 @@ CameraNoClip.MouseButton2Down:connect(function()
     UIS.InputBegan:Connect(function(input)
         if selecting == true then
             wait()
-            --print(input)
+            print(input)
             if  (input.KeyCode ~= Enum.KeyCode.Escape) and input.KeyCode.Value == Enum.KeyCode.Escape or input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.MouseButton2 then
                 CameraNoClipKeyBind = Enum.KeyCode.Escape.Value
             else 
@@ -6250,7 +6316,7 @@ end)
 FOVKeyBind = Enum.KeyCode.Escape.Value
 
 FOV.MouseButton2Down:connect(function()
-    --print('clicked')
+    print('clicked')
     FOV.Text = "Select a Keybind"
     local selecting = true
 
@@ -6259,7 +6325,7 @@ FOV.MouseButton2Down:connect(function()
     UIS.InputBegan:Connect(function(input)
         if selecting == true then
             wait()
-            --print(input)
+            print(input)
             if input.KeyCode == Enum.KeyCode.Escape or input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.MouseButton2 then
                 FOVKeyBind = Enum.KeyCode.Escape.Value
             else 
@@ -6358,7 +6424,7 @@ end)
 ChamsKeyBind = Enum.KeyCode.Escape.Value
 
 Chams.MouseButton2Down:connect(function()
-    --print('clicked')
+    print('clicked')
     Chams.Text = "Select a Keybind"
     local selecting = true
 
@@ -6367,7 +6433,7 @@ Chams.MouseButton2Down:connect(function()
     UIS.InputBegan:Connect(function(input)
         if selecting == true then
             wait()
-            --print(input)
+            print(input)
             if input.KeyCode == Enum.KeyCode.Escape or input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.MouseButton2 then
                 ChamsKeyBind = Enum.KeyCode.Escape.Value
             else 
@@ -6475,7 +6541,7 @@ end)
 EmeraldESPKeyBind = Enum.KeyCode.Escape.Value
 
 EmeraldESP.MouseButton2Down:connect(function()
-    --print('clicked')
+    print('clicked')
     EmeraldESP.Text = "Select a Keybind"
     local selecting = true
 
@@ -6484,7 +6550,7 @@ EmeraldESP.MouseButton2Down:connect(function()
     UIS.InputBegan:Connect(function(input)
         if selecting == true then
             wait()
-            --print(input)
+            print(input)
             if input.KeyCode == Enum.KeyCode.Escape or input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.MouseButton2 then
                 EmeraldESPKeyBind = Enum.KeyCode.Escape.Value
             else 
@@ -6562,12 +6628,12 @@ coroutine.wrap(function()
 
     end
 
---print(2)
+print(2)
 coroutine.wrap(QETGD_fake_script)()
 -- MainGui.LocalScript is disabled.
 
 end)()
---print(3)
+print(3)
 
 local shiftKeyL = Enum.KeyCode.LeftShift
 local shiftKeyR = Enum.KeyCode.RightShift
@@ -6689,17 +6755,17 @@ coroutine.wrap(function()
             json = HttpService:JSONEncode(settingToSave.KeyBinds)
             writefile("keybinds.txt", json)
         else
-            --print(" -- Sorry, Your Executor Failed To Save Your Settings, Please Use Another Executor Like KRNL Or SYNAPSE. Otherwise, This Is Not Much Of A Concern. -- ")
+            print(" -- Sorry, Your Executor Failed To Save Your Settings, Please Use Another Executor Like KRNL Or SYNAPSE. Otherwise, This Is Not Much Of A Concern. -- ")
         end
     end
 
 
     function loadSettings()
         repeat wait() until game:IsLoaded()
-        -- --print('loading settings...')
+        -- print('loading settings...')
         local HttpService = game:GetService("HttpService")
         if (readfile and isfile and isfile(filename)) then
-            -- --print()
+            -- print()
             validFile1 = pcall(function() HttpService:JSONDecode(readfile(filename))end)
             validFile2= pcall(function() HttpService:JSONDecode(readfile("keybinds.txt"))end)
 
@@ -6722,7 +6788,6 @@ coroutine.wrap(function()
                     AutoClickerCheatOn = loadedValues[11]
                     SpeedCheatOn = loadedValues[12]
                     BhopCheatOn = loadedValues[13]
-                    --FlyCheatOn = loadedValues[14]
                     LongJumpCheatOn = loadedValues[14]
                     HighJumpCheatOn = loadedValues[15]
                     PhaseCheatOn = loadedValues[16]
@@ -6735,7 +6800,6 @@ coroutine.wrap(function()
                     ChillLofi3CheatOn = loadedValues[23]
                     ChillLofi4CheatOn = loadedValues[24]
                     ChillLofi5CheatOn = loadedValues[25]
-                    --HypeBeatCheatOn = loadedValues[26]
                     AntiVoidCheatOn = loadedValues[26]
                     TimerCheatOn = loadedValues[27]
                     FPSBoostCheatOn = loadedValues[28]
@@ -6749,15 +6813,16 @@ coroutine.wrap(function()
                     FOVCheatOn = loadedValues[36]
                     ChamsCheatOn = loadedValues[37]
                     CameraNoClipCheatOn = loadedValues[38]
-                    NoClickDelayCheatOn = loadedValues[39]
-                    EmeraldESPCheatOn = loadedValues[40]
+                    EmeraldESPCheatOn = loadedValues[39]
+                    NoClickDelayCheatOn = loadedValues[40]
 
                                     
                     NoFallKeyBind = keyBinds[1]
                     AutoSprintKeyBind = keyBinds[2]
                     SpinBotKeyBind = keyBinds[3]
                     FastDropKeyBind = keyBinds[4]
-                    AutoToxicKeyBind = keyBinds[5]AutoSpamKeyBind = keyBinds[6]
+                    AutoToxicKeyBind = keyBinds[5]
+                    AutoSpamKeyBind = keyBinds[6]
                     CapeKeyBind = keyBinds[7]
                     KillAuraKeyBind = keyBinds[8]
                     ReachKeyBind = keyBinds[9]
@@ -6778,7 +6843,6 @@ coroutine.wrap(function()
                     ChillLofi3KeyBind = keyBinds[24]
                     ChillLofi4KeyBind = keyBinds[25]
                     ChillLofi5KeyBind = keyBinds[26]
-                    --HypeBeatKeyBind = keyBinds[27]
                     AntiVoidKeyBind = keyBinds[27]
                     TimerKeyBind = keyBinds[28]
                     FPSBoostKeyBind = keyBinds[29]
@@ -6792,15 +6856,15 @@ coroutine.wrap(function()
                     FOVKeyBind = keyBinds[37]
                     ChamsKeyBind = keyBinds[38]
                     CameraNoClipKeyBind = keyBinds[39]
-                    NoClickDelayKeyBind = keyBinds[40]
-                    EmeraldESPKeyBind = keyBinds[41]
+                    EmeraldESPKeyBind = keyBinds[40]
+                    NoClickDelayKeyBind = keyBinds[41]
 
 
-                    --print(1)
+                    print(1)
                     repeat wait() until not (game.Players.LocalPlayer.Character == nil)
-                    --print(2)
+                    print(2)
                     repeat wait() until not (game.Players.LocalPlayer.Character.Humanoid == nil)
-                    --print(3)
+                    print(3)
                     repeat wait() until not (game.Players.LocalPlayer.Character.HumanoidRootPart == nil)
                 
                     spawn(function()
@@ -7020,6 +7084,7 @@ coroutine.wrap(function()
                         end
                     end)
 
+                    --[[
                     spawn(function()
                         if ReachCheatOn then
                             -- wait(1)
@@ -7078,9 +7143,11 @@ coroutine.wrap(function()
                             debug.setconstant(bedwars["SwingSwordRegion"], reachConst2, old2*(ReachValue["Value"]+1))
                         end
                     end)
+                    ]]
 
                     spawn(function()
                         if AntiKnockBackCheatOn then
+                            print("COLOR")
                             -- wait(1)
                             AntiKnockBack.BackgroundColor3 = Color3.fromRGB(41, 166, 255)
                             AntiKnockBack.TextColor3 = Color3.fromRGB(255, 255, 255)  
@@ -7140,38 +7207,38 @@ coroutine.wrap(function()
                             spawn(function()
                                 while SpeedCheatOn == true do
                                     if SpeedCheatOn == true then
-                                        getgenv().speedvalforspeed = {["Value"] = 50} --55
-                                        wait(1)
+                                        getgenv().speedvalforspeed = {["Value"] = 45} --55
+                                        wait(0.7)
                                         else
                                         continue 
                                     end
                                     if SpeedCheatOn == true then
-                                        getgenv().speedvalforspeed = {["Value"] = 100} --110
-                                        wait(0.1) --0.4
+                                        getgenv().speedvalforspeed = {["Value"] = 90} --80
+                                        wait(0.2) --0.4
                                         else
                                         continue 
                                     end
                                     if SpeedCheatOn == true then
-                                        getgenv().speedvalforspeed = {["Value"] = 50} --55
-                                        wait(1)
+                                        getgenv().speedvalforspeed = {["Value"] = 45} --55
+                                        wait(0.7)
                                         else
                                         continue 
                                     end
                                     if SpeedCheatOn == true then
-                                        getgenv().speedvalforspeed = {["Value"] = 100} --110
-                                        wait(0.1) --0.4
+                                        getgenv().speedvalforspeed = {["Value"] = 90} --80
+                                        wait(0.2) --0.4
                                         else
                                         continue 
                                     end
                                     if SpeedCheatOn == true then
-                                        getgenv().speedvalforspeed = {["Value"] = 50} --55
-                                        wait(1)
+                                        getgenv().speedvalforspeed = {["Value"] = 45} --55
+                                        wait(0.7)
                                         else
                                         continue 
                                     end
                                     if SpeedCheatOn == true then
-                                        getgenv().speedvalforspeed = {["Value"] = 100} --110
-                                        wait(0.1) --0.4
+                                        getgenv().speedvalforspeed = {["Value"] = 90} --90
+                                        wait(0.2) --0.4
                                         else
                                         continue 
                                     end
@@ -7264,13 +7331,13 @@ coroutine.wrap(function()
                             --[[
                             Speed.MouseButton1Down:connect(function()
                                 if not SpeedCheatOn == true then
-                                    --print('play')
+                                    print('play')
                                     CheatSound--On:Play()
 
                                     SpeedCheatOn = true
 
                                 elseif SpeedCheatOn == true then
-                                    --print("play2")
+                                    print("play2")
                                     CheatSound--Off:Play()
 
                                     SpeedCheatOn = false
@@ -7407,7 +7474,7 @@ coroutine.wrap(function()
                                 while ChestStealerCheatOn == true do
                                     local ChestStealerDistance = {["Value"] = 18}
                                     local ChestStealDelay = wait()
-                                        -- --print('EEE1')
+                                        -- print('EEE1')
                                             if isAlive() and ChestStealerCheatOn == true then
 
                                             --[[
@@ -7417,13 +7484,13 @@ coroutine.wrap(function()
                                                 ChestStealDelay = tick() + 0.2
                                             --]]
 
-                                                ----print('EEE2')
+                                                --print('EEE2')
                                                 local rootpart = lplr.Character and lplr.Character:FindFirstChild("HumanoidRootPart")
                                                 for i,v in pairs(game:GetService("CollectionService"):GetTagged("chest")) do
                                                     if rootpart and (rootpart.Position - v.Position).magnitude <= ChestStealerDistance["Value"] and v:FindFirstChild("ChestFolderValue") then
                                                         local chest = v.ChestFolderValue.Value
                                                         local chestitems = chest and chest:GetChildren() or {}
-                                                        ----print('EEE3')
+                                                        --print('EEE3')
                                                         if #chestitems > 0 then
                                                             bedwars["ClientHandler"]:GetNamespace("Inventory"):Get("SetObservedChest"):SendToServer(chest)
                                                             for i3,v3 in pairs(chestitems) do
@@ -7642,7 +7709,7 @@ coroutine.wrap(function()
                                 end
                             end
 
-                            --print(lowest)
+                            print(lowest)
 
                             local NewPart = Instance.new("Part")
                             NewPart.Name = "ANTIVOID"
@@ -7667,7 +7734,7 @@ coroutine.wrap(function()
                                 while true do
                                     if (humanoid:GetState() == Enum.HumanoidStateType.Freefall) then
                                         if touching == false then
-                                            ----print("falling")
+                                            --print("falling")
                                             pos[#pos+1] = character.HumanoidRootPart.CFrame
                                             NeedReset = true
                                         end
@@ -7676,7 +7743,7 @@ coroutine.wrap(function()
                                         if not (humanoid:GetState() == Enum.HumanoidStateType.Freefall) then
                                             if touching == false then
                                                 if NeedReset == true then
-                                                    ----print('reset')
+                                                    --print('reset')
                                                     pos = {}
                                                     NeedReset = false
                                                 end
@@ -7718,7 +7785,7 @@ coroutine.wrap(function()
                                         end)
 
                                     --[[
-                                        ----print("tping")
+                                        --print("tping")
 
                                         game.StarterGui:SetCore("SendNotification", {
                                             Title = "AntiVoid";
@@ -7727,14 +7794,14 @@ coroutine.wrap(function()
                                             Duration = 5;
                                         })    
 
-                                        --print(#pos)
+                                        print(#pos)
                                         for i=#pos, 1, -1 do
                                             if pos[i] then
                                                 character.HumanoidRootPart.CFrame = CFrame.new(pos[i].X, pos[i].Y, pos[i].Z)
                                                 wait()
                                             end
                                         end 
-                                        ----print('done tping')
+                                        --print('done tping')
                                         --]]
                                         pos = {}
                                         wait()
@@ -7745,11 +7812,11 @@ coroutine.wrap(function()
 
                                                 
                             game.Players.LocalPlayer.CharacterAdded:Connect(function()
-                                --print("HAIRLINE")
+                                print("HAIRLINE")
                                 
                                 local humanoid = game.Players.LocalPlayer.Character:WaitForChild("Humanoid")
 
-                                --print("humanoid")
+                                print("humanoid")
                                 humanoid.Touched:Connect(antiVoidFunction)
                             end)
 
@@ -8317,14 +8384,14 @@ coroutine.wrap(function()
                     end)
                 end
             else
-                --print('try')
+                print('try')
                 saveSettings()
                 return loadSettings()
             end
 
             return {loadedValues, keyBinds}
         else 
-            --print('g')
+            print('g')
             saveSettings()
             return loadSettings()
         end
