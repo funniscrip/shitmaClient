@@ -14,26 +14,34 @@ else
 
 local queueteleport = (syn and syn.queue_on_teleport) or queue_on_teleport or (fluxus and fluxus.queue_on_teleport)
 
-queueteleport('loadstring(game:HttpGet("https://raw.githubusercontent.com/ratedlua/shitmaClient/main/main.lua", true))()')
+--queueteleport('loadstring(game:HttpGet("https://raw.githubusercontent.com/ratedlua/shitmaClient/main/main.lua", true))()')
 
 
 ----------------------------------------------------------------------------------------------------ANTICHEATBYPASS. Not done
 --[[
+lplr = game.Players.LocalPlayer
+cam = workspace.CurrentCamera
+
 spawn(function()
-        local realcharacter = game.Workspace[game.Players.LocalPlayer.Name]
+        local realcharacter = lplr.Character.HumanoidRootPart
         game.Workspace[game.Players.LocalPlayer.Name].Archivable = true
         local clonedcharacter = realcharacter:Clone()
-        clonedcharacter.Parent = game.Workspace
-        clonedcharacter.HumanoidRootPart.CanCollide = false
-        local description = realcharacter.Humanoid:GetAppliedDescription()
-        clonedcharacter.Humanoid:ApplyDescription(description)
-        clonedcharacter.HumanoidRootPart.Transparency = 1
+        clonedcharacter.Parent = lplr.Character
+        clonedcharacterfr = clonedcharacter.Parent
+        clonedcharacter.Parent = cam
+        clonedcharacter.CanCollide = false
+        --local description = realcharacter.Humanoid:GetAppliedDescription()
+        --clonedcharacter.Humanoid:ApplyDescription(description)
+        clonedcharacter.Transparency = 1
     while true do
-        clonedcharacterpos = clonedcharacter.HumanoidRootPart.CFrame
-        wait(0.3)
-        realcharacterpos = realcharacter.HumanoidRootPart.CFrame
+        clonedcharacterpos = clonedcharacter.CFrame
+        wait(0.1)
+        realcharacterpos = realcharacter.CFrame
 
-        clonedcharacter.HumanoidRootPart.CFrame = realcharacterpos
+        realcharacterpos = clonedcharacterpos
+
+        print(realcharacterpos)
+
     end
 end)
 --]]
@@ -52,6 +60,7 @@ local SteppedTable = {}
 local RunService = game:GetService("RunService")
 local Heartbeat = RunService.Heartbeat
 local humanoid = lplr.Character.Humanoid
+local character = lplr.Character
 local lplrvelo = lplr.Character:WaitForChild("HumanoidRootPart").Velocity
 local vec3 = Vector3.new
 
@@ -97,6 +106,16 @@ local function BindToStepped(name, func)
     if SteppedTable[name] == nil then
         SteppedTable[name] = game:GetService("RunService").Stepped:connect(func)
     end
+end
+
+local function anticheatdisabler() 
+    character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Dead, true)
+    character.Humanoid:ChangeState(Enum.HumanoidStateType.Dead)
+    repeat task.wait() until character.Humanoid.MoveDirection ~= Vector3.zero
+    task.wait(0.2)
+    character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Dead, false)
+    character.Humanoid:ChangeState(Enum.HumanoidStateType.Running)
+    workspace.Gravity = 192.6
 end
 
 spawn(function()
@@ -195,6 +214,7 @@ local bedwars = {
     end,
     ["getEntityTable"] = require(game:GetService("ReplicatedStorage").TS.entity["entity-util"]).EntityUtil,
     ["ClientStoreHandler"] = require(lplr.PlayerScripts.TS.ui.store).ClientStore,
+    
 }
 
 local oldveloh, oldvelov, oldvelofunc = bedwars["KnockbackTable"]["kbDirectionStrength"], bedwars["KnockbackTable"]["kbUpwardStrength"], bedwars["VelocityUtil"].applyVelocity
@@ -479,9 +499,12 @@ local TimerCheatOn = false
 local FPSBoostCheatOn = false
 local FastFallCheatOn = false
 local ClickTPCheatOn = false
+local AntiCheatDisablerCheatOn = false
 local AutoQueueCheatOn = false
 local AntiAFKCheatOn = false
 local CopyDiscordLinkCheatOn = false
+local DinoFlyCheatOn = false
+local BlatantModeCheatOn = false
 local ESPCheatOn = false
 local TracersCheatOn = false
 local FOVCheatOn = false
@@ -1167,7 +1190,7 @@ WarningAndInfo.BorderSizePixel = 0
 WarningAndInfo.Position = UDim2.new(0.368000001, 0, -0.0189999994, 0)
 WarningAndInfo.Size = UDim2.new(0, 363, 0, 100)
 WarningAndInfo.Font = Enum.Font.Roboto
-WarningAndInfo.Text = "https://www.tiktok.com/@ratedlua" --"Click RightShift To Open And Close The Gui. This Exploit Is Still In Beta So Expect Some Bugs. Patches Will Be In The Future! RightClick Cheats Then Click A Key To Set It To That Keybind."
+WarningAndInfo.Text = "tiktok.com/@ratedlua" --"Click RightShift To Open And Close The Gui. This Exploit Is Still In Beta So Expect Some Bugs. Patches Will Be In The Future! RightClick Cheats Then Click A Key To Set It To That Keybind."
 WarningAndInfo.TextColor3 = Color3.fromRGB(255, 255, 255)
 WarningAndInfo.TextSize = 40.000
 WarningAndInfo.TextStrokeTransparency = 0.000
@@ -1228,6 +1251,7 @@ local WorldText = Instance.new("TextLabel")
 local AntiVoid = Instance.new("TextButton")
 local Timer = Instance.new("TextButton")
 local ClickTP = Instance.new("TextButton")
+local AntiCheatDisabler = Instance.new("TextButton")
 local FPSBoost = Instance.new("TextButton")
 local FastFall = Instance.new("TextButton")
 local Misc = Instance.new("Frame")
@@ -1236,6 +1260,8 @@ local Cover7 = Instance.new("Frame")
 local AutoQueue = Instance.new("TextButton")
 local AntiAFK = Instance.new("TextButton")
 local CopyDiscordLink = Instance.new("TextButton")
+local DinoFly = Instance.new("TextButton")
+local BlatantMode = Instance.new("TextButton")
 local Render = Instance.new("Frame")
 local Cover8 = Instance.new("Frame")
 local RenderText = Instance.new("TextLabel")
@@ -1807,7 +1833,7 @@ local function GetAllNearestHumanoidToPosition(distance)
     local HumanoidRootPart = Character and Character:FindFirstChild("HumanoidRootPart")
     if not (Character or HumanoidRootPart) then return {nil} end
 
-    local TargetDistance = 18 - 0.0001
+    local TargetDistance = distance 
     local Target
 
     for i,v in pairs(Players:GetPlayers()) do
@@ -1927,7 +1953,7 @@ KillAura.MouseButton1Down:connect(function()
 
         KillAuraCheatOnSave = true
 
-        On:Play() 
+        --On:Play() 
 
         local playerentity
         task.spawn(function()
@@ -1974,7 +2000,7 @@ KillAura.MouseButton1Down:connect(function()
                 if KillAuraCheatOn then
 
 
-                    local plrs = GetAllNearestHumanoidToPosition()
+                    local plrs = GetAllNearestHumanoidToPosition(18 - 0.0001)
 
                     if plrs[1] == nil then
                         attacking = nil
@@ -2006,7 +2032,7 @@ KillAura.MouseButton1Down:connect(function()
 
         KillAuraCheatOnSave = false
 
-        Off:Play()
+        --Off:Play()
 
         RunLoops:UnbindFromHeartbeat("Killaura") 
         pcall(function()
@@ -2537,7 +2563,22 @@ MultiAura.MouseButton1Down:connect(function()
 
         --On:Play()
 
-        elseif MultiAuraCheatOn == true then
+        bedwars["PaintRemote"] = getremote(debug.getconstants(KnitClient.Controllers.PaintShotgunController.fire))
+
+        repeat
+            task.wait(0.03)
+            if character and character:FindFirstChild("HumanoidRootPart") and character:FindFirstChild("Humanoid") then
+                print("superez")
+                local plrs = GetAllNearestHumanoidToPosition(18.8)
+                for i,plr in pairs(plrs) do
+                    local selfpos = game.Players.LocalPlayer.Character.HumanoidRootPart.Position
+                    local newpos = plr.Character.HumanoidRootPart.Position
+                    bedwars["ClientHandler"]:Get(bedwars["PaintRemote"]):SendToServer(selfpos, CFrame.lookAt(selfpos, newpos).lookVector)
+                end
+            end
+        until MultiAuraCheatOn == false
+
+    elseif MultiAuraCheatOn == true then
         MultiAuraCheatOn = false
 
         MultiAura.BackgroundColor3 = Color3.fromRGB(250, 250, 250)
@@ -2742,7 +2783,7 @@ spawn(function()
 end)
 --]]
 
-getgenv().speedvalforspeed = {["Value"] = 50} --THIS IS 55
+getgenv().speedvalforspeed = {["Value"] = 50} --THIS IS 50
 
 Speed.Name = "Speed"
 Speed.Parent = Movement
@@ -2762,8 +2803,6 @@ Speed.MouseButton1Down:connect(function()
         Speed.BackgroundColor3 = Color3.fromRGB(41, 166, 255)
         Speed.TextColor3 = Color3.fromRGB(255, 255, 255)  
 
-        SpeedCheatOnSave = true
-
         --On:Play()
 --[[
         coroutine.wrap(function()
@@ -2779,50 +2818,20 @@ Speed.MouseButton1Down:connect(function()
 --]]
         spawn(function()
             while SpeedCheatOn == true do
-                if SpeedCheatOn == true then
-                    getgenv().speedvalforspeed = {["Value"] = 45} --55
+                if SpeedCheatOn == true and BlatantModeCheatOn == false then
+                    getgenv().speedvalforspeed = {["Value"] = 40} --55
                     wait(0.7)
-                    else
-                    continue 
+                elseif SpeedCheatOn == true and BlatantModeCheatOn == true then
+                    getgenv().speedvalforspeed = {["Value"] = 200}
+                    wait()
                 end
-                if SpeedCheatOn == true then
-                    getgenv().speedvalforspeed = {["Value"] = 80} --80
-                    wait(0.3) --0.4
-                    else
-                    continue 
+                if SpeedCheatOn == true and BlatantModeCheatOn == false then
+                    getgenv().speedvalforspeed = {["Value"] = 90} --80
+                    wait(0.2) --0.4
+                elseif SpeedCheatOn == true and BlatantModeCheatOn == true then
+                    getgenv().speedvalforspeed = {["Value"] = 200}
+                    wait()
                 end
-                if SpeedCheatOn == true then
-                    getgenv().speedvalforspeed = {["Value"] = 45} --55
-                    wait(0.7)
-                    else
-                    continue 
-                end
-                if SpeedCheatOn == true then
-                    getgenv().speedvalforspeed = {["Value"] = 80} --80
-                    wait(0.3) --0.4
-                    else
-                    continue 
-                end
-                if SpeedCheatOn == true then
-                    getgenv().speedvalforspeed = {["Value"] = 45} --55
-                    wait(0.7)
-                    else
-                    continue 
-                end
-                if SpeedCheatOn == true then
-                    getgenv().speedvalforspeed = {["Value"] = 80} --90
-                    wait(0.3) --0.4
-                    else
-                    continue 
-                end
-
---[[
-                if SpeedCheatOn == true then
-                    getgenv().speedvalforspeed = {["Value"] = 55}
-                    wait(1.5) --2
-                end
---]]
-
             end
         end)
 
@@ -2850,8 +2859,6 @@ Speed.MouseButton1Down:connect(function()
         Speed.BackgroundColor3 = Color3.fromRGB(250, 250, 250)
         Speed.TextColor3 = Color3.fromRGB(0, 0, 0) 
 
-        SpeedCheatOnSave = false
-
         --Off:Play() 
 
         --getgenv().speedval = {["Value"] = 20}
@@ -2861,7 +2868,6 @@ end)
 
 coroutine.wrap(function() 
     repeat wait() until game:IsLoaded()
-    local Future = shared.Future
     local UIS = game:GetService("UserInputService")
     local TS = game:GetService("TweenService")
     local WORKSPACE = game:GetService("Workspace")
@@ -2884,7 +2890,7 @@ coroutine.wrap(function()
     BindToStepped("Speed", function(time, dt)
         if FLYINPUTVALUE == false then
             if SpeedCheatOn == true then
-                if isAlive() and not stopSpeed then
+                if isAlive() and not stopSpeed or AntiCheatDisablerCheatOn == true then
                 --getgenv().speedvalforspeed = {["Value"] = 50} --THIS IS 55
 
 --[[
@@ -3083,12 +3089,19 @@ HighJump.MouseButton1Down:connect(function()
     --On:Play()
 
     coroutine.wrap(function()
-        if HighJumpCheatOn == true then
+        if HighJumpCheatOn == true and BlatantModeCheatOn == false then
             for i = 5, 25 do
                 task.wait(0.04)
-                if lplr.Character.Humanoid.Health <= 0 then repeat task.wait() until lplr.isAlive and lplr.Character.Humanoid.Health > 0 break end
+                --if lplr.Character.Humanoid.Health <= 0 then repeat task.wait() until lplr.isAlive and lplr.Character.Humanoid.Health > 0 break end
                 lplr.Character.HumanoidRootPart.Velocity = vec3(lplr.Character.HumanoidRootPart.Velocity.X, i * 3, lplr.Character.HumanoidRootPart.Velocity.Z)
             end
+
+            elseif HighJumpCheatOn == true and BlatantModeCheatOn == true then
+                for i = 25, 50 do
+                    task.wait(0.04)
+                    --if lplr.Character.Humanoid.Health <= 0 then repeat task.wait() until lplr.isAlive and lplr.Character.Humanoid.Health > 0 break end
+                    lplr.Character.HumanoidRootPart.Velocity = vec3(lplr.Character.HumanoidRootPart.Velocity.X, i * 3, lplr.Character.HumanoidRootPart.Velocity.Z)
+                end
         end
     end)()
 
@@ -3157,12 +3170,19 @@ UIS.InputBegan:Connect(function(input)
         --On:Play()
 
         coroutine.wrap(function()
-            if HighJumpCheatOn == true then
+            if HighJumpCheatOn == true and BlatantModeCheatOn == false then
                 for i = 5, 25 do
                     task.wait(0.04)
-                    if lplr.Character.Humanoid.Health <= 0 then repeat task.wait() until lplr.isAlive and lplr.Character.Humanoid.Health > 0 break end
+                    --if lplr.Character.Humanoid.Health <= 0 then repeat task.wait() until lplr.isAlive and lplr.Character.Humanoid.Health > 0 break end
                     lplr.Character.HumanoidRootPart.Velocity = vec3(lplr.Character.HumanoidRootPart.Velocity.X, i * 3, lplr.Character.HumanoidRootPart.Velocity.Z)
                 end
+
+                elseif HighJumpCheatOn == true and BlatantModeCheatOn == true then
+                    for i = 25, 50 do
+                        task.wait(0.04)
+                        --if lplr.Character.Humanoid.Health <= 0 then repeat task.wait() until lplr.isAlive and lplr.Character.Humanoid.Health > 0 break end
+                        lplr.Character.HumanoidRootPart.Velocity = vec3(lplr.Character.HumanoidRootPart.Velocity.X, i * 3, lplr.Character.HumanoidRootPart.Velocity.Z)
+                    end
             end
         end)()
 
@@ -3542,7 +3562,7 @@ Fly.MouseButton1Down:connect(function()
         --On:Play()
 
         coroutine.wrap(function()
-            if dinotimeron == false then
+            if dinotimeron == false and DinoFlyCheatOn == true then
                 pcall(function()
                     game:GetService("ReplicatedStorage"):FindFirstChild("events-@easy-games/game-core:shared/game-core-networking@getEvents.Events").useAbility:FireServer("dino_charge")
                     dinoconnection = bedwars["ClientHandler"]:Get(bedwars["DinoRemote"]):Connect(function()
@@ -3589,48 +3609,34 @@ Fly.MouseButton1Down:connect(function()
                 screenguifortimer:Destroy()
                 dinotimeron = false
                 dinodisablerdone = true
+
+                elseif BlatantModeCheatOn == true then
             end
         end)()
 
         spawn(function()
             while FlyCheatOn == true do
-                if FlyCheatOn == true and dinodisablerdone == true then
+                if FlyCheatOn == true and dinodisablerdone == true and BlatantModeCheatOn == false then
                     getgenv().speedvalforfly = {["Value"] = 50} --55
                     wait(0.6) --0.5
+                elseif FlyCheatOn == true and dinodisablerdone == true and BlatantModeCheatOn == true then
+                    getgenv().speedvalforfly = {["Value"] = 300}
+                    wait()
                 end
-                if FlyCheatOn == true and dinodisablerdone == true then
+                if FlyCheatOn == true and dinodisablerdone == true and BlatantModeCheatOn == false then
                     getgenv().speedvalforfly = {["Value"] = 70} --85
                     wait(0.3) --0.4
+                elseif FlyCheatOn == true and dinodisablerdone == true and BlatantModeCheatOn == true then
+                    getgenv().speedvalforfly = {["Value"] = 300}
+                    wait()
                 end
-                if FlyCheatOn == true and dinodisablerdone == true then
-                    getgenv().speedvalforfly = {["Value"] = 50} --55
-                    wait(0.6) --0.5
-                end
-                if FlyCheatOn == true and dinodisablerdone == true then
-                    getgenv().speedvalforfly = {["Value"] = 70} --85
-                    wait(0.3) --0.4
-                end
-                if FlyCheatOn == true and dinodisablerdone == true then
-                    getgenv().speedvalforfly = {["Value"] = 50} --55
-                    wait(0.6) --0.5
-                end
-                if FlyCheatOn == true and dinodisablerdone == true then
-                    getgenv().speedvalforfly = {["Value"] = 70} --85
-                    wait(0.3) --0.4
-                end
---[[
-                if FlyCheatOn == true then
-                    getgenv().speedvalforfly = {["Value"] = 55}
-                    wait(1.5)
-                end
---]]
             Heartbeat:wait()
             end
         end)
 
         flyfreezecazspeedstop = false
 
-        if FlyCheatOn == true and SpeedCheatOn == true then
+        if FlyCheatOn == true and SpeedCheatOn == true and BlatantModeCheatOn == false then
             spawn(function()
                 game.StarterGui:SetCore("SendNotification", {
                     Title = "Fly Warning";
@@ -3657,6 +3663,9 @@ Fly.MouseButton1Down:connect(function()
             end)
             wait(0.4) --0.2
             flyfreezecazspeedstop = true
+
+            elseif FlyCheatOn == true and SpeedCheatOn == true and BlatantModeCheatOn == true then
+                
         end 
 
         FLYINPUTVALUE = true
@@ -3804,7 +3813,7 @@ local speedsettings = {
 
 BindToStepped("Speed", function(time, dt)
     if FLYINPUTVALUE == true then
-        if isAlive() and not stopSpeed then
+        if isAlive() and not stopSpeed or AntiCheatDisablerCheatOn == true then
 
 --[[
             local flypos = (lplr.Character.Humanoid.MoveDirection * (math.clamp(65 - 16, 1, 150) * delta))
@@ -3893,7 +3902,7 @@ UIS.InputBegan:Connect(function(input)
             --On:Play()
 
             coroutine.wrap(function()
-                if dinotimeron == false then
+                if dinotimeron == false and DinoFlyCheatOn == true then
                     pcall(function()
                         game:GetService("ReplicatedStorage"):FindFirstChild("events-@easy-games/game-core:shared/game-core-networking@getEvents.Events").useAbility:FireServer("dino_charge")
                         dinoconnection = bedwars["ClientHandler"]:Get(bedwars["DinoRemote"]):Connect(function()
@@ -3940,58 +3949,44 @@ UIS.InputBegan:Connect(function(input)
                     screenguifortimer:Destroy()
                     dinotimeron = false
                     dinodisablerdone = true
+
+                    elseif BlatantModeCheatOn == true then
                 end
             end)()
 
             spawn(function()
                 while FlyCheatOn == true do
-                    if FlyCheatOn == true and dinodisablerdone == true then
+                    if FlyCheatOn == true and dinodisablerdone == true and BlatantModeCheatOn == false then
                         getgenv().speedvalforfly = {["Value"] = 50} --55
                         wait(0.6) --0.5
+                    elseif FlyCheatOn == true and dinodisablerdone == true and BlatantModeCheatOn == true then
+                        getgenv().speedvalforfly = {["Value"] = 300}
+                        wait()
                     end
-                    if FlyCheatOn == true and dinodisablerdone == true then
-                        getgenv().speedvalforfly = {["Value"] = 90} --85
-                        wait(0.2) --0.4
+                    if FlyCheatOn == true and dinodisablerdone == true and BlatantModeCheatOn == false then
+                        getgenv().speedvalforfly = {["Value"] = 70} --85
+                        wait(0.3) --0.4
+                    elseif FlyCheatOn == true and dinodisablerdone == true and BlatantModeCheatOn == true then
+                        getgenv().speedvalforfly = {["Value"] = 300}
+                        wait()
                     end
-                    if FlyCheatOn == true and dinodisablerdone == true then
-                        getgenv().speedvalforfly = {["Value"] = 50} --55
-                        wait(0.6) --0.5
-                    end
-                    if FlyCheatOn == true and dinodisablerdone == true then
-                        getgenv().speedvalforfly = {["Value"] = 90} --85
-                        wait(0.2) --0.4
-                    end
-                    if FlyCheatOn == true and dinodisablerdone == true then
-                        getgenv().speedvalforfly = {["Value"] = 50} --55
-                        wait(0.6) --0.5
-                    end
-                    if FlyCheatOn == true and dinodisablerdone == true then
-                        getgenv().speedvalforfly = {["Value"] = 90} --85
-                        wait(0.2) --0.4
-                    end
-    --[[
-                    if FlyCheatOn == true then
-                        getgenv().speedvalforfly = {["Value"] = 55}
-                        wait(1.5)
-                    end
-    --]]
                 Heartbeat:wait()
                 end
             end)
 
             flyfreezecazspeedstop = false
 
-            if FlyCheatOn == true and SpeedCheatOn == true then
+            if FlyCheatOn == true and SpeedCheatOn == true and BlatantModeCheatOn == false then
                 spawn(function()
                     game.StarterGui:SetCore("SendNotification", {
                         Title = "Fly Warning";
                         Text = "Using speed right before fly requires optimization. therefore the fly could go further.";
                         Icon = "";
-                        Duration = 6;
+                        Duration = 4;
                     })
 
                     local character = game.Players.LocalPlayer.Character
-                    character:SetPrimaryPartCFrame(character:GetPrimaryPartCFrame()*CFrame.new(0, 0, 1))
+                    character:SetPrimaryPartCFrame(character:GetPrimaryPartCFrame()*CFrame.new(0, 0, 1.5))
 
                     xfreezeifspeedwa = lplr.Character.HumanoidRootPart.CFrame.X  
                     yfreezeifspeedwa = lplr.Character.HumanoidRootPart.CFrame.Y  
@@ -4006,9 +4001,12 @@ UIS.InputBegan:Connect(function(input)
                         Heartbeat:wait()
                     end
                 end)
-                wait(0.4) --0.4
+                wait(0.4) --0.2
                 flyfreezecazspeedstop = true
-            end 
+
+                elseif FlyCheatOn == true and SpeedCheatOn == true and BlatantModeCheatOn == true then
+                    
+            end  
 
             FLYINPUTVALUE = true
                     --On:Play()
@@ -4130,7 +4128,7 @@ LongJump.MouseButton1Down:connect(function()
 
         longjumpfreezecazspeedstop = false
 
-            if SpeedCheatOn == true and LongJumpCheatOn == true then
+            if SpeedCheatOn == true and LongJumpCheatOn == true and BlatantModeCheatOn == false then
                 spawn(function()
                     game.StarterGui:SetCore("SendNotification", {
                         Title = "LongJump Warning";
@@ -4157,6 +4155,8 @@ LongJump.MouseButton1Down:connect(function()
                 end)
                 wait(0.2) --0.06
                 longjumpfreezecazspeedstop = true
+                elseif SpeedCheatOn == true and LongJumpCheatOn == true and BlatantModeCheatOn == true then
+
             end 
 
         Hit:Play()
@@ -4224,17 +4224,17 @@ UIS.InputBegan:Connect(function(input)
 
             longjumpfreezecazspeedstop = false
 
-                if SpeedCheatOn == true and LongJumpCheatOn == true then
+                if SpeedCheatOn == true and LongJumpCheatOn == true and BlatantModeCheatOn == false then
                     spawn(function()
                         game.StarterGui:SetCore("SendNotification", {
                             Title = "LongJump Warning";
-                            Text = "Using speed right before longjump requires optimization. therefore the longjump could go further.";
+                            Text = "Using speed right before longjump requires optimization. therefore the fly could go further.";
                             Icon = "";
-                            Duration = 6;
+                            Duration = 4;
                         })
 
                         local character = game.Players.LocalPlayer.Character
-                        character:SetPrimaryPartCFrame(character:GetPrimaryPartCFrame()*CFrame.new(0, 0, 0.5))
+                        character:SetPrimaryPartCFrame(character:GetPrimaryPartCFrame()*CFrame.new(0, 0, 1))
 
                         xfreezeifspeedlongjump = lplr.Character.HumanoidRootPart.CFrame.X  
                         yfreezeifspeedlongjump = lplr.Character.HumanoidRootPart.CFrame.Y  
@@ -4251,6 +4251,8 @@ UIS.InputBegan:Connect(function(input)
                     end)
                     wait(0.2) --0.06
                     longjumpfreezecazspeedstop = true
+                    elseif SpeedCheatOn == true and LongJumpCheatOn == true and BlatantModeCheatOn == true then
+                        
                 end 
 
             Hit:Play()
@@ -5280,11 +5282,7 @@ AntiVoid.MouseButton1Down:connect(function()
         end
 
         game.Players.LocalPlayer.CharacterAdded:Connect(function()
-            print("HAIRLINE")
-            
             local humanoid = game.Players.LocalPlayer.Character:WaitForChild("Humanoid")
-
-            print("humanoid")
             humanoid.Touched:Connect(antiVoidFunction)
         end)
 
@@ -5293,7 +5291,7 @@ AntiVoid.MouseButton1Down:connect(function()
 
         spawn(function()
             while AntiVoidCheatOn == true do
-                if game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character.Parent ~= nil and game.Players.LocalPlayer.Character:FindFirstChild("Humanoid") and game.Players.LocalPlayer.Character.Humanoid.Health >= 0 and game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
+                if game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character.Parent ~= nil and game.Players.LocalPlayer.Character:FindFirstChild("Humanoid") and game.Players.LocalPlayer.Character.Humanoid.Health >= 0 and game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") or AntiCheatDisablerCheatOn == true then
                     xcframe = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.X
                     if game.Players.LocalPlayer.Character.Humanoid.Health >= 1 then
                         ycframe = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Y
@@ -5378,6 +5376,77 @@ ClickTP.Font = Enum.Font.Roboto
 ClickTP.Text = "ClickTP"
 ClickTP.TextColor3 = Color3.fromRGB(0, 0, 0)
 ClickTP.TextSize = 25.000
+
+AntiCheatDisabler.Name = "AntiCheatDisabler"
+AntiCheatDisabler.Parent = World
+AntiCheatDisabler.BackgroundColor3 = Color3.fromRGB(250, 250, 250)
+AntiCheatDisabler.BorderColor3 = Color3.fromRGB(0, 0, 0)
+AntiCheatDisabler.BorderSizePixel = 0
+AntiCheatDisabler.Position = UDim2.new(0, 0, 0.745704532, 0)
+AntiCheatDisabler.Size = UDim2.new(0, 204, 0, 31)
+AntiCheatDisabler.Font = Enum.Font.Roboto
+AntiCheatDisabler.Text = "AntiCheatDisabler"
+AntiCheatDisabler.TextColor3 = Color3.fromRGB(0, 0, 0)
+AntiCheatDisabler.TextSize = 25.000
+AntiCheatDisabler.MouseButton1Down:connect(function()
+    if not AntiCheatDisablerCheatOn == true then
+        AntiCheatDisablerCheatOn = true
+
+        AntiCheatDisabler.BackgroundColor3 = Color3.fromRGB(41, 166, 255)
+        AntiCheatDisabler.TextColor3 = Color3.fromRGB(255, 255, 255)  
+
+        --On:Play()
+
+        repeat task.wait() until character and character:FindFirstChild("HumanoidRootPart") and character:FindFirstChild("Humanoid") and character:FindFirstChild("Humanoid").Health >= 1
+        anticheatdisabler()
+
+    elseif AntiCheatDisablerCheatOn == true then
+        AntiCheatDisablerCheatOn = true
+
+        AntiCheatDisabler.BackgroundColor3 = Color3.fromRGB(41, 166, 255)
+        AntiCheatDisabler.TextColor3 = Color3.fromRGB(255, 255, 255)  
+
+        --On:Play()
+
+        repeat task.wait() until character and character:FindFirstChild("HumanoidRootPart") and character:FindFirstChild("Humanoid") and character:FindFirstChild("Humanoid").Health >= 1
+        anticheatdisabler()
+
+    end
+end)
+
+
+AntiCheatDisablerKeyBind = Enum.KeyCode.Escape.Value
+
+AntiCheatDisabler.MouseButton2Down:connect(function()
+    print('clicked')
+    AntiCheatDisabler.Text = "Select a Keybind"
+    local selecting = true
+
+    wait()
+
+    UIS.InputBegan:Connect(function(input)
+        if selecting == true then
+            wait()
+            print(input)
+            if input.KeyCode == Enum.KeyCode.Escape or input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.MouseButton2 then
+                AntiCheatDisablerKeyBind = Enum.KeyCode.Escape.Value
+            else 
+                AntiCheatDisablerKeyBind = input.KeyCode.Value
+            end
+            selecting = false
+            AntiCheatDisabler.Text = "AntiCheatDisabler"
+        end
+    end)
+end)
+
+UIS.InputBegan:Connect(function(input)
+    if  (input.KeyCode ~= Enum.KeyCode.Escape) and input.KeyCode.Value == AntiCheatDisablerKeyBind then
+        for i,v in pairs(getconnections(AntiCheatDisabler.MouseButton1Down)) do
+            repeat task.wait() until character and character:FindFirstChild("HumanoidRootPart") and character:FindFirstChild("Humanoid") and character:FindFirstChild("Humanoid").Health >= 1
+            anticheatdisabler()
+        end  
+    end
+end)
 
 FPSBoost.Name = "FPSBoost"
 FPSBoost.Parent = World
@@ -5547,7 +5616,7 @@ AutoQueue.MouseButton1Down:connect(function()
                     end
                 end
 
-                if #allTeams == 2 then
+                if #allTeams == 2 and AntiCheatDisablerCheatOn == false then
                     local args = {
                     [1] = {
                         ["queueType"] = "skywars_to2"
@@ -5562,7 +5631,7 @@ AutoQueue.MouseButton1Down:connect(function()
 
                 end
 
-                if AutoQueueCheatOn == true and lplr.Character.Humanoid.Health == 0 then
+                if AutoQueueCheatOn == true and lplr.Character.Humanoid.Health == 0 and AntiCheatDisablerCheatOn == false then
                     local args = {
                     [1] = {
                         ["queueType"] = "skywars_to2"
@@ -5573,7 +5642,7 @@ AutoQueue.MouseButton1Down:connect(function()
 
                     AUTOQUEUESKYWARSINGAME = true
 
-                elseif AutoQueueCheatOn == true and game.PlaceId == 6872265039 then
+                elseif AutoQueueCheatOn == true and game.PlaceId == 6872265039 and AntiCheatDisablerCheatOn == false then
                     local args = {
                     [1] = {
                         ["queueType"] = "skywars_to2"
@@ -5730,6 +5799,132 @@ CopyDiscordLink.Font = Enum.Font.Roboto
 CopyDiscordLink.Text = "Copy Discord Link"
 CopyDiscordLink.TextColor3 = Color3.fromRGB(0, 0, 0)
 CopyDiscordLink.TextSize = 25.000
+
+DinoFly.Name = "DinoFly"
+DinoFly.Parent = Misc
+DinoFly.BackgroundColor3 = Color3.fromRGB(250, 250, 250)
+DinoFly.BorderColor3 = Color3.fromRGB(0, 0, 0)
+DinoFly.BorderSizePixel = 0
+DinoFly.Position = UDim2.new(0, 0, 0.53264603, 0)
+DinoFly.Size = UDim2.new(0, 204, 0, 31)
+DinoFly.Font = Enum.Font.Roboto
+DinoFly.Text = "DinoFly"
+DinoFly.TextColor3 = Color3.fromRGB(0, 0, 0)
+DinoFly.TextSize = 25.000
+DinoFly.MouseButton1Down:connect(function()
+    if not DinoFlyCheatOn == true then
+        DinoFlyCheatOn = true
+
+        DinoFly.BackgroundColor3 = Color3.fromRGB(41, 166, 255)
+        DinoFly.TextColor3 = Color3.fromRGB(255, 255, 255)  
+
+        --On:Play() 
+
+    elseif DinoFlyCheatOn == true then
+        DinoFlyCheatOn = false
+        
+        DinoFly.BackgroundColor3 = Color3.fromRGB(250, 250, 250)
+        DinoFly.TextColor3 = Color3.fromRGB(0, 0, 0)  
+
+        --Off:Play()
+        
+    end
+end)
+
+DinoFlyKeyBind = Enum.KeyCode.Escape.Value
+
+DinoFly.MouseButton2Down:connect(function()
+    print('clicked')
+    DinoFly.Text = "Select a Keybind"
+    local selecting = true
+
+    wait()
+
+    UIS.InputBegan:Connect(function(input)
+        if selecting == true then
+            wait()
+            print(input)
+            if  (input.KeyCode ~= Enum.KeyCode.Escape) and input.KeyCode.Value == Enum.KeyCode.Escape or input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.MouseButton2 then
+                DinoFlyKeyBind = Enum.KeyCode.Escape.Value
+            else 
+                DinoFlyKeyBind = input.KeyCode.Value
+            end
+            selecting = false
+            DinoFly.Text = "DinoFly"
+        end
+    end)
+end)
+
+UIS.InputBegan:Connect(function(input)
+    if input.KeyCode == DinoFlyKeyBind then
+        for i,v in pairs(getconnections(DinoFly.MouseButton1Down)) do
+            v:Fire() 
+        end  
+    end
+end)
+
+BlatantMode.Name = "BlatantMode"
+BlatantMode.Parent = Misc
+BlatantMode.BackgroundColor3 = Color3.fromRGB(250, 250, 250)
+BlatantMode.BorderColor3 = Color3.fromRGB(0, 0, 0)
+BlatantMode.BorderSizePixel = 0
+BlatantMode.Position = UDim2.new(0, 0, 0.639175206, 0)
+BlatantMode.Size = UDim2.new(0, 204, 0, 31)
+BlatantMode.Font = Enum.Font.Roboto
+BlatantMode.Text = "BlatantMode"
+BlatantMode.TextColor3 = Color3.fromRGB(0, 0, 0)
+BlatantMode.TextSize = 25.000
+BlatantMode.MouseButton1Down:connect(function()
+    if not BlatantModeCheatOn == true then
+        BlatantModeCheatOn = true
+
+        BlatantMode.BackgroundColor3 = Color3.fromRGB(41, 166, 255)
+        BlatantMode.TextColor3 = Color3.fromRGB(255, 255, 255)  
+
+        --On:Play() 
+
+    elseif BlatantModeCheatOn == true then
+        BlatantModeCheatOn = false
+        
+        BlatantMode.BackgroundColor3 = Color3.fromRGB(250, 250, 250)
+        BlatantMode.TextColor3 = Color3.fromRGB(0, 0, 0)  
+
+        --Off:Play()
+        
+    end
+end)
+
+BlatantModeKeyBind = Enum.KeyCode.Escape.Value
+
+BlatantMode.MouseButton2Down:connect(function()
+    print('clicked')
+    BlatantMode.Text = "Select a Keybind"
+    local selecting = true
+
+    wait()
+
+    UIS.InputBegan:Connect(function(input)
+        if selecting == true then
+            wait()
+            print(input)
+            if  (input.KeyCode ~= Enum.KeyCode.Escape) and input.KeyCode.Value == Enum.KeyCode.Escape or input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.MouseButton2 then
+                BlatantModeKeyBind = Enum.KeyCode.Escape.Value
+            else 
+                BlatantModeKeyBind = input.KeyCode.Value
+            end
+            selecting = false
+            BlatantMode.Text = "BlatantMode"
+        end
+    end)
+end)
+
+UIS.InputBegan:Connect(function(input)
+    if input.KeyCode == BlatantModeKeyBind then
+        for i,v in pairs(getconnections(BlatantMode.MouseButton1Down)) do
+            v:Fire() 
+        end  
+    end
+end)
 
 Render.Name = "Render"
 Render.Parent = Sigma_1
@@ -6699,9 +6894,12 @@ coroutine.wrap(function()
             FPSBoostCheatOn,
             FastFallCheatOn,
             ClickTPCheatOn,
+            AntiCheatDisabler,
             AutoQueueCheatOn,
             AntiAFKCheatOn,
             CopyDiscordLinkCheatOn,
+            DinoFlyCheatOn,
+            BlatantModeCheatOn,
             ESPCheatOn,
             TracersCheatOn,
             FOVCheatOn,
@@ -6709,6 +6907,7 @@ coroutine.wrap(function()
             CameraNoClipCheatOn,
             EmeraldESPCheatOn,
             NoClickDelayCheatOn,
+            MultiAuraCheatOn,
         }
         settingToSave.KeyBinds = { 
             NoFallKeyBind,
@@ -6743,9 +6942,12 @@ coroutine.wrap(function()
             FPSBoostKeyBind,
             FastFallKeyBind,
             ClickTPKeyBind,
+            AntiCheatDisablerKeyBind,
             AutoQueueKeyBind,
             AntiAFKKeyBind,
             CopyDiscordLinkKeyBind,
+            DinoFlyKeyBind,
+            BlatantModeKeyBind,
             ESPKeyBind,
             TracersKeyBind,
             FOVKeyBind,
@@ -6753,6 +6955,7 @@ coroutine.wrap(function()
             CameraNoClipKeyBind,
             EmeraldESPKeyBind,
             NoClickDelayKeyBind,
+            MultiAuraKeyBind,
         }
 
         local json
@@ -6813,16 +7016,20 @@ coroutine.wrap(function()
                     FPSBoostCheatOn = loadedValues[28]
                     FastFallCheatOn = loadedValues[29]
                     ClickTPCheatOn = loadedValues[30]
-                    AutoQueueCheatOn = loadedValues[31]
-                    AntiAFKCheatOn = loadedValues[32]
-                    CopyDiscordLinkCheatOn = loadedValues[33]
-                    ESPCheatOn = loadedValues[34]
-                    TracersCheatOn = loadedValues[35]
-                    FOVCheatOn = loadedValues[36]
-                    ChamsCheatOn = loadedValues[37]
-                    CameraNoClipCheatOn = loadedValues[38]
-                    EmeraldESPCheatOn = loadedValues[39]
-                    NoClickDelayCheatOn = loadedValues[40]
+                    AntiCheatDisablerCheatOn = loadedValues[31]
+                    AutoQueueCheatOn = loadedValues[32]
+                    AntiAFKCheatOn = loadedValues[33]
+                    CopyDiscordLinkCheatOn = loadedValues[34]
+                    DinoFlyCheatOn = loadedValues[35]
+                    BlatantModeCheatOn = loadedValues[36]
+                    ESPCheatOn = loadedValues[37]
+                    TracersCheatOn = loadedValues[38]
+                    FOVCheatOn = loadedValues[39]
+                    ChamsCheatOn = loadedValues[40]
+                    CameraNoClipCheatOn = loadedValues[41]
+                    EmeraldESPCheatOn = loadedValues[42]
+                    NoClickDelayCheatOn = loadedValues[43]
+                    MultiAuraCheatOn = loadedValues[44]
 
                                     
                     NoFallKeyBind = keyBinds[1]
@@ -6856,16 +7063,20 @@ coroutine.wrap(function()
                     FPSBoostKeyBind = keyBinds[29]
                     FastFallKeyBind = keyBinds[30]
                     ClickTPKeyBind = keyBinds[31]
-                    AutoQueueKeyBind = keyBinds[32]
-                    AntiAFKKeyBind = keyBinds[33]
-                    CopyDiscordLinkKeyBind = keyBinds[34]
-                    ESPKeyBind = keyBinds[35]
-                    TracersKeyBind = keyBinds[36]
-                    FOVKeyBind = keyBinds[37]
-                    ChamsKeyBind = keyBinds[38]
-                    CameraNoClipKeyBind = keyBinds[39]
-                    EmeraldESPKeyBind = keyBinds[40]
-                    NoClickDelayKeyBind = keyBinds[41]
+                    AntiCheatDisablerKeyBinds = keyBinds[32]
+                    AutoQueueKeyBind = keyBinds[33]
+                    AntiAFKKeyBind = keyBinds[34]
+                    CopyDiscordLinkKeyBind = keyBinds[35]
+                    DinoFlyKeyBind = keyBinds[36]
+                    BlatantModeKeyBind = keyBinds[37]
+                    ESPKeyBind = keyBinds[38]
+                    TracersKeyBind = keyBinds[39]
+                    FOVKeyBind = keyBinds[40]
+                    ChamsKeyBind = keyBinds[41]
+                    CameraNoClipKeyBind = keyBinds[42]
+                    EmeraldESPKeyBind = keyBinds[43]
+                    NoClickDelayKeyBind = keyBinds[44]
+                    MultiAuraKeyBind = keyBinds[45]
 
 
                     print(1)
@@ -7080,7 +7291,7 @@ coroutine.wrap(function()
                                 if KillAuraCheatOn then
 
 
-                                    local plrs = GetAllNearestHumanoidToPosition()
+                                    local plrs = GetAllNearestHumanoidToPosition(18 - 0.0001)
 
                                     if plrs[1] == nil then
                                         attacking = nil
@@ -7224,56 +7435,26 @@ coroutine.wrap(function()
 
                             spawn(function()
                                 while SpeedCheatOn == true do
-                                    if SpeedCheatOn == true then
-                                        getgenv().speedvalforspeed = {["Value"] = 45} --55
+                                    if SpeedCheatOn == true and BlatantModeCheatOn == false then
+                                        getgenv().speedvalforspeed = {["Value"] = 40} --55
                                         wait(0.7)
-                                        else
-                                        continue 
+                                    elseif SpeedCheatOn == true and BlatantModeCheatOn == true then
+                                        getgenv().speedvalforspeed = {["Value"] = 200}
+                                        wait()
                                     end
-                                    if SpeedCheatOn == true then
-                                        getgenv().speedvalforspeed = {["Value"] = 80} --80
-                                        wait(0.3) --0.4
-                                        else
-                                        continue 
+                                    if SpeedCheatOn == true and BlatantModeCheatOn == false then
+                                        getgenv().speedvalforspeed = {["Value"] = 90} --80
+                                        wait(0.2) --0.4
+                                    elseif SpeedCheatOn == true and BlatantModeCheatOn == true then
+                                        getgenv().speedvalforspeed = {["Value"] = 200}
+                                        wait()
                                     end
-                                    if SpeedCheatOn == true then
-                                        getgenv().speedvalforspeed = {["Value"] = 45} --55
-                                        wait(0.7)
-                                        else
-                                        continue 
-                                    end
-                                    if SpeedCheatOn == true then
-                                        getgenv().speedvalforspeed = {["Value"] = 80} --80
-                                        wait(0.3) --0.4
-                                        else
-                                        continue 
-                                    end
-                                    if SpeedCheatOn == true then
-                                        getgenv().speedvalforspeed = {["Value"] = 45} --55
-                                        wait(0.7)
-                                        else
-                                        continue 
-                                    end
-                                    if SpeedCheatOn == true then
-                                        getgenv().speedvalforspeed = {["Value"] = 80} --90
-                                        wait(0.3) --0.4
-                                        else
-                                        continue 
-                                    end
-
-                    --[[
-                                    if SpeedCheatOn == true then
-                                        getgenv().speedvalforspeed = {["Value"] = 55}
-                                        wait(1.5) --2
-                                    end
-                    --]]
-
                                 end
                             end)
 --]]
                             coroutine.wrap(function() 
                                 repeat wait() until game:IsLoaded()
-                                local Future = shared.Future
+
                                 local UIS = game:GetService("UserInputService")
                                 local TS = game:GetService("TweenService")
                                 local WORKSPACE = game:GetService("Workspace")
@@ -7299,7 +7480,7 @@ coroutine.wrap(function()
                                 BindToStepped("Speed", function(time, dt)
                                     if FLYINPUTVALUE == false then
                                         if SpeedCheatOn == true then
-                                            if isAlive() and not stopSpeed then
+                                            if isAlive() and not stopSpeed or AntiCheatDisablerCheatOn == true then
                                                 if BhopCheatOn == false then
                                                     getgenv().speedval = {["Value"] = 55}
                                                 end
@@ -7381,15 +7562,6 @@ coroutine.wrap(function()
                                 while BhopCheatOn == true do
                                     if humanoid.MoveDirection.X > 0 or humanoid.MoveDirection.X < 0 or humanoid.MoveDirection.Z > 0 or humanoid.MoveDirection.Z < 0 or humanoid.MoveDirection.Y > 0 or humanoid.MoveDirection.Y < 0   then -- as you can see it's scuff since I didn't know what I was doing much back then
                                         game.Players.LocalPlayer.Character.Humanoid.Jump = true
-
-                                        wait(0.5)
-
-                                        getgenv().speedvalforspeed = {["Value"] = 6}
-
-                                        wait(0.05)
-
-                                        getgenv().speedvalforspeed = {["Value"] = 26}
-                                        
                                     end
                                     wait()		
                                 end
@@ -7829,11 +8001,7 @@ coroutine.wrap(function()
 
                                                 
                             game.Players.LocalPlayer.CharacterAdded:Connect(function()
-                                print("HAIRLINE")
-                                
                                 local humanoid = game.Players.LocalPlayer.Character:WaitForChild("Humanoid")
-
-                                print("humanoid")
                                 humanoid.Touched:Connect(antiVoidFunction)
                             end)
 
@@ -7842,7 +8010,7 @@ coroutine.wrap(function()
 
                             spawn(function()
                                 while AntiVoidCheatOn == true do
-                                    if game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character.Parent ~= nil and game.Players.LocalPlayer.Character:FindFirstChild("Humanoid") and game.Players.LocalPlayer.Character.Humanoid.Health >= 0 and game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
+                                    if game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character.Parent ~= nil and game.Players.LocalPlayer.Character:FindFirstChild("Humanoid") and game.Players.LocalPlayer.Character.Humanoid.Health >= 0 and game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") or AntiCheatDisablerCheatOn == true then
                                         xcframe = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.X
                                         if game.Players.LocalPlayer.Character.Humanoid.Health >= 1 then
                                             ycframe = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Y
@@ -7893,6 +8061,22 @@ coroutine.wrap(function()
                     end)
 
                     spawn(function()
+                        if AntiCheatDisablerCheatOn then
+                            AntiCheatDisabler.BackgroundColor3 = Color3.fromRGB(41, 166, 255)
+                            AntiCheatDisabler.TextColor3 = Color3.fromRGB(255, 255, 255) 
+
+
+                            character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Dead, true)
+                            character.Humanoid:ChangeState(Enum.HumanoidStateType.Dead)
+                            repeat task.wait() until character.Humanoid.MoveDirection ~= Vector3.zero
+                            task.wait(0.2)
+                            character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Dead, false)
+                            character.Humanoid:ChangeState(Enum.HumanoidStateType.Running)
+                            workspace.Gravity = 192.6
+                        end
+                    end)
+
+                    spawn(function()
                         if AutoQueueCheatOn then
                             AutoQueue.BackgroundColor3 = Color3.fromRGB(41, 166, 255)
                             AutoQueue.TextColor3 = Color3.fromRGB(255, 255, 255) 
@@ -7922,7 +8106,7 @@ coroutine.wrap(function()
                                         end
                                     end
 
-                                    if #allTeams == 2 then
+                                    if #allTeams == 2 and AntiCheatDisablerCheatOn == false then
                                         local args = {
                                         [1] = {
                                             ["queueType"] = "skywars_to2"
@@ -7937,7 +8121,7 @@ coroutine.wrap(function()
 
                                     end
 
-                                    if AutoQueueCheatOn == true and lplr.Character.Humanoid.Health == 0 then
+                                    if AutoQueueCheatOn == true and lplr.Character.Humanoid.Health == 0 and AntiCheatDisablerCheatOn == false then
                                         local args = {
                                         [1] = {
                                             ["queueType"] = "skywars_to2"
@@ -7948,7 +8132,7 @@ coroutine.wrap(function()
 
                                         AUTOQUEUESKYWARSINGAME = true
 
-                                    elseif AutoQueueCheatOn == true and game.PlaceId == 6872265039 then
+                                    elseif AutoQueueCheatOn == true and game.PlaceId == 6872265039 and AntiCheatDisablerCheatOn == false then
                                         local args = {
                                         [1] = {
                                             ["queueType"] = "skywars_to2"
@@ -7986,6 +8170,24 @@ coroutine.wrap(function()
 
                     spawn(function()
                         if CopyDiscordLinkCheatOn then
+                        end
+                    end)
+
+                    spawn(function()
+                        if DinoFlyCheatOn then
+                            DinoFly.BackgroundColor3 = Color3.fromRGB(41, 166, 255)
+                            DinoFly.TextColor3 = Color3.fromRGB(255, 255, 255) 
+
+                            DinoFlyCheatOn = true
+                        end
+                    end)
+
+                    spawn(function()
+                        if BlatantModeCheatOn then
+                            BlatantMode.BackgroundColor3 = Color3.fromRGB(41, 166, 255)
+                            BlatantMode.TextColor3 = Color3.fromRGB(255, 255, 255) 
+
+                            BlatantModeCheatOn = true
                         end
                     end)
 
@@ -8365,6 +8567,30 @@ coroutine.wrap(function()
                             getmetatable(bedwars["SwordController"]).isClickingTooFast = function(...) 
                                 return false
                             end
+                        end
+                    end)
+
+                    spawn(function() 
+                        if MultiAuraCheatOn then
+                            --wait(1)
+                            MultiAura.BackgroundColor3 = Color3.fromRGB(41, 166, 255)
+                            MultiAura.TextColor3 = Color3.fromRGB(255, 255, 255) 
+
+                            bedwars["PaintRemote"] = getremote(debug.getconstants(KnitClient.Controllers.PaintShotgunController.fire))
+
+                            repeat
+                                task.wait(0.03)
+                                if character and character:FindFirstChild("HumanoidRootPart") and character:FindFirstChild("Humanoid") then
+                                    print("superez")
+                                    local plrs = GetAllNearestHumanoidToPosition(18.8)
+                                    for i,plr in pairs(plrs) do
+                                        local selfpos = game.Players.LocalPlayer.Character.HumanoidRootPart.Position
+                                        local newpos = plr.Character.HumanoidRootPart.Position
+                                        bedwars["ClientHandler"]:Get(bedwars["PaintRemote"]):SendToServer(selfpos, CFrame.lookAt(selfpos, newpos).lookVector)
+                                    end
+                                end
+                            until MultiAuraCheatOn == false
+                            
                         end
                     end)
 
