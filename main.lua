@@ -14,7 +14,7 @@ else
 
 local queueteleport = (syn and syn.queue_on_teleport) or queue_on_teleport or (fluxus and fluxus.queue_on_teleport)
 
---queueteleport('loadstring(game:HttpGet("https://raw.githubusercontent.com/ratedlua/shitmaClient/main/main.lua", true))()')
+queueteleport('loadstring(game:HttpGet("https://raw.githubusercontent.com/ratedlua/shitmaClient/main/main.lua", true))()')
 
 
 ----------------------------------------------------------------------------------------------------ANTICHEATBYPASS. Not done
@@ -5184,7 +5184,7 @@ AntiVoid.MouseButton1Down:connect(function()
         NewPart.Position = Vector3.new(0,5,0) --Position of the part
         NewPart.Anchored = true
         NewPart.CanCollide = false
-        NewPart.Size = Vector3.new(100,1,100) 
+        NewPart.Size = Vector3.new(3000,1,3000) 
         NewPart.Color = Color3.fromRGB(255,0,0)
         NewPart.Transparency = 0.6
         NewPart.Parent = workspace
@@ -5287,21 +5287,21 @@ AntiVoid.MouseButton1Down:connect(function()
 
 
         spawn(function()
-            while AntiVoidCheatOn == true do
-                if game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character.Parent ~= nil and game.Players.LocalPlayer.Character:FindFirstChild("Humanoid") and game.Players.LocalPlayer.Character.Humanoid.Health >= 0 and game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") or AntiCheatDisablerCheatOn == true then
-                    xcframe = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.X
-                    if game.Players.LocalPlayer.Character.Humanoid.Health >= 1 then
-                        ycframe = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Y
-                    end
-                    if game.Players.LocalPlayer.Character.Humanoid.Health >= 1 then
-                        Zcframe = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Z
-                    end
-                    if game.Players.LocalPlayer.Character.Humanoid.Health >= 1 then
-                        NewPart.CFrame = CFrame.new(xcframe, 3, Zcframe) --5
-                    end
+            --while AntiVoidCheatOn == true do
+            if game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character.Parent ~= nil and game.Players.LocalPlayer.Character:FindFirstChild("Humanoid") and game.Players.LocalPlayer.Character.Humanoid.Health >= 0 and game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") or AntiCheatDisablerCheatOn == true then
+                xcframe = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.X
+                if game.Players.LocalPlayer.Character.Humanoid.Health >= 1 then
+                    ycframe = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Y
                 end
-                wait()
+                if game.Players.LocalPlayer.Character.Humanoid.Health >= 1 then
+                    Zcframe = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Z
+                end
+                if game.Players.LocalPlayer.Character.Humanoid.Health >= 1 then
+                    NewPart.CFrame = CFrame.new(xcframe, 3, Zcframe) --5
+                end
             end
+                --wait()
+            --end
         end)
 
 
@@ -7902,7 +7902,7 @@ coroutine.wrap(function()
                             NewPart.Position = Vector3.new(0,5,0) --Position of the part
                             NewPart.Anchored = true
                             NewPart.CanCollide = false
-                            NewPart.Size = Vector3.new(100,1,100) 
+                            NewPart.Size = Vector3.new(3000,1,3000) 
                             NewPart.Color = Color3.fromRGB(255,0,0)
                             NewPart.Transparency = 0.6
                             NewPart.Parent = workspace
@@ -8006,21 +8006,21 @@ coroutine.wrap(function()
 
 
                             spawn(function()
-                                while AntiVoidCheatOn == true do
-                                    if game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character.Parent ~= nil and game.Players.LocalPlayer.Character:FindFirstChild("Humanoid") and game.Players.LocalPlayer.Character.Humanoid.Health >= 0 and game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") or AntiCheatDisablerCheatOn == true then
-                                        xcframe = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.X
-                                        if game.Players.LocalPlayer.Character.Humanoid.Health >= 1 then
-                                            ycframe = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Y
-                                        end
-                                        if game.Players.LocalPlayer.Character.Humanoid.Health >= 1 then
-                                            Zcframe = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Z
-                                        end
-                                        if game.Players.LocalPlayer.Character.Humanoid.Health >= 1 then
-                                            NewPart.CFrame = CFrame.new(xcframe, 3, Zcframe) --5
-                                        end
+                                --while AntiVoidCheatOn == true do
+                                if game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character.Parent ~= nil and game.Players.LocalPlayer.Character:FindFirstChild("Humanoid") and game.Players.LocalPlayer.Character.Humanoid.Health >= 0 and game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") or AntiCheatDisablerCheatOn == true then
+                                    xcframe = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.X
+                                    if game.Players.LocalPlayer.Character.Humanoid.Health >= 1 then
+                                        ycframe = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Y
                                     end
-                                    wait()
+                                    if game.Players.LocalPlayer.Character.Humanoid.Health >= 1 then
+                                        Zcframe = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Z
+                                    end
+                                    if game.Players.LocalPlayer.Character.Humanoid.Health >= 1 then
+                                        NewPart.CFrame = CFrame.new(xcframe, 3, Zcframe) --5
+                                    end
                                 end
+                                    --wait()
+                                --end
                             end)
                         end
                     end)
