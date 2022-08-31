@@ -1504,17 +1504,27 @@ AutoSpam.MouseButton1Down:connect(function()
                 if AutoSpamCheatOn == false then
                     break
                 end
-                game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Sigma Client But Roblox = W", "All")
+                game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Only Sigma Client But Roblox Users Don't Know What A Lagback Is 🤡", "All")
                 wait(3)
                 if AutoSpamCheatOn == false then
                     break
                 end
-                game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Sigma Client But Roblox > Every Single Roblox Bedwars Cheat", "All")
+                game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Sigma Client But Roblox > Every Single Roblox Bedwars Script", "All")
                 wait(3)
                 if AutoSpamCheatOn == false then
                     break
                 end
-                game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Have You Heard Of Lunar Client On Minecraft? Sigma But Roblox Is Pretty Much The Same Thing!!1", "All")
+                game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Have You Heard Of Lunar Client On Minecraft? Sigma But Roblox Is Pretty Much The Same Thing!!1 🤡🤡", "All")
+                wait(3)
+                if AutoSpamCheatOn == false then
+                    break
+                end
+                game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer("If You're Tired Of Lagging Back Always Pull Up Sigma Client 🔥", "All")
+                wait(3)
+                if AutoSpamCheatOn == false then
+                    break
+                end
+                game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Imagine Wasting 4 Years To Script Something And It's Still Bad, Not Me 💀", "All")
                 wait(3)
                 if AutoSpamCheatOn == false then
                     break
@@ -2776,8 +2786,8 @@ Speed.MouseButton1Down:connect(function()
                     continue 
                 end
                 if SpeedCheatOn == true then
-                    getgenv().speedvalforspeed = {["Value"] = 90} --80
-                    wait(0.2) --0.4
+                    getgenv().speedvalforspeed = {["Value"] = 80} --80
+                    wait(0.3) --0.4
                     else
                     continue 
                 end
@@ -2788,8 +2798,8 @@ Speed.MouseButton1Down:connect(function()
                     continue 
                 end
                 if SpeedCheatOn == true then
-                    getgenv().speedvalforspeed = {["Value"] = 90} --80
-                    wait(0.2) --0.4
+                    getgenv().speedvalforspeed = {["Value"] = 80} --80
+                    wait(0.3) --0.4
                     else
                     continue 
                 end
@@ -2800,8 +2810,8 @@ Speed.MouseButton1Down:connect(function()
                     continue 
                 end
                 if SpeedCheatOn == true then
-                    getgenv().speedvalforspeed = {["Value"] = 90} --90
-                    wait(0.2) --0.4
+                    getgenv().speedvalforspeed = {["Value"] = 80} --90
+                    wait(0.3) --0.4
                     else
                     continue 
                 end
@@ -4150,12 +4160,11 @@ LongJump.MouseButton1Down:connect(function()
             end 
 
         Hit:Play()
-        workspace.Gravity = 20
-        wait()
-        wait()
-        game.Players.LocalPlayer.Character.Humanoid.Jump = true
+        workspace.Gravity = 30 -- 20
+        lplr.Character.HumanoidRootPart.Velocity = Vector3.new(0, 20, 0)
+        --game.Players.LocalPlayer.Character.Humanoid.Jump = true
 
-        wait(3.5)
+        wait(2.5)
                 
         workspace.Gravity = 196.2
 
@@ -4245,10 +4254,9 @@ UIS.InputBegan:Connect(function(input)
                 end 
 
             Hit:Play()
-            workspace.Gravity = 20
-            wait()
-            wait()
-            game.Players.LocalPlayer.Character.Humanoid.Jump = true
+            workspace.Gravity = 30 -- 20
+            lplr.Character.HumanoidRootPart.Velocity = Vector3.new(0, 20, 0)
+            --game.Players.LocalPlayer.Character.Humanoid.Jump = true
 
             wait(2.5)
         
@@ -6925,17 +6933,27 @@ coroutine.wrap(function()
                                     if AutoSpamCheatOn == false then
                                         break
                                     end
-                                    game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Sigma Client But Roblox = W", "All")
+                                    game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Only Sigma Client But Roblox Users Don't Know What A Lagback Is", "All")
                                     wait(3)
                                     if AutoSpamCheatOn == false then
                                         break
                                     end
-                                    game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Sigma Client But Roblox > Every Single Roblox Bedwars Cheat", "All")
+                                    game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Sigma Client But Roblox > Every Single Roblox Bedwars Script", "All")
                                     wait(3)
                                     if AutoSpamCheatOn == false then
                                         break
                                     end
                                     game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Have You Heard Of Lunar Client On Minecraft? Sigma But Roblox Is Pretty Much The Same Thing!!1", "All")
+                                    wait(3)
+                                    if AutoSpamCheatOn == false then
+                                        break
+                                    end
+                                    game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer("If You're Tired Of Lagging Back Always Pull Up Sigma Client", "All")
+                                    wait(3)
+                                    if AutoSpamCheatOn == false then
+                                        break
+                                    end
+                                    game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Imagine Wasting 4 Years To Script Something And It's Still Bad, Not Me.", "All")
                                     wait(3)
                                     if AutoSpamCheatOn == false then
                                         break
@@ -7213,8 +7231,8 @@ coroutine.wrap(function()
                                         continue 
                                     end
                                     if SpeedCheatOn == true then
-                                        getgenv().speedvalforspeed = {["Value"] = 90} --80
-                                        wait(0.2) --0.4
+                                        getgenv().speedvalforspeed = {["Value"] = 80} --80
+                                        wait(0.3) --0.4
                                         else
                                         continue 
                                     end
@@ -7225,8 +7243,8 @@ coroutine.wrap(function()
                                         continue 
                                     end
                                     if SpeedCheatOn == true then
-                                        getgenv().speedvalforspeed = {["Value"] = 90} --80
-                                        wait(0.2) --0.4
+                                        getgenv().speedvalforspeed = {["Value"] = 80} --80
+                                        wait(0.3) --0.4
                                         else
                                         continue 
                                     end
@@ -7237,8 +7255,8 @@ coroutine.wrap(function()
                                         continue 
                                     end
                                     if SpeedCheatOn == true then
-                                        getgenv().speedvalforspeed = {["Value"] = 90} --90
-                                        wait(0.2) --0.4
+                                        getgenv().speedvalforspeed = {["Value"] = 80} --90
+                                        wait(0.3) --0.4
                                         else
                                         continue 
                                     end
@@ -7392,10 +7410,9 @@ coroutine.wrap(function()
                             LongJump.BackgroundColor3 = Color3.fromRGB(41, 166, 255)
                             LongJump.TextColor3 = Color3.fromRGB(255, 255, 255)  
 
-                            workspace.Gravity = 20
-                            wait()
-                            wait()
-                            game.Players.LocalPlayer.Character.Humanoid.Jump = true
+                            workspace.Gravity = 30 -- 20
+                            lplr.Character.HumanoidRootPart.Velocity = Vector3.new(0, 20, 0)
+                            --game.Players.LocalPlayer.Character.Humanoid.Jump = true
                         end
                     end)
 
