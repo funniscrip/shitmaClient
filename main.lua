@@ -4826,7 +4826,7 @@ AutoSkywarsWin.MouseButton1Down:connect(function()
                                 humrp.CFrame = v.Character.HumanoidRootPart.CFrame
                                 --character:SetPrimaryPartCFrame(character:GetPrimaryPartCFrame()*CFrame.new(0, 4, 0))
                             end
-                        until v.Character.Humanoid.Health <= 0 or AutoSkywarsWinCheatOn == false
+                        until v.Character.Humanoid.Health <= 0 and v.Character:FindFirstChild("HumanoidRootPart") == nil or AutoSkywarsWinCheatOn == false
                     end
                 end
             end
@@ -4981,7 +4981,7 @@ UIS.InputBegan:Connect(function(input)
                                 humrp.CFrame = v.Character.HumanoidRootPart.CFrame
                                 --character:SetPrimaryPartCFrame(character:GetPrimaryPartCFrame()*CFrame.new(0, 4, 0))
                             end
-                        until v.Character.Humanoid.Health <= 0 or AutoSkywarsWinCheatOn == false
+                        until v.Character.Humanoid.Health <= 0 and v.Character:FindFirstChild("HumanoidRootPart") == nil or AutoSkywarsWinCheatOn == false
                     end
                 end
             end
@@ -7108,7 +7108,7 @@ coroutine.wrap(function()
                                                     humrp.CFrame = v.Character.HumanoidRootPart.CFrame
                                                     --character:SetPrimaryPartCFrame(character:GetPrimaryPartCFrame()*CFrame.new(0, 4, 0))
                                                 end
-                                            until v.Character.Humanoid.Health <= 0 or AutoSkywarsWinCheatOn == false
+                                            until v.Character.Humanoid.Health <= 0 and v.Character:FindFirstChild("HumanoidRootPart") == nil or AutoSkywarsWinCheatOn == false
                                         end
                                     end
                                 end
