@@ -16,38 +16,6 @@ local queueteleport = (syn and syn.queue_on_teleport) or queue_on_teleport or (f
 
 queueteleport('loadstring(game:HttpGet("https://raw.githubusercontent.com/ratedlua/shitmaClient/main/main.lua", true))()')
 
-
-----------------------------------------------------------------------------------------------------ANTICHEATBYPASS. Not done
---[[
-lplr = game.Players.LocalPlayer
-cam = workspace.CurrentCamera
-
-spawn(function()
-        local realcharacter = lplr.Character.HumanoidRootPart
-        game.Workspace[game.Players.LocalPlayer.Name].Archivable = true
-        local clonedcharacter = realcharacter:Clone()
-        clonedcharacter.Parent = lplr.Character
-        clonedcharacterfr = clonedcharacter.Parent
-        clonedcharacter.Parent = cam
-        clonedcharacter.CanCollide = false
-        --local description = realcharacter.Humanoid:GetAppliedDescription()
-        --clonedcharacter.Humanoid:ApplyDescription(description)
-        clonedcharacter.Transparency = 1
-    while true do
-        clonedcharacterpos = clonedcharacter.CFrame
-        wait(0.1)
-        realcharacterpos = realcharacter.CFrame
-
-        realcharacterpos = clonedcharacterpos
-
-        print(realcharacterpos)
-
-    end
-end)
---]]
-----------------------------------------------------------------------------------------------------ANTICHEATBYPASS. Not done
-
-
 local savedc0 = game:GetService("ReplicatedStorage"):WaitForChild("Assets"):WaitForChild("Viewmodel"):WaitForChild("RightHand"):WaitForChild("RightWrist").C0
 local setc0
 
@@ -59,10 +27,12 @@ local isnetworkowner = isnetworkowner or function() return true end
 local SteppedTable = {}
 local RunService = game:GetService("RunService")
 local Heartbeat = RunService.Heartbeat
-local humanoid = lplr.Character.Humanoid
-local character = lplr.Character
-local lplrvelo = lplr.Character:WaitForChild("HumanoidRootPart").Velocity
-local vec3 = Vector3.new
+humanoid = lplr.Character.Humanoid
+character = lplr.Character
+lplrvelo = lplr.Character:WaitForChild("HumanoidRootPart").Velocity
+vec3 = Vector3.new
+queuedup = false
+cantblatantmode = false
 
 local cam = workspace.CurrentCamera
 workspace:GetPropertyChangedSignal("CurrentCamera"):connect(function()
@@ -111,7 +81,7 @@ end
 local function anticheatdisabler() 
     character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Dead, true)
     character.Humanoid:ChangeState(Enum.HumanoidStateType.Dead)
-    repeat task.wait() until character.Humanoid.MoveDirection ~= Vector3.zero
+    --repeat task.wait() until character.Humanoid.MoveDirection ~= Vector3.zero
     task.wait(0.2)
     character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Dead, false)
     character.Humanoid:ChangeState(Enum.HumanoidStateType.Running)
@@ -218,6 +188,7 @@ local bedwars = {
 }
 
 local oldveloh, oldvelov, oldvelofunc = bedwars["KnockbackTable"]["kbDirectionStrength"], bedwars["KnockbackTable"]["kbUpwardStrength"], bedwars["VelocityUtil"].applyVelocity
+
 ----------------------------------------------------------------------------------------------------VARS
 
 
@@ -432,38 +403,6 @@ lplr = game.Players.LocalPlayer
  Cheat39 = Instance.new("TextLabel")
  WarningAndInfo = Instance.new("TextLabel")
 
---Properties:
-
---[[
-CheatSoundOn = nil  
-CheatSoundOff = nil             
-
-
--------------------------------------------------------------------------------------------------
-spawn(function()
-    CheatSoundOn = Instance.new("Sound", game.Players.LocalPlayer.Character)
-    CheatSoundOn.SoundId = "9928058319" -- put sound id here
-    CheatSoundOn.Volume = 10
-
-    if not CheatSoundOn.IsLoaded then -- wait for sound to load to prevent errors
-        CheatSoundOn.Loaded:Wait()
-    end
-end)
--------------------------------------------------------------------------------------------------
-spawn(function()
-    CheatSoundOff = Instance.new("Sound", game.Players.LocalPlayer.Character)
-    CheatSoundOff.SoundId = "9928059073" -- put sound id here
-    CheatSoundOff.Volume = 10
-    
-    if not CheatSoundOff.IsLoaded then -- wait for sound to load to prevent errors
-        CheatSoundOff.Loaded:Wait()
-    end
-end)
--------------------------------------------------------------------------------------------------
---]]
-
-
-
 local NoFallCheatOn = false
 local AutoSprintCheatOn = false
 local SpinBotCheatOn = false
@@ -493,7 +432,6 @@ local ChillLofi2CheatOn = false
 local ChillLofi3CheatOn = false
 local ChillLofi4CheatOn = false
 local ChillLofi5CheatOn = false
---local HypeBeatCheatOn = false
 local AntiVoidCheatOn = false
 local TimerCheatOn = false
 local FPSBoostCheatOn = false
@@ -505,6 +443,7 @@ local AntiAFKCheatOn = false
 local CopyDiscordLinkCheatOn = false
 local DinoFlyCheatOn = false
 local BlatantModeCheatOn = false
+local AutoSkywarsWinCheatOn = false
 local ESPCheatOn = false
 local TracersCheatOn = false
 local FOVCheatOn = false
@@ -516,10 +455,6 @@ FLYINPUTVALUE = false
 
 
 local SteppedTable = {}
-
-
-
-
 
 
 local attacking = nil
@@ -536,16 +471,6 @@ spawn(function()
         wait()
     end
 end)
-
-
-
-
-
-
-
-
-
------------------------------------------killaura player stats
 
 TargetInfo.Name = "TargetInfo"
 TargetInfo.Parent = game.CoreGui
@@ -623,10 +548,7 @@ EmptyHealthBar.Size = UDim2.new(0.581269741, 0, 0.245628059, 0)
 UICorner_3.CornerRadius = UDim.new(0, 10)
 UICorner_3.Parent = EmptyHealthBar
 
------------------------------------------killaura player stats
-
 spawn(function()
-    --print("EZZZZZZ1")
     function Round(n, decimals)
         decimals = decimals or 0
         return math.floor(n * 10^decimals) / 10^decimals
@@ -658,20 +580,13 @@ spawn(function()
 
 
                     local healthbar = HealthBar
-                    --print("EZ1")
                     local healthbarsize = HealthBar.Size.X.Offset
-                    --print("EZ2")
                     local playerChar = attacking.Character
-                    --print("EZ3")
                     local playerHumanoid = attacking.Character:WaitForChild("Humanoid")
-                    --print("EZ4")
 
                     local healthbarxsize = 0.00581 * playerHumanoid.Health
-                    --print("EZ5")
                     HealthLeft.Text = tostring(Round(playerHumanoid.Health)) .. " health left"
-                    --print("EZ6")
                     HealthBar.Size = UDim2.new(healthbarxsize, 0, 0.246, 0)
-                    --print("EZ7")
                     else
                     MainGui.Visible = false
                 end 
@@ -698,488 +613,6 @@ HUD.BorderSizePixel = 0
 HUD.Position = UDim2.new(-0.894999981, 1, -0.00300000003, 1)
 HUD.Size = UDim2.new(0, 143, 0, 370)
 HUD.Visible = true
-
---[[
-Cheat1.Name = "Cheat1"
-Cheat1.Parent = ActiveCheatList
-Cheat1.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Cheat1.BackgroundTransparency = 1.000
-Cheat1.BorderSizePixel = 0
-Cheat1.Position = UDim2.new(0.244755253, 0, 0, 0)
-Cheat1.Size = UDim2.new(0, 73, 0, 20)
-Cheat1.Font = Enum.Font.Roboto
-Cheat1.Text = ""
-Cheat1.TextColor3 = Color3.fromRGB(0, 0, 0)
-Cheat1.TextSize = 20.000
-
-Cheat2.Name = "Cheat2"
-Cheat2.Parent = ActiveCheatList
-Cheat2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Cheat2.BackgroundTransparency = 1.000
-Cheat2.BorderSizePixel = 0
-Cheat2.Position = UDim2.new(0.244755253, 0, 0.0540540554, 0)
-Cheat2.Size = UDim2.new(0, 73, 0, 20)
-Cheat2.Font = Enum.Font.Roboto
-Cheat2.Text = ""
-Cheat2.TextColor3 = Color3.fromRGB(0, 0, 0)
-Cheat2.TextSize = 20.000
-
-Cheat3.Name = "Cheat3"
-Cheat3.Parent = ActiveCheatList
-Cheat3.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Cheat3.BackgroundTransparency = 1.000
-Cheat3.BorderSizePixel = 0
-Cheat3.Position = UDim2.new(0.244755253, 0, 0.108108111, 0)
-Cheat3.Size = UDim2.new(0, 73, 0, 20)
-Cheat3.Font = Enum.Font.Roboto
-Cheat3.Text = ""
-Cheat3.TextColor3 = Color3.fromRGB(0, 0, 0)
-Cheat3.TextSize = 20.000
-
-Cheat4.Name = "Cheat4"
-Cheat4.Parent = ActiveCheatList
-Cheat4.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Cheat4.BackgroundTransparency = 1.000
-Cheat4.BorderSizePixel = 0
-Cheat4.Position = UDim2.new(0.244755253, 0, 0.16216217, 0)
-Cheat4.Size = UDim2.new(0, 73, 0, 20)
-Cheat4.Font = Enum.Font.Roboto
-Cheat4.Text = ""
-Cheat4.TextColor3 = Color3.fromRGB(0, 0, 0)
-Cheat4.TextSize = 20.000
-
-Cheat5.Name = "Cheat5"
-Cheat5.Parent = ActiveCheatList
-Cheat5.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Cheat5.BackgroundTransparency = 1.000
-Cheat5.BorderSizePixel = 0
-Cheat5.Position = UDim2.new(0.244755253, 0, 0.216216221, 0)
-Cheat5.Size = UDim2.new(0, 73, 0, 20)
-Cheat5.Font = Enum.Font.Roboto
-Cheat5.Text = ""
-Cheat5.TextColor3 = Color3.fromRGB(0, 0, 0)
-Cheat5.TextSize = 20.000
-
-Cheat6.Name = "Cheat6"
-Cheat6.Parent = ActiveCheatList
-Cheat6.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Cheat6.BackgroundTransparency = 1.000
-Cheat6.BorderSizePixel = 0
-Cheat6.Position = UDim2.new(0.244755253, 0, 0.270270258, 0)
-Cheat6.Size = UDim2.new(0, 73, 0, 20)
-Cheat6.Font = Enum.Font.Roboto
-Cheat6.Text = ""
-Cheat6.TextColor3 = Color3.fromRGB(0, 0, 0)
-Cheat6.TextSize = 20.000
-
-Cheat7.Name = "Cheat7"
-Cheat7.Parent = ActiveCheatList
-Cheat7.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Cheat7.BackgroundTransparency = 1.000
-Cheat7.BorderSizePixel = 0
-Cheat7.Position = UDim2.new(0.244755253, 0, 0.32432431, 0)
-Cheat7.Size = UDim2.new(0, 73, 0, 20)
-Cheat7.Font = Enum.Font.Roboto
-Cheat7.Text = ""
-Cheat7.TextColor3 = Color3.fromRGB(0, 0, 0)
-Cheat7.TextSize = 20.000
-
-Cheat9.Name = "Cheat9"
-Cheat9.Parent = ActiveCheatList
-Cheat9.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Cheat9.BackgroundTransparency = 1.000
-Cheat9.BorderSizePixel = 0
-Cheat9.Position = UDim2.new(0.244755253, 0, 0.378378361, 0)
-Cheat9.Size = UDim2.new(0, 73, 0, 20)
-Cheat9.Font = Enum.Font.Roboto
-Cheat9.Text = ""
-Cheat9.TextColor3 = Color3.fromRGB(0, 0, 0)
-Cheat9.TextSize = 20.000
-
-Cheat10.Name = "Cheat10"
-Cheat10.Parent = ActiveCheatList
-Cheat10.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Cheat10.BackgroundTransparency = 1.000
-Cheat10.BorderSizePixel = 0
-Cheat10.Position = UDim2.new(0.244755253, 0, 0.432432413, 0)
-Cheat10.Size = UDim2.new(0, 73, 0, 20)
-Cheat10.Font = Enum.Font.Roboto
-Cheat10.Text = ""
-Cheat10.TextColor3 = Color3.fromRGB(0, 0, 0)
-Cheat10.TextSize = 20.000
-
-Cheat8.Name = "Cheat8"
-Cheat8.Parent = ActiveCheatList
-Cheat8.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Cheat8.BackgroundTransparency = 1.000
-Cheat8.BorderSizePixel = 0
-Cheat8.Position = UDim2.new(0.244755253, 0, 0.486486495, 0)
-Cheat8.Size = UDim2.new(0, 73, 0, 20)
-Cheat8.Font = Enum.Font.Roboto
-Cheat8.Text = ""
-Cheat8.TextColor3 = Color3.fromRGB(0, 0, 0)
-Cheat8.TextSize = 20.000
-
-Cheat11.Name = "Cheat11"
-Cheat11.Parent = ActiveCheatList
-Cheat11.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Cheat11.BackgroundTransparency = 1.000
-Cheat11.BorderSizePixel = 0
-Cheat11.Position = UDim2.new(0.244755253, 0, 0.540540516, 0)
-Cheat11.Size = UDim2.new(0, 73, 0, 20)
-Cheat11.Font = Enum.Font.Roboto
-Cheat11.Text = ""
-Cheat11.TextColor3 = Color3.fromRGB(0, 0, 0)
-Cheat11.TextSize = 20.000
-
-Cheat12.Name = "Cheat12"
-Cheat12.Parent = ActiveCheatList
-Cheat12.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Cheat12.BackgroundTransparency = 1.000
-Cheat12.BorderSizePixel = 0
-Cheat12.Position = UDim2.new(0.244755253, 0, 0.594594598, 0)
-Cheat12.Size = UDim2.new(0, 73, 0, 20)
-Cheat12.Font = Enum.Font.Roboto
-Cheat12.Text = ""
-Cheat12.TextColor3 = Color3.fromRGB(0, 0, 0)
-Cheat12.TextSize = 20.000
-
-Cheat13.Name = "Cheat13"
-Cheat13.Parent = ActiveCheatList
-Cheat13.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Cheat13.BackgroundTransparency = 1.000
-Cheat13.BorderSizePixel = 0
-Cheat13.Position = UDim2.new(0.244755253, 0, 0.64864862, 0)
-Cheat13.Size = UDim2.new(0, 73, 0, 20)
-Cheat13.Font = Enum.Font.Roboto
-Cheat13.Text = ""
-Cheat13.TextColor3 = Color3.fromRGB(0, 0, 0)
-Cheat13.TextSize = 20.000
-
-Cheat14.Name = "Cheat14"
-Cheat14.Parent = ActiveCheatList
-Cheat14.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Cheat14.BackgroundTransparency = 1.000
-Cheat14.BorderSizePixel = 0
-Cheat14.Position = UDim2.new(0.244755253, 0, 0.702702641, 0)
-Cheat14.Size = UDim2.new(0, 73, 0, 20)
-Cheat14.Font = Enum.Font.Roboto
-Cheat14.Text = ""
-Cheat14.TextColor3 = Color3.fromRGB(0, 0, 0)
-Cheat14.TextSize = 20.000
-
-Cheat15.Name = "Cheat15"
-Cheat15.Parent = ActiveCheatList
-Cheat15.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Cheat15.BackgroundTransparency = 1.000
-Cheat15.BorderSizePixel = 0
-Cheat15.Position = UDim2.new(0.244755253, 0, 0.756756783, 0)
-Cheat15.Size = UDim2.new(0, 73, 0, 20)
-Cheat15.Font = Enum.Font.Roboto
-Cheat15.Text = ""
-Cheat15.TextColor3 = Color3.fromRGB(0, 0, 0)
-Cheat15.TextSize = 20.000
-
-Cheat18.Name = "Cheat18"
-Cheat18.Parent = ActiveCheatList
-Cheat18.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Cheat18.BackgroundTransparency = 1.000
-Cheat18.BorderSizePixel = 0
-Cheat18.Position = UDim2.new(0.244755253, 0, 0.810810804, 0)
-Cheat18.Size = UDim2.new(0, 73, 0, 20)
-Cheat18.Font = Enum.Font.Roboto
-Cheat18.Text = ""
-Cheat18.TextColor3 = Color3.fromRGB(0, 0, 0)
-Cheat18.TextSize = 20.000
-
-Cheat20.Name = "Cheat20"
-Cheat20.Parent = ActiveCheatList
-Cheat20.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Cheat20.BackgroundTransparency = 1.000
-Cheat20.BorderSizePixel = 0
-Cheat20.Position = UDim2.new(0.244755253, 0, 0.864864826, 0)
-Cheat20.Size = UDim2.new(0, 73, 0, 20)
-Cheat20.Font = Enum.Font.Roboto
-Cheat20.Text = ""
-Cheat20.TextColor3 = Color3.fromRGB(0, 0, 0)
-Cheat20.TextSize = 20.000
-
-Cheat16.Name = "Cheat16"
-Cheat16.Parent = ActiveCheatList
-Cheat16.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Cheat16.BackgroundTransparency = 1.000
-Cheat16.BorderSizePixel = 0
-Cheat16.Position = UDim2.new(0.244755253, 0, 0.918918848, 0)
-Cheat16.Size = UDim2.new(0, 73, 0, 20)
-Cheat16.Font = Enum.Font.Roboto
-Cheat16.Text = ""
-Cheat16.TextColor3 = Color3.fromRGB(0, 0, 0)
-Cheat16.TextSize = 20.000
-
-Cheat17.Name = "Cheat17"
-Cheat17.Parent = ActiveCheatList
-Cheat17.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Cheat17.BackgroundTransparency = 1.000
-Cheat17.BorderSizePixel = 0
-Cheat17.Position = UDim2.new(0.244755253, 0, 0.97297287, 0)
-Cheat17.Size = UDim2.new(0, 73, 0, 20)
-Cheat17.Font = Enum.Font.Roboto
-Cheat17.Text = ""
-Cheat17.TextColor3 = Color3.fromRGB(0, 0, 0)
-Cheat17.TextSize = 20.000
-
-Cheat19.Name = "Cheat19"
-Cheat19.Parent = ActiveCheatList
-Cheat19.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Cheat19.BackgroundTransparency = 1.000
-Cheat19.BorderSizePixel = 0
-Cheat19.Position = UDim2.new(0.244755253, 0, 1.02702701, 0)
-Cheat19.Size = UDim2.new(0, 73, 0, 20)
-Cheat19.Font = Enum.Font.Roboto
-Cheat19.Text = ""
-Cheat19.TextColor3 = Color3.fromRGB(0, 0, 0)
-Cheat19.TextSize = 20.000
-
-Cheat21.Name = "Cheat21"
-Cheat21.Parent = ActiveCheatList
-Cheat21.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Cheat21.BackgroundTransparency = 1.000
-Cheat21.BorderSizePixel = 0
-Cheat21.Position = UDim2.new(0.244755238, 0, 1.08108115, 0)
-Cheat21.Size = UDim2.new(0, 73, 0, 20)
-Cheat21.Font = Enum.Font.Roboto
-Cheat21.Text = ""
-Cheat21.TextColor3 = Color3.fromRGB(0, 0, 0)
-Cheat21.TextSize = 20.000
-
-Cheat26.Name = "Cheat26"
-Cheat26.Parent = ActiveCheatList
-Cheat26.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Cheat26.BackgroundTransparency = 1.000
-Cheat26.BorderSizePixel = 0
-Cheat26.Position = UDim2.new(0.244755238, 0, 1.13513517, 0)
-Cheat26.Size = UDim2.new(0, 73, 0, 20)
-Cheat26.Font = Enum.Font.Roboto
-Cheat26.Text = ""
-Cheat26.TextColor3 = Color3.fromRGB(0, 0, 0)
-Cheat26.TextSize = 20.000
-
-Cheat30.Name = "Cheat30"
-Cheat30.Parent = ActiveCheatList
-Cheat30.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Cheat30.BackgroundTransparency = 1.000
-Cheat30.BorderSizePixel = 0
-Cheat30.Position = UDim2.new(0.244755238, 0, 1.1891892, 0)
-Cheat30.Size = UDim2.new(0, 73, 0, 20)
-Cheat30.Font = Enum.Font.Roboto
-Cheat30.Text = ""
-Cheat30.TextColor3 = Color3.fromRGB(0, 0, 0)
-Cheat30.TextSize = 20.000
-
-Cheat28.Name = "Cheat28"
-Cheat28.Parent = ActiveCheatList
-Cheat28.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Cheat28.BackgroundTransparency = 1.000
-Cheat28.BorderSizePixel = 0
-Cheat28.Position = UDim2.new(0.244755238, 0, 1.24324322, 0)
-Cheat28.Size = UDim2.new(0, 73, 0, 20)
-Cheat28.Font = Enum.Font.Roboto
-Cheat28.Text = ""
-Cheat28.TextColor3 = Color3.fromRGB(0, 0, 0)
-Cheat28.TextSize = 20.000
-
-Cheat29.Name = "Cheat29"
-Cheat29.Parent = ActiveCheatList
-Cheat29.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Cheat29.BackgroundTransparency = 1.000
-Cheat29.BorderSizePixel = 0
-Cheat29.Position = UDim2.new(0.244755238, 0, 1.29729724, 0)
-Cheat29.Size = UDim2.new(0, 73, 0, 20)
-Cheat29.Font = Enum.Font.Roboto
-Cheat29.Text = ""
-Cheat29.TextColor3 = Color3.fromRGB(0, 0, 0)
-Cheat29.TextSize = 20.000
-
-Cheat31.Name = "Cheat31"
-Cheat31.Parent = ActiveCheatList
-Cheat31.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Cheat31.BackgroundTransparency = 1.000
-Cheat31.BorderSizePixel = 0
-Cheat31.Position = UDim2.new(0.244755238, 0, 1.35135138, 0)
-Cheat31.Size = UDim2.new(0, 73, 0, 20)
-Cheat31.Font = Enum.Font.Roboto
-Cheat31.Text = ""
-Cheat31.TextColor3 = Color3.fromRGB(0, 0, 0)
-Cheat31.TextSize = 20.000
-
-Cheat22.Name = "Cheat22"
-Cheat22.Parent = ActiveCheatList
-Cheat22.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Cheat22.BackgroundTransparency = 1.000
-Cheat22.BorderSizePixel = 0
-Cheat22.Position = UDim2.new(0.244755238, 0, 1.4054054, 0)
-Cheat22.Size = UDim2.new(0, 73, 0, 20)
-Cheat22.Font = Enum.Font.Roboto
-Cheat22.Text = ""
-Cheat22.TextColor3 = Color3.fromRGB(0, 0, 0)
-Cheat22.TextSize = 20.000
-
-Cheat27.Name = "Cheat27"
-Cheat27.Parent = ActiveCheatList
-Cheat27.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Cheat27.BackgroundTransparency = 1.000
-Cheat27.BorderSizePixel = 0
-Cheat27.Position = UDim2.new(0.244755238, 0, 1.56756759, 0)
-Cheat27.Size = UDim2.new(0, 73, 0, 20)
-Cheat27.Font = Enum.Font.Roboto
-Cheat27.Text = ""
-Cheat27.TextColor3 = Color3.fromRGB(0, 0, 0)
-Cheat27.TextSize = 20.000
-
-Cheat32.Name = "Cheat32"
-Cheat32.Parent = ActiveCheatList
-Cheat32.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Cheat32.BackgroundTransparency = 1.000
-Cheat32.BorderSizePixel = 0
-Cheat32.Position = UDim2.new(0.244755238, 0, 1.45945942, 0)
-Cheat32.Size = UDim2.new(0, 73, 0, 20)
-Cheat32.Font = Enum.Font.Roboto
-Cheat32.Text = ""
-Cheat32.TextColor3 = Color3.fromRGB(0, 0, 0)
-Cheat32.TextSize = 20.000
-
-Cheat23.Name = "Cheat23"
-Cheat23.Parent = ActiveCheatList
-Cheat23.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Cheat23.BackgroundTransparency = 1.000
-Cheat23.BorderSizePixel = 0
-Cheat23.Position = UDim2.new(0.244755238, 0, 1.51351357, 0)
-Cheat23.Size = UDim2.new(0, 73, 0, 20)
-Cheat23.Font = Enum.Font.Roboto
-Cheat23.Text = ""
-Cheat23.TextColor3 = Color3.fromRGB(0, 0, 0)
-Cheat23.TextSize = 20.000
-
-Cheat25.Name = "Cheat25"
-Cheat25.Parent = ActiveCheatList
-Cheat25.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Cheat25.BackgroundTransparency = 1.000
-Cheat25.BorderSizePixel = 0
-Cheat25.Position = UDim2.new(0.244755238, 0, 1.62162161, 0)
-Cheat25.Size = UDim2.new(0, 73, 0, 20)
-Cheat25.Font = Enum.Font.Roboto
-Cheat25.Text = ""
-Cheat25.TextColor3 = Color3.fromRGB(0, 0, 0)
-Cheat25.TextSize = 20.000
-
-Cheat33.Name = "Cheat33"
-Cheat33.Parent = ActiveCheatList
-Cheat33.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Cheat33.BackgroundTransparency = 1.000
-Cheat33.BorderSizePixel = 0
-Cheat33.Position = UDim2.new(0.244755238, 0, 1.67567563, 0)
-Cheat33.Size = UDim2.new(0, 73, 0, 20)
-Cheat33.Font = Enum.Font.Roboto
-Cheat33.Text = ""
-Cheat33.TextColor3 = Color3.fromRGB(0, 0, 0)
-Cheat33.TextSize = 20.000
-
-Cheat24.Name = "Cheat24"
-Cheat24.Parent = ActiveCheatList
-Cheat24.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Cheat24.BackgroundTransparency = 1.000
-Cheat24.BorderSizePixel = 0
-Cheat24.Position = UDim2.new(0.244755238, 0, 1.72972965, 0)
-Cheat24.Size = UDim2.new(0, 73, 0, 20)
-Cheat24.Font = Enum.Font.Roboto
-Cheat24.Text = ""
-Cheat24.TextColor3 = Color3.fromRGB(0, 0, 0)
-Cheat24.TextSize = 20.000
-
-Cheat34.Name = "Cheat34"
-Cheat34.Parent = ActiveCheatList
-Cheat34.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Cheat34.BackgroundTransparency = 1.000
-Cheat34.BorderSizePixel = 0
-Cheat34.Position = UDim2.new(0.244755238, 0, 1.78378367, 0)
-Cheat34.Size = UDim2.new(0, 73, 0, 20)
-Cheat34.Font = Enum.Font.Roboto
-Cheat34.Text = ""
-Cheat34.TextColor3 = Color3.fromRGB(0, 0, 0)
-Cheat34.TextSize = 20.000
-
-Cheat40.Name = "Cheat40"
-Cheat40.Parent = ActiveCheatList
-Cheat40.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Cheat40.BackgroundTransparency = 1.000
-Cheat40.BorderSizePixel = 0
-Cheat40.Position = UDim2.new(0.244755238, 0, 1.83783793, 0)
-Cheat40.Size = UDim2.new(0, 73, 0, 20)
-Cheat40.Font = Enum.Font.Roboto
-Cheat40.Text = ""
-Cheat40.TextColor3 = Color3.fromRGB(0, 0, 0)
-Cheat40.TextSize = 20.000
-
-Cheat36.Name = "Cheat36"
-Cheat36.Parent = ActiveCheatList
-Cheat36.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Cheat36.BackgroundTransparency = 1.000
-Cheat36.BorderSizePixel = 0
-Cheat36.Position = UDim2.new(0.244755238, 0, 2, 0)
-Cheat36.Size = UDim2.new(0, 73, 0, 20)
-Cheat36.Font = Enum.Font.Roboto
-Cheat36.Text = ""
-Cheat36.TextColor3 = Color3.fromRGB(0, 0, 0)
-Cheat36.TextSize = 20.000
-
-Cheat37.Name = "Cheat37"
-Cheat37.Parent = ActiveCheatList
-Cheat37.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Cheat37.BackgroundTransparency = 1.000
-Cheat37.BorderSizePixel = 0
-Cheat37.Position = UDim2.new(0.244755238, 0, 2.05405402, 0)
-Cheat37.Size = UDim2.new(0, 73, 0, 20)
-Cheat37.Font = Enum.Font.Roboto
-Cheat37.Text = ""
-Cheat37.TextColor3 = Color3.fromRGB(0, 0, 0)
-Cheat37.TextSize = 20.000
-
-Cheat35.Name = "Cheat35"
-Cheat35.Parent = ActiveCheatList
-Cheat35.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Cheat35.BackgroundTransparency = 1.000
-Cheat35.BorderSizePixel = 0
-Cheat35.Position = UDim2.new(0.244755238, 0, 1.89189196, 0)
-Cheat35.Size = UDim2.new(0, 73, 0, 20)
-Cheat35.Font = Enum.Font.Roboto
-Cheat35.Text = ""
-Cheat35.TextColor3 = Color3.fromRGB(0, 0, 0)
-Cheat35.TextSize = 20.000
-
-Cheat38.Name = "Cheat38"
-Cheat38.Parent = ActiveCheatList
-Cheat38.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Cheat38.BackgroundTransparency = 1.000
-Cheat38.BorderSizePixel = 0
-Cheat38.Position = UDim2.new(0.244755238, 0, 2.10810804, 0)
-Cheat38.Size = UDim2.new(0, 73, 0, 20)
-Cheat38.Font = Enum.Font.Roboto
-Cheat38.Text = ""
-Cheat38.TextColor3 = Color3.fromRGB(0, 0, 0)
-Cheat38.TextSize = 20.000
-
-Cheat39.Name = "Cheat39"
-Cheat39.Parent = ActiveCheatList
-Cheat39.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Cheat39.BackgroundTransparency = 1.000
-Cheat39.BorderSizePixel = 0
-Cheat39.Position = UDim2.new(0.244755238, 0, 1.94594598, 0)
-Cheat39.Size = UDim2.new(0, 73, 0, 20)
-Cheat39.Font = Enum.Font.Roboto
-Cheat39.Text = ""
-Cheat39.TextColor3 = Color3.fromRGB(0, 0, 0)
-Cheat39.TextSize = 20.000
---]]
 
 WarningAndInfo.Name = "WarningAndInfo"
 WarningAndInfo.Parent = WarningAndInfoText
@@ -1238,7 +671,6 @@ local Scaffold = Instance.new("TextButton")
 local Gui = Instance.new("Frame")
 local Cover5 = Instance.new("Frame")
 local GuiText = Instance.new("TextLabel")
---local HypeBeat = Instance.new("TextButton")
 local HUD = Instance.new("TextButton")
 local ChillLofi1 = Instance.new("TextButton")
 local ChillLofi4 = Instance.new("TextButton")
@@ -1262,6 +694,7 @@ local AntiAFK = Instance.new("TextButton")
 local CopyDiscordLink = Instance.new("TextButton")
 local DinoFly = Instance.new("TextButton")
 local BlatantMode = Instance.new("TextButton")
+local AutoSkywarsWin = Instance.new("TextButton")
 local Render = Instance.new("Frame")
 local Cover8 = Instance.new("Frame")
 local RenderText = Instance.new("TextLabel")
@@ -1635,11 +1068,6 @@ Cape.MouseButton1Down:connect(function()
             p.TopSurface = 0
             p.BottomSurface = 0
             p.Color = Color3.new(40, 166, 255)
-            --[[
-            Instance.new("Decal", p)
-            p.Decal.Texture = "http://www.roblox.com/asset/?id=2782324454"
-            p.Decal.Face = "Top"
-            --]]
             p.Material = Enum.Material.Plastic
             p.FormFactor = "Custom"
             p.Size = Vector3.new(0.2,0.2,0.2)
@@ -1753,7 +1181,7 @@ Cover2.BorderSizePixel = 0
 Cover2.Position = UDim2.new(0.60799998, 0, 0, 0)
 Cover2.Size = UDim2.new(0, 80, 0, 63)
 
-local clientstorestate = bedwars["ClientStoreHandler"]:getState()
+clientstorestate = bedwars["ClientStoreHandler"]:getState()
 currentinventory = clientstorestate.Inventory.observedInventory
 
 local killauratargetframe = {["Players"] = {["Enabled"] = false}}
@@ -1777,18 +1205,6 @@ local function playanimation(id)
         animatior:LoadAnimation(animation):Play()
     end
 end
-
-
---[[
-oldplay = bedwars["ViewmodelController"]["playAnimation"]
-oldsound = bedwars["SoundManager"]["playSound"]
-bedwars["SoundManager"]["playSound"] = function(tab, soundid, ...)
-    if (soundid == bedwars["SoundList"].SWORD_SWING_1 or soundid == bedwars["SoundList"].SWORD_SWING_2) and attacking then
-        return nil
-    end
-    return oldsound(tab, soundid, ...)
-end
-]]
 
 local RunLoops = {HeartTable = {}}
 
@@ -2083,8 +1499,6 @@ coroutine.wrap(function()
                 
                 playanimation("rbxassetid://4947108314")
 
-                --coroutine.wrap(function() -- Animation asynchronous thread
-                --print('e1')
                     cancelViewmodel = true
 
                     
@@ -2100,9 +1514,6 @@ coroutine.wrap(function()
                         Tween:Play()
                         task.wait(waitTime)
                     end
-
-                    --{CFrame = CFrame.new(0.69, -0.7, 0.6) * CFrame.Angles(math.rad(295), math.rad(55), math.rad(290)), Time = 0.2},
-                    --{CFrame = CFrame.new(0.69, -0.71, 0.6) * CFrame.Angles(math.rad(200), math.rad(60), math.rad(1)), Time = 0.2}
      
                     for i,v in next, {{CFrame = animationFrame1, Time = 0.1},{CFrame = animationFrame2, Time = 0.1}} do 
                         if not KillAuraCheatOn or not attacking then break end
@@ -2229,17 +1640,6 @@ Reach.MouseButton1Down:connect(function()
             end
         end)
 
---[[
-            local reachval = {["Value"] = 18}
-
-			bedwars["CombatConstant"].RAYCAST_SWORD_CHARACTER_DISTANCE = (reachval["Value"] - 0.0001)
-==]]
-		--else
-			--bedwars["CombatConstant"].RAYCAST_SWORD_CHARACTER_DISTANCE = 14.4
-
-
-
-
         local reachConst1 = 14
         local reachConst2 = 18
 
@@ -2263,8 +1663,6 @@ Reach.MouseButton1Down:connect(function()
         ReachCheatOnSave = false
 
         ReachValue = {["Value"] = 0}
-
-        --bedwars["CombatConstant"].RAYCAST_SWORD_CHARACTER_DISTANCE = 14.4
 
         --Off:Play() 
         
@@ -2586,11 +1984,11 @@ MultiAura.MouseButton1Down:connect(function()
     end
 end)
 
-NoClickDelayKeyBind = Enum.KeyCode.Escape.Value
+MultiAuraKeyBind = Enum.KeyCode.Escape.Value
 
-NoClickDelay.MouseButton2Down:connect(function()
+MultiAura.MouseButton2Down:connect(function()
     print('clicked')
-    NoClickDelay.Text = "Select a Keybind"
+    MultiAura.Text = "Select a Keybind"
     local selecting = true
 
     wait()
@@ -2600,21 +1998,36 @@ NoClickDelay.MouseButton2Down:connect(function()
             wait()
             print(input)
             if input.KeyCode == Enum.KeyCode.Escape or input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.MouseButton2 then
-                NoClickDelayKeyBind = Enum.KeyCode.Escape.Value
+                MultiAuraKeyBind = Enum.KeyCode.Escape.Value
             else 
-                NoClickDelayKeyBind = input.KeyCode.Value
+                MultiAuraKeyBind = input.KeyCode.Value
             end
             selecting = false
-            NoClickDelay.Text = "NoClickDelay"
+            MultiAura.Text = "MultiAura"
         end
     end)
 end)
 
 UIS.InputBegan:Connect(function(input)
-    if  (input.KeyCode ~= Enum.KeyCode.Escape) and input.KeyCode.Value == NoClickDelayKeyBind then
-        for i,v in pairs(getconnections(NoClickDelay.MouseButton1Down)) do
-            v:Fire() 
-        end  
+    if (input.KeyCode ~= Enum.KeyCode.Escape) and input.KeyCode.Value == MultiAuraKeyBind then
+        MultiAuraCheatOn = true
+
+        MultiAura.BackgroundColor3 = Color3.fromRGB(41, 166, 255)
+        MultiAura.TextColor3 = Color3.fromRGB(255, 255, 255) 
+
+        --On:Play()
+
+        bedwars["PaintRemote"] = getremote(debug.getconstants(KnitClient.Controllers.PaintShotgunController.fire))
+
+        repeat
+            task.wait(0.03)
+            local plrs = GetAllNearestHumanoidToPosition(18.8)
+            for i,plr in pairs(plrs) do
+                local selfpos = game.Players.LocalPlayer.Character.HumanoidRootPart.Position
+                local newpos = plr.Character.HumanoidRootPart.Position
+                bedwars["ClientHandler"]:Get(bedwars["PaintRemote"]):SendToServer(selfpos, CFrame.lookAt(selfpos, newpos).lookVector)
+            end
+        until MultiAuraCheatOn == false 
     end
 end)
 
@@ -2765,21 +2178,6 @@ UIS.InputBegan:Connect(function(input)
     end
 end)
 
---[[
-spawn(function()
-    while SpeedCheatOn == true do
-        if SpeedCheatOn == true then
-            getgenv().speedval = {["Value"] = 25}
-            wait(0.3)
-        end
-        if SpeedCheatOn == true then
-            getgenv().speedval = {["Value"] = 12}
-            wait(0.5)
-        end
-    end
-end)
---]]
-
 getgenv().speedvalforspeed = {["Value"] = 50} --THIS IS 50
 
 Speed.Name = "Speed"
@@ -2801,55 +2199,26 @@ Speed.MouseButton1Down:connect(function()
         Speed.TextColor3 = Color3.fromRGB(255, 255, 255)  
 
         --On:Play()
---[[
-        coroutine.wrap(function()
-            while true do
-                if not humanoid.MoveDirection.X > 0 or humanoid.MoveDirection.X < 0 or humanoid.MoveDirection.Z > 0 or humanoid.MoveDirection.Z < 0 or humanoid.MoveDirection.Y > 0 or humanoid.MoveDirection.Y < 0 then
-                    SpeedCheatOn = false
-                    else
-                    SpeedCheatOn = true
-                end
-            wait()
-            end    
-        end)()
---]]
+
         spawn(function()
             while SpeedCheatOn == true do
                 if SpeedCheatOn == true and BlatantModeCheatOn == false then
-                    getgenv().speedvalforspeed = {["Value"] = 40} --55
+                    getgenv().speedvalforspeed = {["Value"] = 50} --40
                     wait(0.7)
                 elseif SpeedCheatOn == true and BlatantModeCheatOn == true then
-                    getgenv().speedvalforspeed = {["Value"] = 200}
+                    getgenv().speedvalforspeed = {["Value"] = 250} --200
                     wait()
                 end
                 if SpeedCheatOn == true and BlatantModeCheatOn == false then
-                    getgenv().speedvalforspeed = {["Value"] = 90} --80
+                    getgenv().speedvalforspeed = {["Value"] = 70} --90
                     wait(0.2) --0.4
                 elseif SpeedCheatOn == true and BlatantModeCheatOn == true then
-                    getgenv().speedvalforspeed = {["Value"] = 200}
+                    getgenv().speedvalforspeed = {["Value"] = 250} --200
                     wait()
                 end
             end
         end)
 
---[[
-        spawn(function()
-            game:GetService("ReplicatedStorage"):FindFirstChild("events-@easy-games/game-core:shared/game-core-networking@getEvents.Events").useAbility:FireServer("dino_charge")
-            dinodisabler = bedwars["ClientHandler"]:Get(bedwars["DinoRemote"]):Connect(function()
-                wait(30)
-                dinodisabler:Disconnect()
-            end)
-        end)
---]]
-
---[[
-        game.StarterGui:SetCore("SendNotification", {
-            Title = "Speed";
-            Text = "Speed and/or Bhop goes best with a speed potion.";
-            Icon = "";
-            Duration = 5;
-        })     
---]]
     elseif SpeedCheatOn == true then
         SpeedCheatOn = false
 
@@ -2857,8 +2226,6 @@ Speed.MouseButton1Down:connect(function()
         Speed.TextColor3 = Color3.fromRGB(0, 0, 0) 
 
         --Off:Play() 
-
-        --getgenv().speedval = {["Value"] = 20}
         
     end
 end)
@@ -2888,17 +2255,7 @@ coroutine.wrap(function()
         if FLYINPUTVALUE == false then
             if SpeedCheatOn == true then
                 if isAlive() and not stopSpeed or AntiCheatDisablerCheatOn == true then
-                --getgenv().speedvalforspeed = {["Value"] = 50} --THIS IS 55
 
---[[
-                    lplr = game.Players.LocalPlayer
-
-                    bodyvelo = Instance.new("BodyVelocity")
-                    bodyvelo.Parent = lplr.Character.HumanoidRootPart
-                    bodyvelo.MaxForce = Vector3.new(100000, 0, 100000)
-
-                    bodyvelo.Velocity = lplr.Character.Humanoid.MoveDirection * speedval["Value"]
---]]
                     spawn(function()
                     wait(0.1)
                         lplr.Character.Humanoid.WalkSpeed = speedsettings.wsvalue
@@ -2907,15 +2264,6 @@ coroutine.wrap(function()
                         lplr.Character:TranslateBy(velo)
                     end)
                     Heartbeat:wait()
-
-                    --[[
-
-                    if hop.Enabled then 
-                        if lplr.Character.Humanoid:GetState() == Enum.HumanoidStateType.Running and lplr.Character.Humanoid.MoveDirection ~= Vector3.new() then 
-                            lplr.Character.Humanoid:ChangeState(Enum.HumanoidStateType.Jumping)
-                        end
-                    end
-                    ]]
                     
                     pcall(function()
                         local velo2 = (lplr.Character.Humanoid.MoveDirection * getgenv().speedvalforspeed["Value"]) / speedsettings.velocitydivfactor
@@ -2928,24 +2276,6 @@ coroutine.wrap(function()
         elseif FLYINPUTVALUE == true then end
     end)
 end)()
-
-
---[[
-Speed.MouseButton1Down:connect(function()
-	if not SpeedCheatOn == true then
-        print('play')
-        CheatSound--On:Play()
-
-        SpeedCheatOn = true
-
-    elseif SpeedCheatOn == true then
-        print("play2")
-        CheatSound--Off:Play()
-
-        SpeedCheatOn = false
-    end
-end)
--]]
 
 SpeedKeyBind = Enum.KeyCode.Escape.Value
 
@@ -2998,14 +2328,7 @@ Bhop.MouseButton1Down:connect(function()
         Bhop.TextColor3 = Color3.fromRGB(255, 255, 255) 
 
         --On:Play()
---[[
-        game.StarterGui:SetCore("SendNotification", {
-            Title = "Bhop";
-            Text = "Bhop and/or Speed goes best with a speed potion.";
-            Icon = "";
-            Duration = 5;
-        })    
---]]
+
         coroutine.wrap(function()
             while BhopCheatOn == true do
                 if humanoid.MoveDirection.X > 0 or humanoid.MoveDirection.X < 0 or humanoid.MoveDirection.Z > 0 or humanoid.MoveDirection.Z < 0 or humanoid.MoveDirection.Y > 0 or humanoid.MoveDirection.Y < 0 then -- as you can see it's scuff since I didn't know what I was doing much back then
@@ -3089,40 +2412,16 @@ HighJump.MouseButton1Down:connect(function()
         if HighJumpCheatOn == true and BlatantModeCheatOn == false then
             for i = 5, 25 do
                 task.wait(0.04)
-                --if lplr.Character.Humanoid.Health <= 0 then repeat task.wait() until lplr.isAlive and lplr.Character.Humanoid.Health > 0 break end
                 lplr.Character.HumanoidRootPart.Velocity = vec3(lplr.Character.HumanoidRootPart.Velocity.X, i * 3, lplr.Character.HumanoidRootPart.Velocity.Z)
             end
 
             elseif HighJumpCheatOn == true and BlatantModeCheatOn == true then
                 for i = 25, 50 do
                     task.wait(0.04)
-                    --if lplr.Character.Humanoid.Health <= 0 then repeat task.wait() until lplr.isAlive and lplr.Character.Humanoid.Health > 0 break end
                     lplr.Character.HumanoidRootPart.Velocity = vec3(lplr.Character.HumanoidRootPart.Velocity.X, i * 3, lplr.Character.HumanoidRootPart.Velocity.Z)
                 end
         end
     end)()
-
---[[
-    local highjumptoggle = true
-
-    spawn(function()
-        while highjumptoggle == true do
-            workspace.Gravity = 30
-            --YLV = lplr.Character.HumanoidRootPart.CFrame.Y
-            --XLV = lplr.Character.HumanoidRootPart.CFrame.X
-            --ZLV = lplr.Character.HumanoidRootPart.CFrame.Z
-
-            local character = game.Players.LocalPlayer.Character
-            character:SetPrimaryPartCFrame(character:GetPrimaryPartCFrame()*CFrame.new(0, 1.8, -0.1))
-            wait()
-        end
-    end)
-
-    wait(1)
-
-    highjumptoggle = false
-    workspace.Gravity = 196.2
---]]
 
     wait(2)
 
@@ -3170,14 +2469,12 @@ UIS.InputBegan:Connect(function(input)
             if HighJumpCheatOn == true and BlatantModeCheatOn == false then
                 for i = 5, 25 do
                     task.wait(0.04)
-                    --if lplr.Character.Humanoid.Health <= 0 then repeat task.wait() until lplr.isAlive and lplr.Character.Humanoid.Health > 0 break end
                     lplr.Character.HumanoidRootPart.Velocity = vec3(lplr.Character.HumanoidRootPart.Velocity.X, i * 3, lplr.Character.HumanoidRootPart.Velocity.Z)
                 end
 
                 elseif HighJumpCheatOn == true and BlatantModeCheatOn == true then
                     for i = 25, 50 do
                         task.wait(0.04)
-                        --if lplr.Character.Humanoid.Health <= 0 then repeat task.wait() until lplr.isAlive and lplr.Character.Humanoid.Health > 0 break end
                         lplr.Character.HumanoidRootPart.Velocity = vec3(lplr.Character.HumanoidRootPart.Velocity.X, i * 3, lplr.Character.HumanoidRootPart.Velocity.Z)
                     end
             end
@@ -3191,347 +2488,6 @@ UIS.InputBegan:Connect(function(input)
         HighJump.TextColor3 = Color3.fromRGB(0, 0, 0)  
     end
 end)
-
---[[
-FLY2INPUTVALUE = false
-
-Fly2.Name = "Fly2"
-Fly2.Parent = Movement
-Fly2.BackgroundColor3 = Color3.fromRGB(250, 250, 250)
-Fly2.BorderColor3 = Color3.fromRGB(0, 0, 0)
-Fly2.BorderSizePixel = 0
-Fly2.Position = UDim2.new(0, 0, 0.745704532, 0)
-Fly2.Size = UDim2.new(0, 204, 0, 31)
-Fly2.Font = Enum.Font.Roboto
-Fly2.Text = "Fly2"
-Fly2.TextColor3 = Color3.fromRGB(0, 0, 0)
-Fly2.TextSize = 25.000
-Fly2.MouseButton1Down:connect(function()
-    if not Fly2CheatOn == true then
-        Fly2CheatOn = true
-        FLY2INPUTVALUE = true
-
-        Fly2.BackgroundColor3 = Color3.fromRGB(41, 166, 255)
-        Fly2.TextColor3 = Color3.fromRGB(255, 255, 255) 
-
-        Fly2CheatOnSave = true
-
-        --On:Play()  
-
-
-
-            FLY2INPUTVALUE = true
-            Hit:Play()
-            getgenv().speedval = {["Value"] = 65}
-
-        
-            spawn(function()
-                while FLY2INPUTVALUE == true do
-                    WORKSPACE = game.Workspace
-                    lplr = game.Players.LocalPlayer
-
-                    local params = RaycastParams.new()
-                    params.FilterDescendantsInstances = {game:GetService("CollectionService"):GetTagged("block")}
-                    params.FilterType = Enum.RaycastFilterType.Whitelist
-                    local ray = WORKSPACE:Raycast(lplr.Character.HumanoidRootPart.Position, Vector3.new(0, -10, 0), params)
-                    Heartbeat:wait()
-                end
-            end)
---[[
-            spawn(function()
-                while FLYINPUTVALUE == true do
-                    game:GetService("ReplicatedStorage").rbxts_include.node_modules.net.out._NetManaged.GroundHit:FireServer()
-                    wait(0.5)
-                end
-            end)
-
---[[
-            spawn(function()
-                if FLYINPUTVALUE == true then
-                    wait(0.3)
-                    if FLYINPUTVALUE == true then
-                        local character = game.Players.LocalPlayer.Character
-                        character:SetPrimaryPartCFrame(character:GetPrimaryPartCFrame()*CFrame.new(0, 0, -5))
-                    end
-                end
-            end)
-
-
-            spawn(function()
-                while FLY2INPUTVALUE == true do
-                    if FLY2INPUTVALUE == true then
-                        --On:Play()
-                        workspace.Gravity = 20
-                        game.Players.LocalPlayer.Character.Humanoid.Jump = true
-                        local character = game.Players.LocalPlayer.Character
-                        character:SetPrimaryPartCFrame(character:GetPrimaryPartCFrame()*CFrame.new(0, 0, -0)) -- the third and last number was 8
-                        break
-                    end
-                    wait()
-                end
-            end)
---[[
-            spawn(function()
-                if FLY2INPUTVALUE == true then
-                    wait()
-                    local character = game.Players.LocalPlayer.Character
-                    character:SetPrimaryPartCFrame(character:GetPrimaryPartCFrame()*CFrame.new(0, 5, 0))
-                end
-            end)
-
-            Y = game.Workspace[game.Players.LocalPlayer.Name].HumanoidRootPart.CFrame.Y
-
-            spawn(function()
-                while FLY2INPUTVALUE == true do
-                    game.Players.LocalPlayer.Character.Humanoid.Jump = true
-                    local character = game.Players.LocalPlayer.Character
-                    Y-=0.35
-                    wait(0.1)
-                end
-            end)
-
-            spawn(function()
-    
-                while FLY2INPUTVALUE == true do
-                    X = game.Workspace[game.Players.LocalPlayer.Name].HumanoidRootPart.CFrame.X
-                    Z = game.Workspace[game.Players.LocalPlayer.Name].HumanoidRootPart.CFrame.Z
-
-                    game.Workspace[game.Players.LocalPlayer.Name].HumanoidRootPart.CFrame = CFrame.new(X, Y, Z)
-                    Heartbeat:Wait()
-                end
-            end) 
-
-
-    elseif Fly2CheatOn == true then
-        Fly2CheatOn = false
-        FLY2INPUTVALUE = false
-
-        game.Workspace.Gravity = 196.2
-
-        Fly2.BackgroundColor3 = Color3.fromRGB(250, 250, 250)
-        Fly2.TextColor3 = Color3.fromRGB(0, 0, 0) 
-
-        getgenv().speedval = {["Value"] = 15}
-        
-    end
-end)
-
-local key = game:GetService("UserInputService")
-
-repeat wait() until game:IsLoaded()
-getgenv().Future = shared.Future
-getgenv().UIS = game:GetService("UserInputService")
-getgenv().TS = game:GetService("TweenService")
-getgenv().WORKSPACE = game:GetService("Workspace")
-getgenv().PLAYERS = game:GetService("Players")
-getgenv().lplr = PLAYERS.LocalPlayer
-getgenv().mouse = lplr:GetMouse()
-getgenv().cam = WORKSPACE.CurrentCamera
-getgenv().requestfunc = syn and syn.request or http and http.request or http_request or fluxus and fluxus.request or getgenv().request or request
-getgenv().queueteleport = syn and syn.queue_on_teleport or queue_on_teleport or fluxus and fluxus.queue_on_teleport
-
-local spawn = function(func) 
-    return coroutine.wrap(func)()
-end
-
-local SteppedTable = {}
-
-local function BindToStepped(name, func)
-    if SteppedTable[name] == nil then
-        SteppedTable[name] = game:GetService("RunService").Stepped:connect(func)
-    end
-end
-
-local function isAlive(plr)
-    local plr = plr or lplr
-    if plr and plr.Character and ((plr.Character:FindFirstChild("Humanoid")) and (plr.Character:FindFirstChild("Humanoid") and plr.Character:FindFirstChild("Humanoid").Health > 0) and (plr.Character:FindFirstChild("HumanoidRootPart")) and (plr.Character:FindFirstChild("Head"))) then
-        return true
-    end
-end
-
-local isnetworkowner = isnetworkowner or function() return true end
-
-
-
-stopSpeed = false
-
-local speedsettings = {
-    factor = 5.37,  
-    velocitydivfactor = 2.9,
-    wsvalue = 22.5
-}
-
-
-
-BindToStepped("Speed", function(time, dt)
-    if Fly2CheatOn == true then
-        if isAlive() and not stopSpeed then
-            lplr.Character.Humanoid.WalkSpeed = speedsettings.wsvalue
-            local velo = lplr.Character.Humanoid.MoveDirection * (speedval["Value"]*((isnetworkowner and isnetworkowner(lplr.Character.HumanoidRootPart)) and speedsettings.factor or 0)) * dt
-            velo = Vector3.new(velo.x / 38, 0, velo.z / 38) --was 35 and 35
-            lplr.Character:TranslateBy(velo)
-
-            --[[
-
-            if hop.Enabled then 
-                if lplr.Character.Humanoid:GetState() == Enum.HumanoidStateType.Running and lplr.Character.Humanoid.MoveDirection ~= Vector3.new() then 
-                    lplr.Character.Humanoid:ChangeState(Enum.HumanoidStateType.Jumping)
-                end
-            end
-
-
-            local velo2 = (lplr.Character.Humanoid.MoveDirection * speedval["Value"]) / speedsettings.velocitydivfactor
-            lplr.Character.HumanoidRootPart.Velocity = Vector3.new(velo2.X, lplr.Character.HumanoidRootPart.Velocity.Y, velo2.Z)
-
-
-            
-        end
-    end
-end)
-
-
-
-    if Fly2CheatOn == true then
-                Hit:Play()
-                getgenv().speedval = {["Value"] = 65}
-
-            
-                spawn(function()
-                    while Fly2CheatOn == true do
-                        WORKSPACE = game.Workspace
-                        lplr = game.Players.LocalPlayer
-
-                        local params = RaycastParams.new()
-                        params.FilterDescendantsInstances = {game:GetService("CollectionService"):GetTagged("block")}
-                        params.FilterType = Enum.RaycastFilterType.Whitelist
-                        local ray = WORKSPACE:Raycast(lplr.Character.HumanoidRootPart.Position, Vector3.new(0, -10, 0), params)
-                        Heartbeat:wait()
-                    end
-                end)
---[[
-                spawn(function()
-                    while FLYINPUTVALUE == true do
-                        game:GetService("ReplicatedStorage").rbxts_include.node_modules.net.out._NetManaged.GroundHit:FireServer()
-                        wait(0.5)
-                    end
-                end)
-
---[[
-                spawn(function()
-                    if FLYINPUTVALUE == true then
-                        wait(0.3)
-                        if FLYINPUTVALUE == true then
-                            local character = game.Players.LocalPlayer.Character
-                            character:SetPrimaryPartCFrame(character:GetPrimaryPartCFrame()*CFrame.new(0, 0, -5))
-                        end
-                    end
-                end)
-
-
-                spawn(function()
-                    while Fly2CheatOn == true do
-                        if Fly2CheatOn == true then
-                            --On:Play()
-                            workspace.Gravity = 20
-                            game.Players.LocalPlayer.Character.Humanoid.Jump = true
-                            local character = game.Players.LocalPlayer.Character
-                            character:SetPrimaryPartCFrame(character:GetPrimaryPartCFrame()*CFrame.new(0, 0, -0)) -- the third and last number was 8
-                            break
-                        end
-                        wait()
-                    end
-                end)
-
-                spawn(function()
-                    if FLY2INPUTVALUE == true then
-                        wait()
-                        local character = game.Players.LocalPlayer.Character
-                        character:SetPrimaryPartCFrame(character:GetPrimaryPartCFrame()*CFrame.new(0, 5, 0))
-                    end
-                end)
-
-                Y = game.Workspace[game.Players.LocalPlayer.Name].HumanoidRootPart.CFrame.Y
-
-                spawn(function()
-                    while Fly2CheatOn == true do
-                        game.Players.LocalPlayer.Character.Humanoid.Jump = true
-                        local character = game.Players.LocalPlayer.Character
-                        Y-=0.35
-                        wait(0.1)
-                    end
-                end)
-
-                spawn(function()
-                    
-
-                    while Fly2CheatOn == true do
-                        X = game.Workspace[game.Players.LocalPlayer.Name].HumanoidRootPart.CFrame.X
-                        Z = game.Workspace[game.Players.LocalPlayer.Name].HumanoidRootPart.CFrame.Z
-
-                        game.Workspace[game.Players.LocalPlayer.Name].HumanoidRootPart.CFrame = CFrame.new(X, Y, Z)
-                        Heartbeat:Wait()
-                    end
-                end) 
-        -----------------------------------------------------------------------------------------------------
-            elseif Fly2CheatOn == true then
-                Fly2CheatOn = false
-
-                workspace.Gravity = 196.2
-
-                --Fly2.BackgroundColor3 = Color3.fromRGB(250, 250, 250)
-                --Fly2.TextColor3 = Color3.fromRGB(0, 0, 0) 
-
-                --Off:Play()  
-
-                getgenv().speedval = {["Value"] = 20}
-            end
-
---[[
-spawn(function()
-    while true do
-        if Fly2CheatOn == false then
-            Fly2CheatOnSave = false
-            
-            elseif Fly2CheatOn == true then
-              Fly2CheatOnSave = true  
-        end
-        wait()
-    end
-end)
-
-
-Fly2KeyBind = Enum.KeyCode.Escape.Value
-
-Fly2.MouseButton2Down:connect(function()
-    print('clicked')
-    Fly2.Text = "Select a Keybind"
-    local selecting = true
-
-    wait()
-
-    UIS.InputBegan:Connect(function(input)
-        if selecting == true then
-            wait()
-            print(input)
-            if input.KeyCode == Enum.KeyCode.Escape or input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.MouseButton2 then
-                Fly2KeyBind = Enum.KeyCode.Escape.Value
-            else 
-                Fly2KeyBind = input.KeyCode.Value
-            end
-            selecting = false
-            Fly2.Text = "Fly2"
-        end
-    end)
-end)
-
-UIS.InputBegan:Connect(function(input)
-    if  (input.KeyCode ~= Enum.KeyCode.Escape) and input.KeyCode.Value == Fly2KeyBind then
-        for i,v in pairs(getconnections(Fly2.MouseButton1Down)) do
-            v:Fire() 
-        end  
-    end
-end)
---]]
 
 FLYINPUTVALUE = false
 goingup = true
@@ -3617,14 +2573,14 @@ Fly.MouseButton1Down:connect(function()
                     getgenv().speedvalforfly = {["Value"] = 50} --55
                     wait(0.6) --0.5
                 elseif FlyCheatOn == true and dinodisablerdone == true and BlatantModeCheatOn == true then
-                    getgenv().speedvalforfly = {["Value"] = 300}
+                    getgenv().speedvalforfly = {["Value"] = 350} --300
                     wait()
                 end
                 if FlyCheatOn == true and dinodisablerdone == true and BlatantModeCheatOn == false then
                     getgenv().speedvalforfly = {["Value"] = 70} --85
                     wait(0.3) --0.4
                 elseif FlyCheatOn == true and dinodisablerdone == true and BlatantModeCheatOn == true then
-                    getgenv().speedvalforfly = {["Value"] = 300}
+                    getgenv().speedvalforfly = {["Value"] = 350} --300
                     wait()
                 end
             Heartbeat:wait()
@@ -3686,55 +2642,31 @@ Fly.MouseButton1Down:connect(function()
                         Heartbeat:wait()
                     end
                 end)
---[[
-                spawn(function()
-                    while FLYINPUTVALUE == true do
-                        game:GetService("ReplicatedStorage").rbxts_include.node_modules.net.out._NetManaged.GroundHit:FireServer()
-                        wait(0.5)
-                    end
-                end)
 
---[[
-                spawn(function()
-                    if FLYINPUTVALUE == true then
-                        wait(0.3)
-                        if FLYINPUTVALUE == true then
-                            local character = game.Players.LocalPlayer.Character
-                            character:SetPrimaryPartCFrame(character:GetPrimaryPartCFrame()*CFrame.new(0, 0, -5))
-                        end
-                    end
-                end)
---]]
---[[
-                local character = game.Players.LocalPlayer.Character
-
-                spawn(function()
-                    if FLYINPUTVALUE == true then
-                        game.Players.LocalPlayer.Character.Humanoid.Jump = true
-                        character:SetPrimaryPartCFrame(character:GetPrimaryPartCFrame()*CFrame.new(0, 2, 0))
-                        wait(.5)
-                        character:SetPrimaryPartCFrame(character:GetPrimaryPartCFrame()*CFrame.new(0, -2, 0)) 
-                    end
-                end)
---]]
-                Y = game.Workspace[game.Players.LocalPlayer.Name].HumanoidRootPart.CFrame.Y
-
---[[
-                spawn(function()
-                    while FLYINPUTVALUE == true do
-                        game.Players.LocalPlayer.Character.Humanoid.Jump = true
-                        local character = game.Players.LocalPlayer.Character
-                        Y-=2
-                        wait(.1)
-                    end
-                end)
---]]
-
+                Y = game.Workspace[game.Players.LocalPlayer.Name].HumanoidRootPart.CFrame.Y              
 
                 spawn(function()
                     while FLYINPUTVALUE == true do
                         X = game.Workspace[game.Players.LocalPlayer.Name].HumanoidRootPart.CFrame.X
                         Z = game.Workspace[game.Players.LocalPlayer.Name].HumanoidRootPart.CFrame.Z
+
+                        if AntiCheatDisablerCheatOn and BlatantModeCheatOn then
+                            print('fast')
+                            if UIS:IsKeyDown(Enum.KeyCode.LeftShift) then 
+                                Y = Y-0.6
+                            end
+                            if UIS:IsKeyDown(Enum.KeyCode.Space) then 
+                                Y = Y+0.6
+                            end
+
+                        else 
+                            if UIS:IsKeyDown(Enum.KeyCode.LeftShift) then 
+                                Y = Y-0.4
+                            end
+                            if UIS:IsKeyDown(Enum.KeyCode.Space) then 
+                                Y = Y+0.4
+                            end
+                        end
 
                         game.Workspace[game.Players.LocalPlayer.Name].HumanoidRootPart.CFrame = CFrame.new(X, Y, Z)
                         Heartbeat:Wait()
@@ -3751,9 +2683,6 @@ Fly.MouseButton1Down:connect(function()
         Fly.TextColor3 = Color3.fromRGB(0, 0, 0)
 
                 workspace.Gravity = 196.2
-
-                --Fly.BackgroundColor3 = Color3.fromRGB(250, 250, 250)
-                --Fly.TextColor3 = Color3.fromRGB(0, 0, 0)  
 
                 --Off:Play() 
 
@@ -3812,17 +2741,6 @@ BindToStepped("Speed", function(time, dt)
     if FLYINPUTVALUE == true then
         if isAlive() and not stopSpeed or AntiCheatDisablerCheatOn == true then
 
---[[
-            local flypos = (lplr.Character.Humanoid.MoveDirection * (math.clamp(65 - 16, 1, 150) * delta))
-            lplr.Character.HumanoidRootPart.CFrame = lplr.Character.HumanoidRootPart.CFrame + Vector3.new(flypos.X, (flyposy - lplr.Character.HumanoidRootPart.CFrame.p.Y), flypos.Z)
-            lplr.Character.HumanoidRootPart.Velocity = Vector3.new(0, 0, 0)
-==]]
-
-
-            --bodyvelo = Instance.new("BodyVelocity")
-            --bodyvelo.Parent = entity.character.HumanoidRootPart
-            --bodyvelo.MaxForce = Vector3.new(100000, 0, 100000)
-
             spawn(function()
                 wait(0.1)
                 lplr.Character.Humanoid.WalkSpeed = speedsettings.wsvalue
@@ -3831,15 +2749,7 @@ BindToStepped("Speed", function(time, dt)
                 lplr.Character:TranslateBy(velo)
             end)
             Heartbeat:wait()
-
-            --[[
-
-            if hop.Enabled then 
-                if lplr.Character.Humanoid:GetState() == Enum.HumanoidStateType.Running and lplr.Character.Humanoid.MoveDirection ~= Vector3.new() then 
-                    lplr.Character.Humanoid:ChangeState(Enum.HumanoidStateType.Jumping)
-                end
-            end
-            ]]
+            
             pcall(function()
                 local velo2 = (lplr.Character.Humanoid.MoveDirection * getgenv().speedvalforfly["Value"]) / speedsettings.velocitydivfactor
                 lplr.Character.HumanoidRootPart.Velocity = Vector3.new(velo2.X, lplr.Character.HumanoidRootPart.Velocity.Y, velo2.Z)
@@ -3957,14 +2867,14 @@ UIS.InputBegan:Connect(function(input)
                         getgenv().speedvalforfly = {["Value"] = 50} --55
                         wait(0.6) --0.5
                     elseif FlyCheatOn == true and dinodisablerdone == true and BlatantModeCheatOn == true then
-                        getgenv().speedvalforfly = {["Value"] = 300}
+                        getgenv().speedvalforfly = {["Value"] = 350} --300
                         wait()
                     end
                     if FlyCheatOn == true and dinodisablerdone == true and BlatantModeCheatOn == false then
                         getgenv().speedvalforfly = {["Value"] = 70} --85
                         wait(0.3) --0.4
                     elseif FlyCheatOn == true and dinodisablerdone == true and BlatantModeCheatOn == true then
-                        getgenv().speedvalforfly = {["Value"] = 300}
+                        getgenv().speedvalforfly = {["Value"] = 350} --300
                         wait()
                     end
                 Heartbeat:wait()
@@ -4026,55 +2936,31 @@ UIS.InputBegan:Connect(function(input)
                             Heartbeat:wait()
                         end
                     end)
-    --[[
-                    spawn(function()
-                        while FLYINPUTVALUE == true do
-                            game:GetService("ReplicatedStorage").rbxts_include.node_modules.net.out._NetManaged.GroundHit:FireServer()
-                            wait(0.5)
-                        end
-                    end)
 
-    --[[
-                    spawn(function()
-                        if FLYINPUTVALUE == true then
-                            wait(0.3)
-                            if FLYINPUTVALUE == true then
-                                local character = game.Players.LocalPlayer.Character
-                                character:SetPrimaryPartCFrame(character:GetPrimaryPartCFrame()*CFrame.new(0, 0, -5))
-                            end
-                        end
-                    end)
-    --]]
-    --[[
-                    local character = game.Players.LocalPlayer.Character
-
-                    spawn(function()
-                        if FLYINPUTVALUE == true then
-                            game.Players.LocalPlayer.Character.Humanoid.Jump = true
-                            character:SetPrimaryPartCFrame(character:GetPrimaryPartCFrame()*CFrame.new(0, 2, 0))
-                            wait(.5)
-                            character:SetPrimaryPartCFrame(character:GetPrimaryPartCFrame()*CFrame.new(0, -2, 0)) 
-                        end
-                    end)
-    --]]
                 Y = game.Workspace[game.Players.LocalPlayer.Name].HumanoidRootPart.CFrame.Y
-
-    --[[
-                    spawn(function()
-                        while FLYINPUTVALUE == true do
-                            game.Players.LocalPlayer.Character.Humanoid.Jump = true
-                            local character = game.Players.LocalPlayer.Character
-                            Y-=2
-                            wait(.1)
-                        end
-                    end)
-    --]]
-
 
                     spawn(function()
                         while FLYINPUTVALUE == true do
                             X = game.Workspace[game.Players.LocalPlayer.Name].HumanoidRootPart.CFrame.X
                             Z = game.Workspace[game.Players.LocalPlayer.Name].HumanoidRootPart.CFrame.Z
+
+                            if AntiCheatDisablerCheatOn and BlatantModeCheatOn then
+                                print('fast')
+                                if UIS:IsKeyDown(Enum.KeyCode.LeftShift) then 
+                                    Y = Y-0.6
+                                end
+                                if UIS:IsKeyDown(Enum.KeyCode.Space) then 
+                                    Y = Y+0.6
+                                end
+
+                            else 
+                                if UIS:IsKeyDown(Enum.KeyCode.LeftShift) then 
+                                    Y = Y-0.3
+                                end
+                                if UIS:IsKeyDown(Enum.KeyCode.Space) then 
+                                    Y = Y+0.3
+                                end
+                            end
 
                             game.Workspace[game.Players.LocalPlayer.Name].HumanoidRootPart.CFrame = CFrame.new(X, Y, Z)
                             Heartbeat:Wait()
@@ -4090,14 +2976,8 @@ UIS.InputBegan:Connect(function(input)
             Fly.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
             Fly.TextColor3 = Color3.fromRGB(0, 0, 0)
 
-                    workspace.Gravity = 196.2
+            workspace.Gravity = 196.2
 
-                    --Fly.BackgroundColor3 = Color3.fromRGB(250, 250, 250)
-                    --Fly.TextColor3 = Color3.fromRGB(0, 0, 0)  
-
-                    --Off:Play() 
-
-            --getgenv().speedval = {["Value"] = 15}
         end
     end
 end)
@@ -4337,23 +3217,12 @@ ChestStealer.MouseButton1Down:connect(function()
         while ChestStealerCheatOn == true do
             local ChestStealerDistance = {["Value"] = 18}
             local ChestStealDelay = wait()
-                   -- print('EEE1')
                     if isAlive() and ChestStealerCheatOn == true then
-
-                    --[[
-                    --  it was this before i changed it so it would be faster..
-
-                    if ChestStealDelay <= tick() and isAlive() and ChestStealerCheatOn == true then
-                        ChestStealDelay = tick() + 0.2
-                    --]]
-
-                        --print('EEE2')
                         local rootpart = lplr.Character and lplr.Character:FindFirstChild("HumanoidRootPart")
                         for i,v in pairs(game:GetService("CollectionService"):GetTagged("chest")) do
                             if rootpart and (rootpart.Position - v.Position).magnitude <= ChestStealerDistance["Value"] and v:FindFirstChild("ChestFolderValue") then
                                 local chest = v.ChestFolderValue.Value
                                 local chestitems = chest and chest:GetChildren() or {}
-                                --print('EEE3')
                                 if #chestitems > 0 then
                                     bedwars["ClientHandler"]:GetNamespace("Inventory"):Get("SetObservedChest"):SendToServer(chest)
                                     for i3,v3 in pairs(chestitems) do
@@ -4685,24 +3554,6 @@ Scaffold.MouseButton1Down:connect(function()
     end
 end)
 
---[[
-local key = game:GetService("UserInputService")
-
-key.InputBegan:Connect(function(input)
-    if ScaffoldCheatOn then 
-        if input.KeyCode == Enum.KeyCode.V then
-            if ScaffoldToggle then
-                --Off:Play()
-                ScaffoldToggle = false
-            else 
-                --On:Play()
-                ScaffoldToggle = true
-            end
-        end
-    end
-end)
---]]
-
 ScaffoldKeyBind = Enum.KeyCode.Escape.Value
 
 Scaffold.MouseButton2Down:connect(function()
@@ -4765,20 +3616,6 @@ GuiText.Font = Enum.Font.Roboto
 GuiText.Text = "Gui"
 GuiText.TextColor3 = Color3.fromRGB(120, 120, 120)
 GuiText.TextSize = 32.000
-
---[[
-HypeBeat.Name = "HypeBeat"
-HypeBeat.Parent = Gui
-HypeBeat.BackgroundColor3 = Color3.fromRGB(250, 250, 250)
-HypeBeat.BorderColor3 = Color3.fromRGB(0, 0, 0)
-HypeBeat.BorderSizePixel = 0
-HypeBeat.Position = UDim2.new(0, 0, 0.848797321, 0)
-HypeBeat.Size = UDim2.new(0, 204, 0, 31)
-HypeBeat.Font = Enum.Font.Roboto
-HypeBeat.Text = "HypeBeat"
-HypeBeat.TextColor3 = Color3.fromRGB(0, 0, 0)
-HypeBeat.TextSize = 25.000
---]]
 
 HUD.Name = "HUD"
 HUD.Parent = Gui
@@ -5158,13 +3995,6 @@ AntiVoid.MouseButton1Down:connect(function()
 
         --On:Play() 
 
-        game.StarterGui:SetCore("SendNotification", {
-            Title = "AntiVoid";
-            Text = "Antivoid does not work very well on small drops.";
-            Icon = "";
-            Duration = 5;
-        })  
-
         parts = {}
 
         lowest = math.huge
@@ -5197,42 +4027,7 @@ AntiVoid.MouseButton1Down:connect(function()
         NeedReset = false
 
         local pos = {}
---[[
-        spawn(function()
-            while true do
-                if (humanoid:GetState() == Enum.HumanoidStateType.Freefall) then
-                    if touching == false then
-                        --print("falling")
-                        pos[#pos+1] = character.HumanoidRootPart.CFrame
-                        NeedReset = true
-                    end
-                else
-                    wait(.1)
-                    if not (humanoid:GetState() == Enum.HumanoidStateType.Freefall) then
-                        if touching == false then
-                            if NeedReset == true then
-                                --print('reset')
-                                pos = {}
-                                NeedReset = false
-                            end
-                            if #pos == 8 then
-                                for i=2, 8, 1 do
-                                    local temp = {}
-                                    temp[i-1] = pos[1]
-                                    temp[8] = character.HumanoidRootPart.CFrame
 
-                                    pos = temp
-                                end
-                            else
-                                pos[#pos + 1] = character.HumanoidRootPart.CFrame
-                            end
-                        end
-                    end
-                end
-                wait() --0.05
-            end
-        end)
---]]
         local timePassed = tick()
 
         local function antiVoidFunction(newpart, limb)
@@ -5252,25 +4047,6 @@ AntiVoid.MouseButton1Down:connect(function()
                         end
                     end)
 
-                --[[
-                    --print("tping")
-
-                    game.StarterGui:SetCore("SendNotification", {
-                        Title = "AntiVoid";
-                        Text = "Do not spam Antivoid as it will lead to lag backs and glitches.";
-                        Icon = "";
-                        Duration = 5;
-                    })    
-
-                    print(#pos)
-                    for i=#pos, 1, -1 do
-                        if pos[i] then
-                            character.HumanoidRootPart.CFrame = CFrame.new(pos[i].X, pos[i].Y, pos[i].Z)
-                            wait()
-                        end
-                    end 
-                    --print('done tping')
-                    --]]
                     pos = {}
                     wait()
                     touching = false
@@ -5395,19 +4171,33 @@ AntiCheatDisabler.MouseButton1Down:connect(function()
         --On:Play()
 
         repeat task.wait() until character and character:FindFirstChild("HumanoidRootPart") and character:FindFirstChild("Humanoid") and character:FindFirstChild("Humanoid").Health >= 1
-        anticheatdisabler()
+        if matchState == 1 then
+            game.StarterGui:SetCore("SendNotification", {
+                Title = "AntiCheatDisabler";
+                Text = "Anticheatdisabler can't be used once the game has started.";
+                Icon = "";
+                Duration = 3;
+            })
+
+            AntiCheatDisablerCheatOn = false
+            AntiCheatDisabler.BackgroundColor3 = Color3.fromRGB(250, 250, 250)
+            AntiCheatDisabler.TextColor3 = Color3.fromRGB(0, 0, 0)  
+    elseif matchState == 0 then
+            anticheatdisabler()
+        end
 
     elseif AntiCheatDisablerCheatOn == true then
-        AntiCheatDisablerCheatOn = true
+        AntiCheatDisablerCheatOn = false
 
-        AntiCheatDisabler.BackgroundColor3 = Color3.fromRGB(41, 166, 255)
-        AntiCheatDisabler.TextColor3 = Color3.fromRGB(255, 255, 255)  
+        AntiCheatDisabler.BackgroundColor3 = Color3.fromRGB(250, 250, 250)
+        AntiCheatDisabler.TextColor3 = Color3.fromRGB(0, 0, 0) 
 
-        --On:Play()
-
-        repeat task.wait() until character and character:FindFirstChild("HumanoidRootPart") and character:FindFirstChild("Humanoid") and character:FindFirstChild("Humanoid").Health >= 1
-        anticheatdisabler()
-
+        game.StarterGui:SetCore("SendNotification", {
+            Title = "AntiCheatDisabler";
+            Text = "Anticheatdisabler with turn off next round.";
+            Icon = "";
+            Duration = 3;
+        })
     end
 end)
 
@@ -5438,10 +4228,29 @@ end)
 
 UIS.InputBegan:Connect(function(input)
     if  (input.KeyCode ~= Enum.KeyCode.Escape) and input.KeyCode.Value == AntiCheatDisablerKeyBind then
-        for i,v in pairs(getconnections(AntiCheatDisabler.MouseButton1Down)) do
+        --for i,v in pairs(getconnections(AntiCheatDisabler.MouseButton1Down)) do
+            AntiCheatDisablerCheatOn = true
+            AntiCheatDisabler.BackgroundColor3 = Color3.fromRGB(41, 166, 255)
+            AntiCheatDisabler.TextColor3 = Color3.fromRGB(255, 255, 255)  
+
+            --On:Play()
+
             repeat task.wait() until character and character:FindFirstChild("HumanoidRootPart") and character:FindFirstChild("Humanoid") and character:FindFirstChild("Humanoid").Health >= 1
-            anticheatdisabler()
-        end  
+            if matchState == 1 then
+                game.StarterGui:SetCore("SendNotification", {
+                    Title = "AntiCheatDisabler";
+                    Text = "Anticheatdisabler can't be used once the game has started.";
+                    Icon = "";
+                    Duration = 3;
+                })
+                wait(0.3)
+                --AntiCheatDisablerCheatOn = false
+                AntiCheatDisabler.BackgroundColor3 = Color3.fromRGB(250, 250, 250)
+                AntiCheatDisabler.TextColor3 = Color3.fromRGB(0, 0, 0)  
+        elseif matchState == 0 then
+                anticheatdisabler()
+            end
+        --end  
     end
 end)
 
@@ -5587,87 +4396,24 @@ AutoQueue.MouseButton1Down:connect(function()
         AutoQueue.BackgroundColor3 = Color3.fromRGB(41, 166, 255)
         AutoQueue.TextColor3 = Color3.fromRGB(255, 255, 255) 
 
-        --On:Play()
+        --On:Play() clientstorestate.Game.queueType
 
-        AUTOQUEUESKYWARSINGAME = false  
-        AUTOQUEUELOBBY = false  
-        
-        local function has_value(tab, val)
-            for index, value in ipairs(tab) do
-                if value == val then
-                    return true
-                end
+
+        while AutoQueueCheatOn == true do
+            local clientstorestate = bedwars["ClientStoreHandler"]:getState()
+            matchState = clientstorestate.Game.matchState or 0
+
+            if (matchState == 2) or (game.PlaceId == 6872265039) or (lplr.Character.HumanoidRootPart == nil) then
+                game:GetService("ReplicatedStorage")["events-@easy-games/lobby:shared/event/lobby-events@getEvents.Events"].joinQueue:FireServer({["queueType"] = "skywars_to2"})
+                queuedup = true
             end
 
-            return false
+            if queuedup == true then
+                queuedup = false
+                break
+            end
+            wait()
         end
-
-
-        coroutine.wrap(function()
-            while true do
-                allTeams = {}
-
-                for i,v in pairs(game.Players:GetChildren()) do
-                    if not has_value(allTeams, tostring(v.Team)) then
-                        allTeams[#allTeams+1] = tostring(v.Team)
-                    end
-                end
-
-                if #allTeams == 2 and AntiCheatDisablerCheatOn == false then
-                    local args = {
-                    [1] = {
-                        ["queueType"] = "skywars_to2"
-                    }
-                    }
-
-                    game:GetService("ReplicatedStorage")["events-@easy-games/lobby:shared/event/lobby-events@getEvents.Events"].joinQueue:FireServer(unpack(args))
-
-                    AUTOQUEUESKYWARSINGAME = true
-
-
-
-                end
-
-                if AutoQueueCheatOn == true and lplr.Character.Humanoid.Health == 0 and AntiCheatDisablerCheatOn == false then
-                    local args = {
-                    [1] = {
-                        ["queueType"] = "skywars_to2"
-                    }
-                    }
-
-                    game:GetService("ReplicatedStorage")["events-@easy-games/lobby:shared/event/lobby-events@getEvents.Events"].joinQueue:FireServer(unpack(args))
-
-                    AUTOQUEUESKYWARSINGAME = true
-
-                elseif AutoQueueCheatOn == true and game.PlaceId == 6872265039 and AntiCheatDisablerCheatOn == false then
-                    local args = {
-                    [1] = {
-                        ["queueType"] = "skywars_to2"
-                    }
-                    }
-
-                    game:GetService("ReplicatedStorage")["events-@easy-games/lobby:shared/event/lobby-events@getEvents.Events"].joinQueue:FireServer(unpack(args))
-
-                    AUTOQUEUELOBBY = true
-
-                end
-
-
-                if AutoQueueCheatOn == false then
-                    break
-                end
-
-                if AUTOQUEUESKYWARSINGAME == true then
-                    break
-                end
-
-                if AUTOQUEUELOBBY == true then
-                    break
-                end
-                wait()
-            end
-        end)()
-
 
         elseif AutoQueueCheatOn == true then
             AutoQueueCheatOn = false
@@ -5675,7 +4421,9 @@ AutoQueue.MouseButton1Down:connect(function()
             AutoQueue.TextColor3 = Color3.fromRGB(0, 0, 0) 
 
             --Off:Play()
-    
+
+            game:GetService("ReplicatedStorage"):FindFirstChild("events-@easy-games/lobby:shared/event/lobby-events@getEvents.Events").leaveQueue:FireServer()
+
     end
 end)
 
@@ -5878,7 +4626,36 @@ BlatantMode.MouseButton1Down:connect(function()
         BlatantMode.BackgroundColor3 = Color3.fromRGB(41, 166, 255)
         BlatantMode.TextColor3 = Color3.fromRGB(255, 255, 255)  
 
-        --On:Play() 
+        --On:Play()
+
+        wait(1)
+
+        while BlatantModeCheatOn == true do
+            local clientstorestate = bedwars["ClientStoreHandler"]:getState()
+            matchState = clientstorestate.Game.matchState or 0
+
+            if matchState == 1 and AntiCheatDisablerCheatOn == false or matchState == 0 and AntiCheatDisablerCheatOn == false then
+                cantblatantmode = true
+            end
+
+            if cantblatantmode == true then
+                cantblatantmode = false
+
+                BlatantModeCheatOn = false
+                BlatantMode.BackgroundColor3 = Color3.fromRGB(250, 250, 250)
+                BlatantMode.TextColor3 = Color3.fromRGB(0, 0, 0)  
+
+                game.StarterGui:SetCore("SendNotification", {
+                    Title = "BlatantMode";
+                    Text = "BlatantMode can't be enabled without anticheatdisabler.";
+                    Icon = "";
+                    Duration = 4;
+                })
+
+                break
+            end
+            wait()
+        end  
 
     elseif BlatantModeCheatOn == true then
         BlatantModeCheatOn = false
@@ -5920,6 +4697,295 @@ UIS.InputBegan:Connect(function(input)
         for i,v in pairs(getconnections(BlatantMode.MouseButton1Down)) do
             v:Fire() 
         end  
+    end
+end)
+
+AutoSkywarsWin.Name = "AutoSkywarsWin"
+AutoSkywarsWin.Parent = Misc
+AutoSkywarsWin.BackgroundColor3 = Color3.fromRGB(250, 250, 250)
+AutoSkywarsWin.BorderColor3 = Color3.fromRGB(0, 0, 0)
+AutoSkywarsWin.BorderSizePixel = 0
+AutoSkywarsWin.Position = UDim2.new(0, 0, 0.745704382, 0)
+AutoSkywarsWin.Size = UDim2.new(0, 204, 0, 31)
+AutoSkywarsWin.Font = Enum.Font.Roboto
+AutoSkywarsWin.Text = "AutoSkywarsWin"
+AutoSkywarsWin.TextColor3 = Color3.fromRGB(0, 0, 0)
+AutoSkywarsWin.TextSize = 25.000
+AutoSkywarsWin.MouseButton1Down:connect(function()
+    if not AutoSkywarsWinCheatOn == true then
+        AutoSkywarsWinCheatOn = true
+
+        AutoSkywarsWin.BackgroundColor3 = Color3.fromRGB(41, 166, 255)
+        AutoSkywarsWin.TextColor3 = Color3.fromRGB(255, 255, 255)
+
+        wait(1)
+
+        if matchState == 1 and AntiCheatDisablerCheatOn == false then  
+            game.StarterGui:SetCore("SendNotification", {
+                Title = "AutoSkywarsWin";
+                Text = "AutoSkywarsWin can only be started before the game begins.";
+                Icon = "";
+                Duration = 6;
+            })
+
+            AutoSkywarsWinCheatOn = false
+            AutoSkywarsWin.BackgroundColor3 = Color3.fromRGB(250, 250, 250)
+            AutoSkywarsWin.TextColor3 = Color3.fromRGB(0, 0, 0) 
+
+           elseif matchState == 0 and AntiCheatDisablerCheatOn == true or matchState == 0 and AntiCheatDisablerCheatOn == false or matchState == 1 and AntiCheatDisablerCheatOn == true then   
+            --On:Play() 
+
+            local humrp = lplr.Character.HumanoidRootPart
+
+            players = game.Players:GetChildren()
+
+            spawn(function()
+                wait(70)
+                game:GetService("ReplicatedStorage")["events-@easy-games/lobby:shared/event/lobby-events@getEvents.Events"].joinQueue:FireServer({["queueType"] = "skywars_to2"})
+            end)
+
+    --------------------------------------------------------loading other cheats
+            spawn(function()
+                if not MultiAuraCheatOn == true then
+                    MultiAuraCheatOn = true
+
+                    MultiAura.BackgroundColor3 = Color3.fromRGB(41, 166, 255)
+                    MultiAura.TextColor3 = Color3.fromRGB(255, 255, 255) 
+
+                    --On:Play()
+
+                    bedwars["PaintRemote"] = getremote(debug.getconstants(KnitClient.Controllers.PaintShotgunController.fire))
+
+                    repeat
+                        task.wait(0.03)
+                        local plrs = GetAllNearestHumanoidToPosition(18.8)
+                        for i,plr in pairs(plrs) do
+                            local selfpos = game.Players.LocalPlayer.Character.HumanoidRootPart.Position
+                            local newpos = plr.Character.HumanoidRootPart.Position
+                            bedwars["ClientHandler"]:Get(bedwars["PaintRemote"]):SendToServer(selfpos, CFrame.lookAt(selfpos, newpos).lookVector)
+                        end
+                    until MultiAuraCheatOn == false 
+                end
+            end)
+
+            spawn(function()
+                if not AntiCheatDisablerCheatOn == true then
+                    AntiCheatDisablerCheatOn = true
+                    AntiCheatDisabler.BackgroundColor3 = Color3.fromRGB(41, 166, 255)
+                    AntiCheatDisabler.TextColor3 = Color3.fromRGB(255, 255, 255)  
+
+                    --On:Play()
+
+                    repeat task.wait() until character and character:FindFirstChild("HumanoidRootPart") and character:FindFirstChild("Humanoid") and character:FindFirstChild("Humanoid").Health >= 1
+                    if matchState == 1 then
+                        game.StarterGui:SetCore("SendNotification", {
+                            Title = "AntiCheatDisabler";
+                            Text = "Anticheatdisabler can't be used once the game has started.";
+                            Icon = "";
+                            Duration = 3;
+                        })
+                        wait(0.5)
+                        --AntiCheatDisablerCheatOn = false
+                        AntiCheatDisabler.BackgroundColor3 = Color3.fromRGB(250, 250, 250)
+                        AntiCheatDisabler.TextColor3 = Color3.fromRGB(0, 0, 0)  
+                elseif matchState == 0 then
+                        anticheatdisabler()
+                    end
+                end
+            end)
+
+            spawn(function()
+                if not AutoQueueCheatOn == true then
+                    AutoQueueCheatOn = true
+                    AutoQueue.BackgroundColor3 = Color3.fromRGB(41, 166, 255)
+                    AutoQueue.TextColor3 = Color3.fromRGB(255, 255, 255) 
+
+                    while AutoQueueCheatOn == true do
+                        local clientstorestate = bedwars["ClientStoreHandler"]:getState()
+                        matchState = clientstorestate.Game.matchState or 0
+
+                        if (matchState == 2) or (game.PlaceId == 6872265039) or (lplr.Character.HumanoidRootPart == nil) then
+                            game:GetService("ReplicatedStorage")["events-@easy-games/lobby:shared/event/lobby-events@getEvents.Events"].joinQueue:FireServer({["queueType"] = "skywars_to2"})
+                            queuedup = true
+                        end
+
+                        if queuedup == true then
+                            queuedup = false
+                            break
+                        end
+                        wait()
+                    end
+                end
+            end)
+    --------------------------------------------------------loading other cheats
+            for i,v in pairs(players) do
+                if v.Character and AutoSkywarsWinCheatOn == true then
+                    if (v.Character:FindFirstChild("HumanoidRootPart")) and not (v.Name == lplr.Name) and v.Character:FindFirstChild("Humanoid") and not (v.Character.Humanoid.Health <= 0) and not (v.Team == lplr.Team) and AutoSkywarsWinCheatOn == true then
+                        repeat Heartbeat:wait()
+                            if v.Character and (v.Character:FindFirstChild("HumanoidRootPart")) and AutoSkywarsWinCheatOn == true then
+                                humrp.CFrame = v.Character.HumanoidRootPart.CFrame
+                                --character:SetPrimaryPartCFrame(character:GetPrimaryPartCFrame()*CFrame.new(0, 4, 0))
+                            end
+                        until v.Character.Humanoid.Health <= 0 or AutoSkywarsWinCheatOn == false or v.Character.HumanoidRootPart == nil
+                    end
+                end
+            end
+        end
+
+    elseif AutoSkywarsWinCheatOn == true then
+        AutoSkywarsWinCheatOn = false
+        
+        AutoSkywarsWin.BackgroundColor3 = Color3.fromRGB(250, 250, 250)
+        AutoSkywarsWin.TextColor3 = Color3.fromRGB(0, 0, 0)  
+
+        --Off:Play()
+        
+    end
+end)
+
+AutoSkywarsWinKeyBind = Enum.KeyCode.Escape.Value
+
+AutoSkywarsWin.MouseButton2Down:connect(function()
+    print('clicked')
+    AutoSkywarsWin.Text = "Select a Keybind"
+    local selecting = true
+
+    wait()
+
+    UIS.InputBegan:Connect(function(input)
+        if selecting == true then
+            wait()
+            print(input)
+            if  (input.KeyCode ~= Enum.KeyCode.Escape) and input.KeyCode.Value == Enum.KeyCode.Escape or input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.MouseButton2 then
+                AutoSkywarsWinKeyBind = Enum.KeyCode.Escape.Value
+            else 
+                AutoSkywarsWinKeyBind = input.KeyCode.Value
+            end
+            selecting = false
+            AutoSkywarsWin.Text = "AutoSkywarsWin"
+        end
+    end)
+end)
+
+UIS.InputBegan:Connect(function(input)
+    if input.KeyCode == AutoSkywarsWinKeyBind then
+        AutoSkywarsWinCheatOn = true
+        AutoSkywarsWin.BackgroundColor3 = Color3.fromRGB(41, 166, 255)
+        AutoSkywarsWin.TextColor3 = Color3.fromRGB(255, 255, 255)
+
+        wait(1)
+
+        if matchState == 1 and AntiCheatDisablerCheatOn == false then  
+            game.StarterGui:SetCore("SendNotification", {
+                Title = "AutoSkywarsWin";
+                Text = "AutoSkywarsWin can only be started before the game begins.";
+                Icon = "";
+                Duration = 6;
+            })
+
+            AutoSkywarsWinCheatOn = false
+            AutoSkywarsWin.BackgroundColor3 = Color3.fromRGB(250, 250, 250)
+            AutoSkywarsWin.TextColor3 = Color3.fromRGB(0, 0, 0)  
+
+           elseif matchState == 0 and AntiCheatDisablerCheatOn == true or matchState == 0 and AntiCheatDisablerCheatOn == false or matchState == 1 and AntiCheatDisablerCheatOn == true then   
+            --On:Play() 
+
+            local humrp = lplr.Character.HumanoidRootPart
+
+            players = game.Players:GetChildren()
+
+            spawn(function()
+                wait(70)
+                game:GetService("ReplicatedStorage")["events-@easy-games/lobby:shared/event/lobby-events@getEvents.Events"].joinQueue:FireServer({["queueType"] = "skywars_to2"})
+            end)
+
+    --------------------------------------------------------loading other cheats
+            spawn(function()
+                if not MultiAuraCheatOn == true then
+                    MultiAuraCheatOn = true
+
+                    MultiAura.BackgroundColor3 = Color3.fromRGB(41, 166, 255)
+                    MultiAura.TextColor3 = Color3.fromRGB(255, 255, 255) 
+
+                    --On:Play()
+
+                    bedwars["PaintRemote"] = getremote(debug.getconstants(KnitClient.Controllers.PaintShotgunController.fire))
+
+                    repeat
+                        task.wait(0.03)
+                        local plrs = GetAllNearestHumanoidToPosition(18.8)
+                        for i,plr in pairs(plrs) do
+                            local selfpos = game.Players.LocalPlayer.Character.HumanoidRootPart.Position
+                            local newpos = plr.Character.HumanoidRootPart.Position
+                            bedwars["ClientHandler"]:Get(bedwars["PaintRemote"]):SendToServer(selfpos, CFrame.lookAt(selfpos, newpos).lookVector)
+                        end
+                    until MultiAuraCheatOn == false 
+                end
+            end)
+
+            spawn(function()
+                if not AntiCheatDisablerCheatOn == true then
+                    AntiCheatDisablerCheatOn = true
+                    AntiCheatDisabler.BackgroundColor3 = Color3.fromRGB(41, 166, 255)
+                    AntiCheatDisabler.TextColor3 = Color3.fromRGB(255, 255, 255)  
+
+                    --On:Play()
+
+                    repeat task.wait() until character and character:FindFirstChild("HumanoidRootPart") and character:FindFirstChild("Humanoid") and character:FindFirstChild("Humanoid").Health >= 1
+                    if matchState == 1 then
+                        game.StarterGui:SetCore("SendNotification", {
+                            Title = "AntiCheatDisabler";
+                            Text = "Anticheatdisabler can't be used once the game has started.";
+                            Icon = "";
+                            Duration = 3;
+                        })
+                        wait(0.5)
+                        --AntiCheatDisablerCheatOn = false
+                        AntiCheatDisabler.BackgroundColor3 = Color3.fromRGB(250, 250, 250)
+                        AntiCheatDisabler.TextColor3 = Color3.fromRGB(0, 0, 0)  
+                elseif matchState == 0 then
+                        anticheatdisabler()
+                    end
+                end
+            end)
+
+            spawn(function()
+                if not AutoQueueCheatOn == true then
+                    AutoQueueCheatOn = true
+                    AutoQueue.BackgroundColor3 = Color3.fromRGB(41, 166, 255)
+                    AutoQueue.TextColor3 = Color3.fromRGB(255, 255, 255) 
+
+                    while AutoQueueCheatOn == true do
+                        local clientstorestate = bedwars["ClientStoreHandler"]:getState()
+                        matchState = clientstorestate.Game.matchState or 0
+
+                        if (matchState == 2) or (game.PlaceId == 6872265039) or (lplr.Character.HumanoidRootPart == nil) then
+                            game:GetService("ReplicatedStorage")["events-@easy-games/lobby:shared/event/lobby-events@getEvents.Events"].joinQueue:FireServer({["queueType"] = "skywars_to2"})
+                            queuedup = true
+                        end
+
+                        if queuedup == true then
+                            queuedup = false
+                            break
+                        end
+                        wait()
+                    end
+                end
+            end)
+    --------------------------------------------------------loading other cheats
+            for i,v in pairs(players) do
+                if v.Character and AutoSkywarsWinCheatOn == true then
+                    if (v.Character:FindFirstChild("HumanoidRootPart")) and not (v.Name == lplr.Name) and v.Character:FindFirstChild("Humanoid") and not (v.Character.Humanoid.Health <= 0) and not (v.Team == lplr.Team) and AutoSkywarsWinCheatOn == true then
+                        repeat Heartbeat:wait()
+                            if v.Character and (v.Character:FindFirstChild("HumanoidRootPart")) and AutoSkywarsWinCheatOn == true then
+                                humrp.CFrame = v.Character.HumanoidRootPart.CFrame
+                                --character:SetPrimaryPartCFrame(character:GetPrimaryPartCFrame()*CFrame.new(0, 4, 0))
+                            end
+                        until v.Character.Humanoid.Health <= 0 or AutoSkywarsWinCheatOn == false or v.Character.HumanoidRootPart == nil
+                    end
+                end
+            end
+        end 
     end
 end)
 
@@ -6774,58 +5840,6 @@ end)
 coroutine.wrap(function()
     -- PlayerFace.LocalScript is disabled.
     local function QETGD_fake_script() -- HealthBar.LocalScript 
-
-        
-    --[[
-        spawn(function()
-            function Round(n, decimals)
-                decimals = decimals or 0
-                return math.floor(n * 10^decimals) / 10^decimals
-            end
-            while killaurastatson == true do
-                MainGui.Visible = true
-
-                UsedId = game.Players.player.UserId
-
-                local thumbType = Enum.ThumbnailType.HeadShot
-                local thumbSize = Enum.ThumbnailSize.Size420x420
-                local content, isReady = game.Players:GetUserThumbnailAsync(UsedId, thumbType, thumbSize)
-            
-                PlayerFace.Image = content
-
-
-
-                Name.Text = player.Name
-
-
-
-                local healthbar = script.Parent
-                local healthbarsize = script.Parent.Size.X.Offset
-                local playerChar = player.Character
-                local playerHumanoid = player:WaitForChild("Humanoid")
-
-                local healthbarxsize = 0.00581 * playerHumanoid.Health
-                script.Parent.Parent.HealthLeft.Text = tostring(Round(playerHumanoid.Health)) .. " health left"
-                script.Parent.Size = UDim2.new(healthbarxsize, 0, 0.246, 0)
-                wait()
-            end
-        end)
-    --]]
-
-
-
-        
-        --healthbar:TweenSize(UDim2.new(0.77, 0, 0.14, 0))
-        
-
-
-
-
-
-
-
-
-
     end
 
 print(2)
@@ -6872,7 +5886,6 @@ coroutine.wrap(function()
             AutoClickerCheatOn,
             SpeedCheatOn,
             BhopCheatOn,
-            --FlyCheatOn,
             LongJumpCheatOn,
             HighJumpCheatOn,
             PhaseCheatOn,
@@ -6885,18 +5898,18 @@ coroutine.wrap(function()
             ChillLofi3CheatOn,
             ChillLofi4CheatOn,
             ChillLofi5CheatOn,
-            --HypeBeatCheatOn,
             AntiVoidCheatOn,
             TimerCheatOn,
             FPSBoostCheatOn,
             FastFallCheatOn,
             ClickTPCheatOn,
-            AntiCheatDisabler,
+            AntiCheatDisablerCheatOn,
             AutoQueueCheatOn,
             AntiAFKCheatOn,
             CopyDiscordLinkCheatOn,
             DinoFlyCheatOn,
             BlatantModeCheatOn,
+            AutoSkywarsWinCheatOn,
             ESPCheatOn,
             TracersCheatOn,
             FOVCheatOn,
@@ -6933,7 +5946,6 @@ coroutine.wrap(function()
             ChillLofi3KeyBind,
             ChillLofi4KeyBind,
             ChillLofi5KeyBind,
-            --HypeBeatKeyBind,
             AntiVoidKeyBind,
             TimerKeyBind,
             FPSBoostKeyBind,
@@ -6945,6 +5957,7 @@ coroutine.wrap(function()
             CopyDiscordLinkKeyBind,
             DinoFlyKeyBind,
             BlatantModeKeyBind,
+            AutoSkywarsWinKeyBind,
             ESPKeyBind,
             TracersKeyBind,
             FOVKeyBind,
@@ -7019,14 +6032,15 @@ coroutine.wrap(function()
                     CopyDiscordLinkCheatOn = loadedValues[34]
                     DinoFlyCheatOn = loadedValues[35]
                     BlatantModeCheatOn = loadedValues[36]
-                    ESPCheatOn = loadedValues[37]
-                    TracersCheatOn = loadedValues[38]
-                    FOVCheatOn = loadedValues[39]
-                    ChamsCheatOn = loadedValues[40]
-                    CameraNoClipCheatOn = loadedValues[41]
-                    EmeraldESPCheatOn = loadedValues[42]
-                    NoClickDelayCheatOn = loadedValues[43]
-                    MultiAuraCheatOn = loadedValues[44]
+                    AutoSkywarsWinCheatOn = loadedValues[37]
+                    ESPCheatOn = loadedValues[38]
+                    TracersCheatOn = loadedValues[39]
+                    FOVCheatOn = loadedValues[40]
+                    ChamsCheatOn = loadedValues[41]
+                    CameraNoClipCheatOn = loadedValues[42]
+                    EmeraldESPCheatOn = loadedValues[43]
+                    NoClickDelayCheatOn = loadedValues[44]
+                    MultiAuraCheatOn = loadedValues[45]
 
                                     
                     NoFallKeyBind = keyBinds[1]
@@ -7066,14 +6080,15 @@ coroutine.wrap(function()
                     CopyDiscordLinkKeyBind = keyBinds[35]
                     DinoFlyKeyBind = keyBinds[36]
                     BlatantModeKeyBind = keyBinds[37]
-                    ESPKeyBind = keyBinds[38]
-                    TracersKeyBind = keyBinds[39]
-                    FOVKeyBind = keyBinds[40]
-                    ChamsKeyBind = keyBinds[41]
-                    CameraNoClipKeyBind = keyBinds[42]
-                    EmeraldESPKeyBind = keyBinds[43]
-                    NoClickDelayKeyBind = keyBinds[44]
-                    MultiAuraKeyBind = keyBinds[45]
+                    AutoSkywarsWinKeyBind = keyBinds[38]
+                    ESPKeyBind = keyBinds[39]
+                    TracersKeyBind = keyBinds[40]
+                    FOVKeyBind = keyBinds[41]
+                    ChamsKeyBind = keyBinds[42]
+                    CameraNoClipKeyBind = keyBinds[43]
+                    EmeraldESPKeyBind = keyBinds[44]
+                    NoClickDelayKeyBind = keyBinds[45]
+                    MultiAuraKeyBind = keyBinds[46]
 
 
                     print(1)
@@ -7189,11 +6204,6 @@ coroutine.wrap(function()
                         p.TopSurface = 0
                         p.BottomSurface = 0
                         p.Color = Color3.new(40, 166, 255)
-                        --[[
-                        Instance.new("Decal", p)
-                        p.Decal.Texture = "http://www.roblox.com/asset/?id=2782324454"
-                        p.Decal.Face = "Top"
-                        --]]
                         p.Material = Enum.Material.Plastic
                         p.FormFactor = "Custom"
                         p.Size = Vector3.new(0.2,0.2,0.2)
@@ -7301,75 +6311,10 @@ coroutine.wrap(function()
                                         task.spawn(newAttackEntity, plr, firstplayercodedone, attackedplayers)
                                     end
 
-
                                 end
-                            --end)
                         until KillAuraCheatOn == false
-                   -- end)
-
                         end
                     end)
-
-                    --[[
-                    spawn(function()
-                        if ReachCheatOn then
-                            -- wait(1)
-                            Reach.BackgroundColor3 = Color3.fromRGB(41, 166, 255)
-                            Reach.TextColor3 = Color3.fromRGB(255, 255, 255)    
-
-
-                            spawn(function()
-                                plr = game.Players.LocalPlayer
-                                lplr = game.Players.LocalPlayer
-
-                                local PLAYERS = game:GetService("Players")
-                                local Flamework = require(game:GetService("ReplicatedStorage")["rbxts_include"]["node_modules"]["@flamework"].core.out).Flamework
-                                repeat task.wait() until Flamework.isInitialized
-                                local KnitClient = debug.getupvalue(require(lplr.PlayerScripts.TS.controllers.game["block-break-controller"]).BlockBreakController.onEnable, 1)
-                                local Client = require(game:GetService("ReplicatedStorage").TS.remotes).default.Client
-                                local InventoryUtil = require(game:GetService("ReplicatedStorage").TS.inventory["inventory-util"]).InventoryUtil
-                                local OldClientGet = getmetatable(Client).Get
-                                local OldClientWaitFor = getmetatable(Client).WaitFor
-                                getmetatable(Client).Get = function(Self, remotename)
-                                    if remotename == bedwars["AttackRemote"] then
-                                        local res = OldClientGet(Self, remotename)
-                                        return {
-                                            ["instance"] = res["instance"],
-                                            ["CallServer"] = function(Self, tab)
-                                                if ReachCheatOn then
-                                                    local mag = (tab.validate.selfPosition.value - tab.validate.targetPosition.value).magnitude
-                                                    local newres = hashvector(tab.validate.selfPosition.value + (mag > 14.4 and (CFrame.lookAt(tab.validate.selfPosition.value, tab.validate.targetPosition.value).lookVector * 4) or Vector3.new(0, 0, 0)))
-                                                    tab.validate.selfPosition = newres
-                                                end
-                                                local suc, plr = pcall(function() return PLAYERS:GetPlayerFromCharacter(tab.entityInstance) end)
-                                                if suc and plr then
-                                                    if plr and (bedwars["CheckWhitelisted"](plr) and bedwars["CheckWhitelisted"](lplr) == nil) then
-                                                        return nil
-                                                    end
-                                                end
-                                                return res:CallServer(tab)
-                                            end
-                                        }
-                                    end
-                                    return OldClientGet(Self, remotename)
-                                end
-                            end)
-
-
-
-                            local reachConst1 = 14
-                            local reachConst2 = 18
-
-                            local old, old2 = debug.getconstant(bedwars["SwingSwordRegion"], reachConst1),debug.getconstant(bedwars["SwingSwordRegion"], reachConst2)
-                            local ReachValue = {["Value"] = 2}
-
-
-
-                            debug.setconstant(bedwars["SwingSwordRegion"], reachConst1, old*(ReachValue["Value"]+1))
-                            debug.setconstant(bedwars["SwingSwordRegion"], reachConst2, old2*(ReachValue["Value"]+1))
-                        end
-                    end)
-                    ]]
 
                     spawn(function()
                         if AntiKnockBackCheatOn then
@@ -7433,17 +6378,17 @@ coroutine.wrap(function()
                             spawn(function()
                                 while SpeedCheatOn == true do
                                     if SpeedCheatOn == true and BlatantModeCheatOn == false then
-                                        getgenv().speedvalforspeed = {["Value"] = 40} --55
+                                        getgenv().speedvalforspeed = {["Value"] = 50} --40
                                         wait(0.7)
                                     elseif SpeedCheatOn == true and BlatantModeCheatOn == true then
-                                        getgenv().speedvalforspeed = {["Value"] = 200}
+                                        getgenv().speedvalforspeed = {["Value"] = 250} --200
                                         wait()
                                     end
                                     if SpeedCheatOn == true and BlatantModeCheatOn == false then
-                                        getgenv().speedvalforspeed = {["Value"] = 90} --80
+                                        getgenv().speedvalforspeed = {["Value"] = 70} --90
                                         wait(0.2) --0.4
                                     elseif SpeedCheatOn == true and BlatantModeCheatOn == true then
-                                        getgenv().speedvalforspeed = {["Value"] = 200}
+                                        getgenv().speedvalforspeed = {["Value"] = 250} --200
                                         wait()
                                     end
                                 end
@@ -7481,16 +6426,6 @@ coroutine.wrap(function()
                                                 if BhopCheatOn == false then
                                                     getgenv().speedval = {["Value"] = 55}
                                                 end
-                            --[[
-                                                lplr = game.Players.LocalPlayer
-
-                                                bodyvelo = Instance.new("BodyVelocity")
-                                                bodyvelo.Parent = lplr.Character.HumanoidRootPart
-                                                bodyvelo.MaxForce = Vector3.new(100000, 0, 100000)
-
-                                                bodyvelo.Velocity = lplr.Character.Humanoid.MoveDirection * speedval["Value"]
-                            --]]
-
 
                                                 spawn(function()
                                                     wait(0.1)
@@ -7501,15 +6436,6 @@ coroutine.wrap(function()
                                                 end)
                                                 
                                                 Heartbeat:wait()
-
-                                                --[[
-
-                                                if hop.Enabled then 
-                                                    if lplr.Character.Humanoid:GetState() == Enum.HumanoidStateType.Running and lplr.Character.Humanoid.MoveDirection ~= Vector3.new() then 
-                                                        lplr.Character.Humanoid:ChangeState(Enum.HumanoidStateType.Jumping)
-                                                    end
-                                                end
-                                                ]]
 
                                                 pcall(function()
                                                     local velo2 = (lplr.Character.Humanoid.MoveDirection * getgenv().speedvalforspeed["Value"]) / speedsettings.velocitydivfactor
@@ -7522,24 +6448,6 @@ coroutine.wrap(function()
                                     elseif FLYINPUTVALUE == true then end
                                 end)
                             end)()
-
-
-                            --[[
-                            Speed.MouseButton1Down:connect(function()
-                                if not SpeedCheatOn == true then
-                                    print('play')
-                                    CheatSound--On:Play()
-
-                                    SpeedCheatOn = true
-
-                                elseif SpeedCheatOn == true then
-                                    print("play2")
-                                    CheatSound--Off:Play()
-
-                                    SpeedCheatOn = false
-                                end
-                            end)
-                            -]]
                         end
                     end)
 
@@ -7590,15 +6498,7 @@ coroutine.wrap(function()
                             --MAKE IT SO IT SAVES KEYBINDS ONCE U ADD THEM
                         end
                     end)
---[[
-                    spawn(function()
-                        if Fly2CheatOn then
-                            -- wait(1)
-                            Fly2.BackgroundColor3 = Color3.fromRGB(41, 166, 255)
-                            Fly2.TextColor3 = Color3.fromRGB(255, 255, 255) 
-                        end
-                    end)
---]]
+
                     spawn(function()
                         if PhaseCheatOn then
                             Phase.BackgroundColor3 = Color3.fromRGB(41, 166, 255)
@@ -7662,15 +6562,6 @@ coroutine.wrap(function()
                                     local ChestStealDelay = wait()
                                         -- print('EEE1')
                                             if isAlive() and ChestStealerCheatOn == true then
-
-                                            --[[
-                                            --  it was this before i changed it so it would be faster..
-
-                                            if ChestStealDelay <= tick() and isAlive() and ChestStealerCheatOn == true then
-                                                ChestStealDelay = tick() + 0.2
-                                            --]]
-
-                                                --print('EEE2')
                                                 local rootpart = lplr.Character and lplr.Character:FindFirstChild("HumanoidRootPart")
                                                 for i,v in pairs(game:GetService("CollectionService"):GetTagged("chest")) do
                                                     if rootpart and (rootpart.Position - v.Position).magnitude <= ChestStealerDistance["Value"] and v:FindFirstChild("ChestFolderValue") then
@@ -7874,15 +6765,6 @@ coroutine.wrap(function()
                             AntiVoid.BackgroundColor3 = Color3.fromRGB(41, 166, 255)
                             AntiVoid.TextColor3 = Color3.fromRGB(255, 255, 255)  
 
-
-
-                            game.StarterGui:SetCore("SendNotification", {
-                                Title = "AntiVoid";
-                                Text = "Antivoid does not work very well on small drops.";
-                                Icon = "";
-                                Duration = 5;
-                            })  
-
                             parts = {}
 
                             lowest = math.huge
@@ -7915,42 +6797,7 @@ coroutine.wrap(function()
                             NeedReset = false
 
                             local pos = {}
-                    --[[
-                            spawn(function()
-                                while true do
-                                    if (humanoid:GetState() == Enum.HumanoidStateType.Freefall) then
-                                        if touching == false then
-                                            --print("falling")
-                                            pos[#pos+1] = character.HumanoidRootPart.CFrame
-                                            NeedReset = true
-                                        end
-                                    else
-                                        wait(.1)
-                                        if not (humanoid:GetState() == Enum.HumanoidStateType.Freefall) then
-                                            if touching == false then
-                                                if NeedReset == true then
-                                                    --print('reset')
-                                                    pos = {}
-                                                    NeedReset = false
-                                                end
-                                                if #pos == 8 then
-                                                    for i=2, 8, 1 do
-                                                        local temp = {}
-                                                        temp[i-1] = pos[1]
-                                                        temp[8] = character.HumanoidRootPart.CFrame
-
-                                                        pos = temp
-                                                    end
-                                                else
-                                                    pos[#pos + 1] = character.HumanoidRootPart.CFrame
-                                                end
-                                            end
-                                        end
-                                    end
-                                    wait() --0.05
-                                end
-                            end)
-                    --]]
+                
                             local timePassed = tick()
 
                             local function antiVoidFunction(newpart, limb)
@@ -7969,26 +6816,7 @@ coroutine.wrap(function()
                                                 end
                                             end
                                         end)
-
-                                    --[[
-                                        --print("tping")
-
-                                        game.StarterGui:SetCore("SendNotification", {
-                                            Title = "AntiVoid";
-                                            Text = "Do not spam Antivoid as it will lead to lag backs and glitches.";
-                                            Icon = "";
-                                            Duration = 5;
-                                        })    
-
-                                        print(#pos)
-                                        for i=#pos, 1, -1 do
-                                            if pos[i] then
-                                                character.HumanoidRootPart.CFrame = CFrame.new(pos[i].X, pos[i].Y, pos[i].Z)
-                                                wait()
-                                            end
-                                        end 
-                                        --print('done tping')
-                                        --]]
+                                        
                                         pos = {}
                                         wait()
                                         touching = false
@@ -8059,17 +6887,27 @@ coroutine.wrap(function()
 
                     spawn(function()
                         if AntiCheatDisablerCheatOn then
+                            AntiCheatDisablerCheatOn = true
                             AntiCheatDisabler.BackgroundColor3 = Color3.fromRGB(41, 166, 255)
-                            AntiCheatDisabler.TextColor3 = Color3.fromRGB(255, 255, 255) 
+                            AntiCheatDisabler.TextColor3 = Color3.fromRGB(255, 255, 255)  
 
+                            --On:Play()
 
-                            character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Dead, true)
-                            character.Humanoid:ChangeState(Enum.HumanoidStateType.Dead)
-                            repeat task.wait() until character.Humanoid.MoveDirection ~= Vector3.zero
-                            task.wait(0.2)
-                            character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Dead, false)
-                            character.Humanoid:ChangeState(Enum.HumanoidStateType.Running)
-                            workspace.Gravity = 192.6
+                            repeat task.wait() until character and character:FindFirstChild("HumanoidRootPart") and character:FindFirstChild("Humanoid") and character:FindFirstChild("Humanoid").Health >= 1
+                            if matchState == 1 then
+                                game.StarterGui:SetCore("SendNotification", {
+                                    Title = "AntiCheatDisabler";
+                                    Text = "Anticheatdisabler can't be used once the game has started.";
+                                    Icon = "";
+                                    Duration = 3;
+                                })
+                                wait(0.5)
+                                --AntiCheatDisablerCheatOn = false
+                                AntiCheatDisabler.BackgroundColor3 = Color3.fromRGB(250, 250, 250)
+                                AntiCheatDisabler.TextColor3 = Color3.fromRGB(0, 0, 0)  
+                        elseif matchState == 0 then
+                                anticheatdisabler()
+                            end
                         end
                     end)
 
@@ -8078,85 +6916,23 @@ coroutine.wrap(function()
                             AutoQueue.BackgroundColor3 = Color3.fromRGB(41, 166, 255)
                             AutoQueue.TextColor3 = Color3.fromRGB(255, 255, 255) 
 
+                            AutoQueueCheatOn = true
 
-                            AUTOQUEUESKYWARSINGAME = false  
-                            AUTOQUEUELOBBY = false  
-                            
-                            local function has_value(tab, val)
-                                for index, value in ipairs(tab) do
-                                    if value == val then
-                                        return true
-                                    end
+                            while AutoQueueCheatOn == true do
+                                local clientstorestate = bedwars["ClientStoreHandler"]:getState()
+                                matchState = clientstorestate.Game.matchState or 0
+
+                                if (matchState == 2) or (game.PlaceId == 6872265039) or (lplr.Character.HumanoidRootPart == nil) then
+                                    game:GetService("ReplicatedStorage")["events-@easy-games/lobby:shared/event/lobby-events@getEvents.Events"].joinQueue:FireServer({["queueType"] = "skywars_to2"})
+                                    queuedup = true
                                 end
 
-                                return false
-                            end
-
-
-                            coroutine.wrap(function()
-                                while true do
-                                    allTeams = {}
-
-                                    for i,v in pairs(game.Players:GetChildren()) do
-                                        if not has_value(allTeams, tostring(v.Team)) then
-                                            allTeams[#allTeams+1] = tostring(v.Team)
-                                        end
-                                    end
-
-                                    if #allTeams == 2 and AntiCheatDisablerCheatOn == false then
-                                        local args = {
-                                        [1] = {
-                                            ["queueType"] = "skywars_to2"
-                                        }
-                                        }
-
-                                        game:GetService("ReplicatedStorage")["events-@easy-games/lobby:shared/event/lobby-events@getEvents.Events"].joinQueue:FireServer(unpack(args))
-
-                                        AUTOQUEUESKYWARSINGAME = true
-
-
-
-                                    end
-
-                                    if AutoQueueCheatOn == true and lplr.Character.Humanoid.Health == 0 and AntiCheatDisablerCheatOn == false then
-                                        local args = {
-                                        [1] = {
-                                            ["queueType"] = "skywars_to2"
-                                        }
-                                        }
-
-                                        game:GetService("ReplicatedStorage")["events-@easy-games/lobby:shared/event/lobby-events@getEvents.Events"].joinQueue:FireServer(unpack(args))
-
-                                        AUTOQUEUESKYWARSINGAME = true
-
-                                    elseif AutoQueueCheatOn == true and game.PlaceId == 6872265039 and AntiCheatDisablerCheatOn == false then
-                                        local args = {
-                                        [1] = {
-                                            ["queueType"] = "skywars_to2"
-                                        }
-                                        }
-
-                                        game:GetService("ReplicatedStorage")["events-@easy-games/lobby:shared/event/lobby-events@getEvents.Events"].joinQueue:FireServer(unpack(args))
-
-                                        AUTOQUEUELOBBY = true
-
-                                    end
-
-
-                                    if AutoQueueCheatOn == false then
-                                        break
-                                    end
-
-                                    if AUTOQUEUESKYWARSINGAME == true then
-                                        break
-                                    end
-
-                                    if AUTOQUEUELOBBY == true then
-                                        break
-                                    end
-                                    wait()
+                                if queuedup == true then
+                                    queuedup = false
+                                    break
                                 end
-                            end)()
+                                wait()
+                            end               
                         end
                     end)
                     
@@ -8181,10 +6957,162 @@ coroutine.wrap(function()
 
                     spawn(function()
                         if BlatantModeCheatOn then
-                            BlatantMode.BackgroundColor3 = Color3.fromRGB(41, 166, 255)
-                            BlatantMode.TextColor3 = Color3.fromRGB(255, 255, 255) 
-
                             BlatantModeCheatOn = true
+                            BlatantMode.BackgroundColor3 = Color3.fromRGB(41, 166, 255)
+                            BlatantMode.TextColor3 = Color3.fromRGB(255, 255, 255)  
+
+                            --On:Play() 
+
+                            wait(1)
+
+                            while BlatantModeCheatOn == true do
+                                local clientstorestate = bedwars["ClientStoreHandler"]:getState()
+                                matchState = clientstorestate.Game.matchState or 0
+
+                                if matchState == 1 and AntiCheatDisablerCheatOn == false or matchState == 0 and AntiCheatDisablerCheatOn == false then
+                                    cantblatantmode = true
+                                end
+
+                                if cantblatantmode == true then
+                                    cantblatantmode = false
+
+                                    BlatantModeCheatOn = false
+                                    BlatantMode.BackgroundColor3 = Color3.fromRGB(250, 250, 250)
+                                    BlatantMode.TextColor3 = Color3.fromRGB(0, 0, 0)  
+
+                                    game.StarterGui:SetCore("SendNotification", {
+                                        Title = "BlatantMode";
+                                        Text = "BlatantMode can't be enabled without anticheatdisabler.";
+                                        Icon = "";
+                                        Duration = 4;
+                                    })
+
+                                    break
+                                end
+                                wait()
+                            end  
+                        end
+                    end)
+
+                    spawn(function()
+                        if AutoSkywarsWinCheatOn then
+                            AutoSkywarsWinCheatOn = true
+                            AutoSkywarsWin.BackgroundColor3 = Color3.fromRGB(41, 166, 255)
+                            AutoSkywarsWin.TextColor3 = Color3.fromRGB(255, 255, 255)
+
+                            wait(1)
+
+                            if matchState == 1 and AntiCheatDisablerCheatOn == false then  
+                                game.StarterGui:SetCore("SendNotification", {
+                                    Title = "AutoSkywarsWin";
+                                    Text = "AutoSkywarsWin can only be started before the game begins.";
+                                    Icon = "";
+                                    Duration = 6;
+                                })
+
+                                AutoSkywarsWinCheatOn = false
+                                AutoSkywarsWin.BackgroundColor3 = Color3.fromRGB(250, 250, 250)
+                                AutoSkywarsWin.TextColor3 = Color3.fromRGB(0, 0, 0) 
+
+                            elseif matchState == 0 and AntiCheatDisablerCheatOn == true or matchState == 0 and AntiCheatDisablerCheatOn == false or matchState == 1 and AntiCheatDisablerCheatOn == true then     
+                                --On:Play() 
+
+                                local humrp = lplr.Character.HumanoidRootPart
+
+                                players = game.Players:GetChildren()
+
+                                spawn(function()
+                                    wait(70)
+                                    game:GetService("ReplicatedStorage")["events-@easy-games/lobby:shared/event/lobby-events@getEvents.Events"].joinQueue:FireServer({["queueType"] = "skywars_to2"})
+                                end)
+
+                        --------------------------------------------------------loading other cheats
+                                spawn(function()
+                                    if not MultiAuraCheatOn == true then
+                                        MultiAuraCheatOn = true
+
+                                        MultiAura.BackgroundColor3 = Color3.fromRGB(41, 166, 255)
+                                        MultiAura.TextColor3 = Color3.fromRGB(255, 255, 255) 
+
+                                        --On:Play()
+
+                                        bedwars["PaintRemote"] = getremote(debug.getconstants(KnitClient.Controllers.PaintShotgunController.fire))
+
+                                        repeat
+                                            task.wait(0.03)
+                                            local plrs = GetAllNearestHumanoidToPosition(18.8)
+                                            for i,plr in pairs(plrs) do
+                                                local selfpos = game.Players.LocalPlayer.Character.HumanoidRootPart.Position
+                                                local newpos = plr.Character.HumanoidRootPart.Position
+                                                bedwars["ClientHandler"]:Get(bedwars["PaintRemote"]):SendToServer(selfpos, CFrame.lookAt(selfpos, newpos).lookVector)
+                                            end
+                                        until MultiAuraCheatOn == false 
+                                    end
+                                end)
+
+                                spawn(function()
+                                    if not AntiCheatDisablerCheatOn == true then
+                                        AntiCheatDisablerCheatOn = true
+                                        AntiCheatDisabler.BackgroundColor3 = Color3.fromRGB(41, 166, 255)
+                                        AntiCheatDisabler.TextColor3 = Color3.fromRGB(255, 255, 255)  
+
+                                        --On:Play()
+
+                                        repeat task.wait() until character and character:FindFirstChild("HumanoidRootPart") and character:FindFirstChild("Humanoid") and character:FindFirstChild("Humanoid").Health >= 1
+                                        if matchState == 1 then
+                                            game.StarterGui:SetCore("SendNotification", {
+                                                Title = "AntiCheatDisabler";
+                                                Text = "Anticheatdisabler can't be used once the game has started.";
+                                                Icon = "";
+                                                Duration = 3;
+                                            })
+                                            wait(0.3)
+                                            --AntiCheatDisablerCheatOn = false
+                                            AntiCheatDisabler.BackgroundColor3 = Color3.fromRGB(250, 250, 250)
+                                            AntiCheatDisabler.TextColor3 = Color3.fromRGB(0, 0, 0)  
+                                    elseif matchState == 0 then
+                                            anticheatdisabler()
+                                        end
+                                    end
+                                end)
+
+                                spawn(function()
+                                    if not AutoQueueCheatOn == true then
+                                        AutoQueueCheatOn = true
+                                        AutoQueue.BackgroundColor3 = Color3.fromRGB(41, 166, 255)
+                                        AutoQueue.TextColor3 = Color3.fromRGB(255, 255, 255) 
+
+                                        while AutoQueueCheatOn == true do
+                                            local clientstorestate = bedwars["ClientStoreHandler"]:getState()
+                                            matchState = clientstorestate.Game.matchState or 0
+
+                                            if (matchState == 2) or (game.PlaceId == 6872265039) or (lplr.Character.HumanoidRootPart == nil) then
+                                                game:GetService("ReplicatedStorage")["events-@easy-games/lobby:shared/event/lobby-events@getEvents.Events"].joinQueue:FireServer({["queueType"] = "skywars_to2"})
+                                                queuedup = true
+                                            end
+
+                                            if queuedup == true then
+                                                queuedup = false
+                                                break
+                                            end
+                                            wait()
+                                        end
+                                    end
+                                end)
+                        --------------------------------------------------------loading other cheats
+                                for i,v in pairs(players) do
+                                    if v.Character and AutoSkywarsWinCheatOn == true then
+                                        if (v.Character:FindFirstChild("HumanoidRootPart")) and not (v.Name == lplr.Name) and v.Character:FindFirstChild("Humanoid") and not (v.Character.Humanoid.Health <= 0) and not (v.Team == lplr.Team) and AutoSkywarsWinCheatOn == true then
+                                            repeat Heartbeat:wait()
+                                                if v.Character and (v.Character:FindFirstChild("HumanoidRootPart")) and AutoSkywarsWinCheatOn == true then
+                                                    humrp.CFrame = v.Character.HumanoidRootPart.CFrame
+                                                    --character:SetPrimaryPartCFrame(character:GetPrimaryPartCFrame()*CFrame.new(0, 4, 0))
+                                                end
+                                            until v.Character.Humanoid.Health <= 0 or AutoSkywarsWinCheatOn == false or v.Character.HumanoidRootPart == nil
+                                        end
+                                    end
+                                end
+                            end    
                         end
                     end)
 
