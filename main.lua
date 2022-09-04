@@ -4820,7 +4820,7 @@ AutoSkywarsWin.MouseButton1Down:connect(function()
     --------------------------------------------------------loading other cheats
             for i,v in pairs(players) do
                 if v.Character and AutoSkywarsWinCheatOn == true then
-                    if (v.Character:FindFirstChild("HumanoidRootPart")) and not (v.Name == lplr.Name) and v.Character:FindFirstChild("Humanoid") and not (v.Character.Humanoid.Health <= 0) and not (v.Team == lplr.Team) and AutoSkywarsWinCheatOn == true then
+                    if not (v.Name == lplr.Name) and v.Character:FindFirstChild("Humanoid") and not (v.Character.Humanoid.Health <= 0) and not (v.Team == lplr.Team) and AutoSkywarsWinCheatOn == true then
                         repeat Heartbeat:wait()
                             if v.Character and (v.Character.HumanoidRootPart ~= nil) and AutoSkywarsWinCheatOn == true then
                                 humrp.CFrame = v.Character.HumanoidRootPart.CFrame
@@ -4975,7 +4975,7 @@ UIS.InputBegan:Connect(function(input)
     --------------------------------------------------------loading other cheats
             for i,v in pairs(players) do
                 if v.Character and AutoSkywarsWinCheatOn == true then
-                    if (v.Character:FindFirstChild("HumanoidRootPart")) and not (v.Name == lplr.Name) and v.Character:FindFirstChild("Humanoid") and not (v.Character.Humanoid.Health <= 0) and not (v.Team == lplr.Team) and AutoSkywarsWinCheatOn == true then
+                    if not (v.Name == lplr.Name) and v.Character:FindFirstChild("Humanoid") and not (v.Character.Humanoid.Health <= 0) and not (v.Team == lplr.Team) and AutoSkywarsWinCheatOn == true then
                         repeat Heartbeat:wait()
                             if v.Character and (v.Character.HumanoidRootPart ~= nil) and AutoSkywarsWinCheatOn == true then
                                 humrp.CFrame = v.Character.HumanoidRootPart.CFrame
@@ -7102,7 +7102,7 @@ coroutine.wrap(function()
                         --------------------------------------------------------loading other cheats
                                 for i,v in pairs(players) do
                                     if v.Character and AutoSkywarsWinCheatOn == true then
-                                        if (v.Character:FindFirstChild("HumanoidRootPart")) and not (v.Name == lplr.Name) and v.Character:FindFirstChild("Humanoid") and not (v.Character.Humanoid.Health <= 0) and not (v.Team == lplr.Team) and AutoSkywarsWinCheatOn == true then
+                                        if not (v.Name == lplr.Name) and v.Character:FindFirstChild("Humanoid") and not (v.Character.Humanoid.Health <= 0) and not (v.Team == lplr.Team) and AutoSkywarsWinCheatOn == true then
                                             repeat Heartbeat:wait()
                                                 if v.Character and (v.Character.HumanoidRootPart ~= nil) and AutoSkywarsWinCheatOn == true then
                                                     humrp.CFrame = v.Character.HumanoidRootPart.CFrame
