@@ -12,6 +12,13 @@ if game.CoreGui:FindFirstChild("Sigma_1") then
 
 else
 
+game.StarterGui:SetCore("SendNotification", {
+    Title = "Sigma V5";
+    Text = "This script is most likely discontinued as it's bad and mostly skidded lol. Working on a new one without skidding.";
+    Icon = "";
+    Duration = 6;
+})
+
 local queueteleport = (syn and syn.queue_on_teleport) or queue_on_teleport or (fluxus and fluxus.queue_on_teleport)
 
 queueteleport('loadstring(game:HttpGet("https://raw.githubusercontent.com/ratedlua/shitmaClient/main/main.lua", true))()')
@@ -4748,7 +4755,9 @@ AutoSkywarsWin.MouseButton1Down:connect(function()
 
             spawn(function()
                 wait(70)
-                game:GetService("ReplicatedStorage")["events-@easy-games/lobby:shared/event/lobby-events@getEvents.Events"].joinQueue:FireServer({["queueType"] = "skywars_to2"})
+                if AutoSkywarsWinCheatOn then
+                    game:GetService("ReplicatedStorage")["events-@easy-games/lobby:shared/event/lobby-events@getEvents.Events"].joinQueue:FireServer({["queueType"] = "skywars_to2"})
+                end
             end)
 
     --------------------------------------------------------loading other cheats
@@ -4907,7 +4916,9 @@ UIS.InputBegan:Connect(function(input)
 
             spawn(function()
                 wait(70)
-                game:GetService("ReplicatedStorage")["events-@easy-games/lobby:shared/event/lobby-events@getEvents.Events"].joinQueue:FireServer({["queueType"] = "skywars_to2"})
+                if AutoSkywarsWinCheatOn then
+                    game:GetService("ReplicatedStorage")["events-@easy-games/lobby:shared/event/lobby-events@getEvents.Events"].joinQueue:FireServer({["queueType"] = "skywars_to2"})
+                end
             end)
 
     --------------------------------------------------------loading other cheats
@@ -7038,7 +7049,9 @@ coroutine.wrap(function()
 
                                 spawn(function()
                                     wait(70)
-                                    game:GetService("ReplicatedStorage")["events-@easy-games/lobby:shared/event/lobby-events@getEvents.Events"].joinQueue:FireServer({["queueType"] = "skywars_to2"})
+                                    if AutoSkywarsWinCheatOn then
+                                        game:GetService("ReplicatedStorage")["events-@easy-games/lobby:shared/event/lobby-events@getEvents.Events"].joinQueue:FireServer({["queueType"] = "skywars_to2"})
+                                    end
                                 end)
 
                         --------------------------------------------------------loading other cheats
