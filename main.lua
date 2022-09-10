@@ -2217,7 +2217,7 @@ Speed.MouseButton1Down:connect(function()
         spawn(function()
             while SpeedCheatOn == true do
                 if SpeedCheatOn == true and BlatantModeCheatOn == false then
-                    getgenv().speedvalforspeed = {["Value"] = 50} --40
+                    getgenv().speedvalforspeed = {["Value"] = 50} --50
                     wait(0.7)
                 elseif SpeedCheatOn == true and BlatantModeCheatOn == true then
                     getgenv().speedvalforspeed = {["Value"] = 250} --200
@@ -2347,6 +2347,9 @@ Bhop.MouseButton1Down:connect(function()
             while BhopCheatOn == true do
                 if humanoid.MoveDirection.X > 0 or humanoid.MoveDirection.X < 0 or humanoid.MoveDirection.Z > 0 or humanoid.MoveDirection.Z < 0 or humanoid.MoveDirection.Y > 0 or humanoid.MoveDirection.Y < 0 then -- as you can see it's scuff since I didn't know what I was doing much back then
                     game.Players.LocalPlayer.Character.Humanoid.Jump = true
+                    if FlyCheatOn == false and LongJumpCheatOn == false and HighJumpCheatOn == false and FastFallCheatOn == false then
+                        workspace.Gravity = 70
+                    end
                 end
                 wait()		
             end
@@ -4177,11 +4180,6 @@ AntiCheatDisabler.TextColor3 = Color3.fromRGB(0, 0, 0)
 AntiCheatDisabler.TextSize = 25.000
 AntiCheatDisabler.MouseButton1Down:connect(function()
     if not AntiCheatDisablerCheatOn == true then
-        AntiCheatDisablerCheatOn = true
-
-        AntiCheatDisabler.BackgroundColor3 = Color3.fromRGB(41, 166, 255)
-        AntiCheatDisabler.TextColor3 = Color3.fromRGB(255, 255, 255)  
-
         --On:Play()
 
         repeat task.wait() until character and character:FindFirstChild("HumanoidRootPart") and character:FindFirstChild("Humanoid") and character:FindFirstChild("Humanoid").Health >= 1
@@ -4197,6 +4195,10 @@ AntiCheatDisabler.MouseButton1Down:connect(function()
             AntiCheatDisabler.BackgroundColor3 = Color3.fromRGB(250, 250, 250)
             AntiCheatDisabler.TextColor3 = Color3.fromRGB(0, 0, 0)  
     elseif matchState == 0 then
+            AntiCheatDisablerCheatOn = true
+            AntiCheatDisabler.BackgroundColor3 = Color3.fromRGB(41, 166, 255)
+            AntiCheatDisabler.TextColor3 = Color3.fromRGB(255, 255, 255) 
+             
             anticheatdisabler()
         end
 
@@ -4262,6 +4264,10 @@ UIS.InputBegan:Connect(function(input)
                 AntiCheatDisabler.BackgroundColor3 = Color3.fromRGB(250, 250, 250)
                 AntiCheatDisabler.TextColor3 = Color3.fromRGB(0, 0, 0)  
         elseif matchState == 0 then
+                AntiCheatDisablerCheatOn = true
+                AntiCheatDisabler.BackgroundColor3 = Color3.fromRGB(41, 166, 255)
+                AntiCheatDisabler.TextColor3 = Color3.fromRGB(255, 255, 255) 
+                
                 anticheatdisabler()
             end
         --end  
@@ -4805,6 +4811,10 @@ AutoSkywarsWin.MouseButton1Down:connect(function()
                         AntiCheatDisabler.BackgroundColor3 = Color3.fromRGB(250, 250, 250)
                         AntiCheatDisabler.TextColor3 = Color3.fromRGB(0, 0, 0)  
                 elseif matchState == 0 then
+                        AntiCheatDisablerCheatOn = true
+                        AntiCheatDisabler.BackgroundColor3 = Color3.fromRGB(41, 166, 255)
+                        AntiCheatDisabler.TextColor3 = Color3.fromRGB(255, 255, 255) 
+                        
                         anticheatdisabler()
                     end
                 end
@@ -4965,6 +4975,10 @@ UIS.InputBegan:Connect(function(input)
                         AntiCheatDisabler.BackgroundColor3 = Color3.fromRGB(250, 250, 250)
                         AntiCheatDisabler.TextColor3 = Color3.fromRGB(0, 0, 0)  
                 elseif matchState == 0 then
+                        AntiCheatDisablerCheatOn = true
+                        AntiCheatDisabler.BackgroundColor3 = Color3.fromRGB(41, 166, 255)
+                        AntiCheatDisabler.TextColor3 = Color3.fromRGB(255, 255, 255) 
+                        
                         anticheatdisabler()
                     end
                 end
@@ -6491,6 +6505,9 @@ coroutine.wrap(function()
                                 while BhopCheatOn == true do
                                     if humanoid.MoveDirection.X > 0 or humanoid.MoveDirection.X < 0 or humanoid.MoveDirection.Z > 0 or humanoid.MoveDirection.Z < 0 or humanoid.MoveDirection.Y > 0 or humanoid.MoveDirection.Y < 0   then -- as you can see it's scuff since I didn't know what I was doing much back then
                                         game.Players.LocalPlayer.Character.Humanoid.Jump = true
+                                        if FlyCheatOn == false and LongJumpCheatOn == false and HighJumpCheatOn == false and FastFallCheatOn == false then
+                                            workspace.Gravity = 70
+                                        end
                                     end
                                     wait()		
                                 end
@@ -6930,6 +6947,10 @@ coroutine.wrap(function()
                                 AntiCheatDisabler.BackgroundColor3 = Color3.fromRGB(250, 250, 250)
                                 AntiCheatDisabler.TextColor3 = Color3.fromRGB(0, 0, 0)  
                         elseif matchState == 0 then
+                                AntiCheatDisablerCheatOn = true
+                                AntiCheatDisabler.BackgroundColor3 = Color3.fromRGB(41, 166, 255)
+                                AntiCheatDisabler.TextColor3 = Color3.fromRGB(255, 255, 255) 
+                                
                                 anticheatdisabler()
                             end
                         end
@@ -7097,6 +7118,10 @@ coroutine.wrap(function()
                                             AntiCheatDisabler.BackgroundColor3 = Color3.fromRGB(250, 250, 250)
                                             AntiCheatDisabler.TextColor3 = Color3.fromRGB(0, 0, 0)  
                                     elseif matchState == 0 then
+                                            AntiCheatDisablerCheatOn = true
+                                            AntiCheatDisabler.BackgroundColor3 = Color3.fromRGB(41, 166, 255)
+                                            AntiCheatDisabler.TextColor3 = Color3.fromRGB(255, 255, 255) 
+                                            
                                             anticheatdisabler()
                                         end
                                     end
