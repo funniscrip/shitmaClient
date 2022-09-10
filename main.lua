@@ -4738,7 +4738,7 @@ AutoSkywarsWin.MouseButton1Down:connect(function()
         AutoSkywarsWin.BackgroundColor3 = Color3.fromRGB(41, 166, 255)
         AutoSkywarsWin.TextColor3 = Color3.fromRGB(255, 255, 255)
 
-        wait(1.2)
+        repeat wait() until matchState == 1
 
         if matchState == 1 and AntiCheatDisablerCheatOn == false then  
             game.StarterGui:SetCore("SendNotification", {
@@ -4902,7 +4902,7 @@ UIS.InputBegan:Connect(function(input)
         AutoSkywarsWin.BackgroundColor3 = Color3.fromRGB(41, 166, 255)
         AutoSkywarsWin.TextColor3 = Color3.fromRGB(255, 255, 255)
 
-        wait(1.2)
+        repeat wait() until matchState == 1
 
         if matchState == 1 and AntiCheatDisablerCheatOn == false then  
             game.StarterGui:SetCore("SendNotification", {
@@ -7045,7 +7045,7 @@ coroutine.wrap(function()
                             AutoSkywarsWin.BackgroundColor3 = Color3.fromRGB(41, 166, 255)
                             AutoSkywarsWin.TextColor3 = Color3.fromRGB(255, 255, 255)
 
-                            wait(1.2)
+                            repeat wait() until matchState == 1
 
                             if matchState == 1 and AntiCheatDisablerCheatOn == false then  
                                 game.StarterGui:SetCore("SendNotification", {
