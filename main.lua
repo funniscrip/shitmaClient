@@ -21,7 +21,7 @@ game.StarterGui:SetCore("SendNotification", {
 
 local queueteleport = (syn and syn.queue_on_teleport) or queue_on_teleport or (fluxus and fluxus.queue_on_teleport)
 
-queueteleport('loadstring(game:HttpGet("https://raw.githubusercontent.com/ratedlua/shitmaClient/main/main.lua", true))()')
+--queueteleport('loadstring(game:HttpGet("https://raw.githubusercontent.com/ratedlua/shitmaClient/main/main.lua", true))()')
 
 local savedc0 = game:GetService("ReplicatedStorage"):WaitForChild("Assets"):WaitForChild("Viewmodel"):WaitForChild("RightHand"):WaitForChild("RightWrist").C0
 local setc0
@@ -2211,14 +2211,14 @@ Speed.MouseButton1Down:connect(function()
         spawn(function()
             while SpeedCheatOn == true do
                 if SpeedCheatOn == true and BlatantModeCheatOn == false then
-                    getgenv().speedvalforspeed = {["Value"] = 50} --50
+                    getgenv().speedvalforspeed = {["Value"] = 35} --30
                     wait(0.7)
                 elseif SpeedCheatOn == true and BlatantModeCheatOn == true then
                     getgenv().speedvalforspeed = {["Value"] = 250} --200
                     wait()
                 end
                 if SpeedCheatOn == true and BlatantModeCheatOn == false then
-                    getgenv().speedvalforspeed = {["Value"] = 70} --90
+                    getgenv().speedvalforspeed = {["Value"] = 90} --70
                     wait(0.2) --0.4
                 elseif SpeedCheatOn == true and BlatantModeCheatOn == true then
                     getgenv().speedvalforspeed = {["Value"] = 250} --200
@@ -2686,7 +2686,7 @@ Fly.MouseButton1Down:connect(function()
 
                         Heartbeat:Wait()
                     end
-                end) 
+                end)
 
     elseif FlyCheatOn == true then
         FlyCheatOn = false
@@ -6419,14 +6419,14 @@ coroutine.wrap(function()
                             spawn(function()
                                 while SpeedCheatOn == true do
                                     if SpeedCheatOn == true and BlatantModeCheatOn == false then
-                                        getgenv().speedvalforspeed = {["Value"] = 50} --40
+                                        getgenv().speedvalforspeed = {["Value"] = 35} --50
                                         wait(0.7)
                                     elseif SpeedCheatOn == true and BlatantModeCheatOn == true then
                                         getgenv().speedvalforspeed = {["Value"] = 250} --200
                                         wait()
                                     end
                                     if SpeedCheatOn == true and BlatantModeCheatOn == false then
-                                        getgenv().speedvalforspeed = {["Value"] = 70} --90
+                                        getgenv().speedvalforspeed = {["Value"] = 90} --70
                                         wait(0.2) --0.4
                                     elseif SpeedCheatOn == true and BlatantModeCheatOn == true then
                                         getgenv().speedvalforspeed = {["Value"] = 250} --200
@@ -6464,10 +6464,6 @@ coroutine.wrap(function()
                                     if FLYINPUTVALUE == false then
                                         if SpeedCheatOn == true then
                                             if isAlive() and not stopSpeed or AntiCheatDisablerCheatOn == true then
-                                                if BhopCheatOn == false then
-                                                    getgenv().speedval = {["Value"] = 55}
-                                                end
-
                                                 spawn(function()
                                                     wait(0.1)
                                                     lplr.Character.Humanoid.WalkSpeed = speedsettings.wsvalue
